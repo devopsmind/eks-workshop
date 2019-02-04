@@ -1,5 +1,5 @@
 ---
-title: "Amazon EKS Workshop"
+title: "Workshop Amazon EKS "
 chapter: true
 weight: 1
 ---
@@ -8,5 +8,5 @@ weight: 1
 
 ![EKS](images/3-service-animated.gif)
 
-In this workshop, we will explore multiple ways to configure VPC, ALB, and EC2
-Kubernetes workers, and Amazon Elastic Container Service for Kubernetes.
+Neste workshop, vamos explorar várias maneiras de configurar VPC, ALB e EC2
+workers do Kubernetes e Amazon Elastic Container Service para Kubernetes.
