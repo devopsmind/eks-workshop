@@ -1,19 +1,19 @@
 ---
-title: "Cleanup"
+title: "Limpeza"
 date: 2018-11-13T23:59:44+09:00
 weight: 70
 draft: false
 ---
 
-To cleanup, follow the below steps.
+Para limpar, siga os passos abaixo.
 
-To remove telemetry configuration / port-forward process
+Para remover o processo de configuração de telemetria / port-forward de porta
 
 ```
 kubectl delete -f istio-telemetry.yaml
 ```
 
-To remove the application virtual services / destination rules
+Para remover os serviços virtuais / regras de destino do aplicativo
 
 ```
 kubectl delete -f samples/bookinfo/networking/virtual-service-all-v1.yaml
@@ -21,7 +21,7 @@ kubectl delete -f samples/bookinfo/networking/virtual-service-all-v1.yaml
 kubectl delete -f samples/bookinfo/networking/destination-rule-all.yaml
 ```
 
-To remove the gateway / application
+Para remover o gateway / aplicativo
 
 ```
 kubectl delete -f samples/bookinfo/networking/bookinfo-gateway.yaml
@@ -29,7 +29,7 @@ kubectl delete -f samples/bookinfo/networking/bookinfo-gateway.yaml
 kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml
 ```
 
-To remove Istio
+Para remover o Istio
 
 ```
 kubectl delete -f istio.yaml

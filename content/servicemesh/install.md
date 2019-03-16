@@ -1,18 +1,18 @@
 ---
-title: "Install Istio"
+title: "Instale o Istio"
 date: 2018-11-13T16:36:55+09:00
 weight: 30
 draft: false
 ---
 
-### Install Istio's CRD
-The [Custom Resource Definition, also known as a CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions), is an API resource which allows you to define custom resources. 
+### Instalar o CRD do Istio
+O [Custom Resource Definition, também conhecido como CRD](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/#customresourcedefinitions), é um recurso da API que permite definir recursos personalizados. 
 ```
 kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml
 ```
 
-### Install Istio
-Helm is required for the following examples.  If you have not installed Helm yet, [please first reference the Helm chapter](/helm_root) before proceeding.
+### Instale o Istio
+Helm é necessário para os exemplos a seguir.  Se você ainda não instalou o Helm, [por favor, primeiro referenciar o capítulo Helm](/helm_root) Antes de prosseguir.
 
 ```
 kubectl create -f install/kubernetes/helm/helm-service-account.yaml
@@ -24,13 +24,13 @@ kubectl create namespace istio-system
 kubectl apply -f istio.yaml
 ```
 
-Watch the progress of installation using:
+Veja o progresso de instalação usando:
 
 ```
 kubectl get pod -n istio-system -w
 ```
 
-And hit CTRL-C when you're ready to proceed.
+E pressione CTRL-C quando estiver pronto para prosseguir.
 
 ```
 NAME                                    READY     STATUS      RESTARTS   AGE

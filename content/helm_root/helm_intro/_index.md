@@ -1,17 +1,17 @@
 ---
-title: "Install Helm on EKS"
+title: "Instale o Helm em EKS"
 chapter: true
 weight: 60
 ---
 
-# Install Helm on EKS
+# Instale Helm no EKS
 
-[Helm](https://helm.sh/) is a package manager and application management tool for Kubernetes that packages multiple Kubernetes resources into a single logical deployment unit called **Chart**.
+[Helm](https://helm.sh/) é um gerenciador de pacotes e uma ferramenta de gerenciamento de aplicativos para o Kubernetes que empacota vários recursos do Kubernetes em uma única unidade de implantação lógica chamada **Chart**.
 
-Helm helps you to:
+Helm ajuda você a:
 
-- Achieve a simple (one command) and repeatable deployment
-- Manage application dependency, using specific versions of other application and services
-- Manage multiple deployment configurations: test, staging, production and others
-- Execute post/pre deployment jobs during application deployment
-- Update/rollback and test application deployments
+- Conseguir um simples(um comando) implementações repetitivas
+- Gerenciar a dependência de aplicativos, usando versões específicas de outros aplicativos e serviços
+- Gerenciar várias configurações de implantação: test, staging, production e outros
+- Executar trabalhos de pós/pré-implantação durante a implantação do aplicativo
+- Atualizar / reverter e testar implantações de aplicativos

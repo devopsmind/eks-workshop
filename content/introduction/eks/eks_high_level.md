@@ -6,6 +6,6 @@ weight: 150
 ---
 
 
-Once your EKS cluster is ready, you get an API endpoint and you'd [use Kubectl, community developed tool to interact with your cluster.](https://kubernetes.io/docs/reference/kubectl/kubectl/)
+Assim que o seu cluster EKS estiver pronto, você receberá um endpoint da API e você poderá [usar o  Kubectl,uma  ferramenta desenvolvida pela comunidade para interagir com seu cluster.](https://kubernetes.io/docs/reference/kubectl/kubectl/)
 
 ![EKS High Level](/images/introduction/eks-high-level.svg)

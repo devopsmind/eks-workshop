@@ -1,5 +1,5 @@
 ---
-title: "What happens when you create your EKS cluster"
+title: "O que acontece quando você cria seu cluster EKS"
 date: 2018-10-03T10:23:24-07:00
 draft: false
 weight: 140

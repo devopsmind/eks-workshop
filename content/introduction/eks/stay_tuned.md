@@ -5,6 +5,5 @@ draft: false
 weight: 160
 ---
 
-Stay tuned as we continue the journey with EKS in the next module!
-
-Always ask questions!  Feel free to ask them in person during this workshop, or any time on the official Kubernetes Slack channel accessible via http://slack.k8s.io/.
+Fique ligado enquanto continuamos a jornada com o EKS no próximo módulo!
+Sempre faça perguntas! Sinta-se à vontade para perguntar pessoalmente durante este workshop, ou a qualquer momento no canal oficial do Kubernetes Slack acessível via http://slack.k8s.io/.

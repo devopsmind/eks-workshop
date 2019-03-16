@@ -1,31 +1,31 @@
 ---
-title: "Create the Worker ConfigMap"
+title: "Crie o Worker ConfigMap"
 date: 2018-08-07T12:00:40-07:00
 weight: 50
 draft: true
 ---
 
-The terraform state also contains a config-map we can use for our EKS workers.
+O estado terraform também contém um configmap que podemos usar para o nosso EKS workers.
 
-View the configmap:
+Veja o configmap:
 ```
 terraform output config-map
 ```
 
-Save the config-map:
+Salve o config-map:
 ```
 terraform output config-map > /tmp/config-map-aws-auth.yml
 ```
 
-Apply the config-map:
+Aplique o config-map:
 ```
 kubectl apply -f /tmp/config-map-aws-auth.yml
 ```
 
-Confirm your Nodes:
+Confirme seu Nodes:
 ```
 kubectl get nodes
 ```
 
-#### Congratulations!
-You now have a fully working Amazon EKS Cluster that is ready to use!
+#### Parabéns!
+Agora você tem um cluster do Amazon EKS totalmente funcional pronto para uso!

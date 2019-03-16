@@ -1,44 +1,44 @@
 ---
-title: "Rolling Back"
+title: "Retrocedendo"
 date: 2018-08-07T08:30:11-07:00
 weight: 50
 ---
 
-Mistakes will happen during deployment, and when they do, Helm makes it easy to undo, or "roll back" to the previously deployed version.
+Erros acontecerão durante a deploy e, quando isso acontecer, o Helm facilitará o desfazer ou "roll back" para a versão implementada anteriormente.
 
-#### Update the demo application chart with a breaking change
+#### Atualize o chart do aplicativo de demonstração com uma alteração de quebra
 
-Open **values.yaml** and modify the image name under `nodejs.image` to **brentley/ecsdemo-nodejs-non-existing**. This image does not exist, so this will break our deployment.
+Abrir **values.yaml** e modificar o nome da imagem em `nodejs.image` para **brentley/ecsdemo-nodejs-non-existing**. Esta imagem não existe, então isso vai quebrar a nosso deploy.
 
-Deploy the updated demo application chart:
+Faça o Deploy do aplicativo de demonstração atualizado chart:
 ```sh
 helm upgrade workshop ~/environment/eksdemo
 ```
 
-The rolling upgrade will begin by creating a new nodejs pod with the new image. The new `ecsdemo-nodejs` Pod should fail to pull non-existing image. Run `helm status` command to see the `ImagePullBackOff` error:
+A atualização contínua começará criando um novo pod de nodejs com a nova imagem. O novo Pod `ecsdemo-nodejs` deve deixar de puxar a imagem não existente. Execute o comando `helm status` para ver o erro` ImagePullBackOff`:
 
 ```
 helm status workshop
 ```
 
-#### Rollback the failed upgrade
+#### Reverter a atualização com falha
 
-Now we are going to rollback the application to the previous working release revision.
+Agora, vamos reverter o aplicativo para a revisão de versão  anterior.
 
-First, list Helm release revisions:
+Primeiro, liste as revisões da versão do Helm:
 
 ```
 helm history workshop
 ```
 
-Then, rollback to the previous application revision (can rollback to any revision too):
+Em seguida, reverter para a revisão de aplicativo anterior (pode reverter para qualquer revisão também):
 
 ```sh
 # rollback to the 1st revision
 helm rollback workshop 1
 ```
 
-Validate `workshop` release status with:
+Valide o status de release do `workshop` com:
 
 ```
 helm status workshop

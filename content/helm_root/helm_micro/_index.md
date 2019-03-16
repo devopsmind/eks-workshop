@@ -4,8 +4,8 @@ chapter: true
 weight: 80
 ---
 
-# Deploy Example Microservices Using Helm
+# Implantar exemplos de microsserviços usando o Helm
 
-In this chapter, we will demonstrate how to deploy microservices using a custom Helm Chart, instead of doing everything manually using `kubectl`.
+Neste capítulo, demonstraremos como implantar microsserviços usando um chart Helm personalizado, em vez de fazer tudo manualmente usando`kubectl`.
 
-For detailed information on working with chart templates, refer to the [**Helm docs**](https://docs.helm.sh/chart_template_guide/)
+Para obter informações detalhadas sobre como trabalhar com templates de charts, consulte o [**Helm docs**](https://docs.helm.sh/chart_template_guide/)

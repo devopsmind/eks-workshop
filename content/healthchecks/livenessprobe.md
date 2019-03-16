@@ -4,10 +4,10 @@ chapter: false
 weight: 5
 ---
 
-#### Configure the Probe
+#### Configurar o probe
 
 
-Use the command below to create a directory
+Use o comando abaixo para criar um diretório
 
 ```
 mkdir ~/environment/healthchecks

@@ -1,12 +1,12 @@
 ---
-title: Credits
+title: Créditos
 disableToc: true
 ---
 
-### Thanks to our wonderful contributors <i class="fas fa-heart"></i> for making Open Source a better place!
+###Agradecemos aos nossos colaboradores maravilhosos <i class="fas fa-heart"></i> para fazer do Open Source um lugar melhor!
 
 <!---
-note: change the url to match the new repo... using old repo as an example placeholder
+Nota: altere a URL para corresponder ao novo repo ... usando o repo antigo como um exemplo de espaço reservado
 --->
 
 {{% ghcontributors "https://api.github.com/repos/aws-samples/eks-workshop/contributors?per_page=1000" %}}

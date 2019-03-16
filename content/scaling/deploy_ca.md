@@ -3,7 +3,7 @@ title: "Configure Cluster Autoscaler (CA)"
 date: 2018-08-07T08:30:11-07:00
 weight: 30
 ---
-Cluster Autoscaler for AWS provides integration with Auto Scaling groups. It enables users to choose from four different options of deployment:
+Autoscaler do Cluster,  A AWS fornece integração com grupos do Auto Scaling. Ele permite que os usuários escolham entre quatro opções diferentes de deployment:
 
 * **One Auto Scaling group** - This is what we will use
 * Multiple Auto Scaling groups

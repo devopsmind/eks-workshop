@@ -1,15 +1,15 @@
 ---
-title: "Test the Service"
+title: "Teste o serviço"
 date: 2018-08-07T08:30:11-07:00
 weight: 40
 ---
 
-To test the service our eksdemo Chart created, we'll need to get the name of the ELB endpoint that was generated when we deployed the Chart:
+Para testar o serviço criado pelo nosso eksdemo Chart, precisaremos obter o nome do endpoint do ELB que foi gerado quando implantamos o Chart:
 
 ```
 kubectl get svc ecsdemo-frontend -o jsonpath="{.status.loadBalancer.ingress[*].hostname}"; echo
 ```
 
-Copy that address, and paste it into a new tab in your browser.  You should see something similar to:
+Copie esse endereço e cole-o em uma nova guia no seu navegador. Você deve ver algo semelhante a:
 
 ![Example Service](/images/helm_micro/micro_example.png)

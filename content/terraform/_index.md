@@ -1,14 +1,12 @@
 ---
-title: "Launch using Terraform"
+title: "Provisionar  usando o Terraform"
 chapter: false
 weight: 25
 draft: true
 ---
 
-# Launch using [Terraform](https://www.terraform.io/)
+# Como usar o [Terraform](https://www.terraform.io/)
 
-We also have some very powerful partner tools that allow us to automate much of
-the experience of creating an EKS cluster, simplifying the process.
+Também temos algumas ferramentas de parceiros muito poderosas que nos permitem automatizar grande parte da experiência de criação de um cluster EKS, simplificando o processo.
 
-In this module, we will highlight a community created [Terraform](https://www.terraform.io/) module, and use
-it to launch and configure our EKS cluster and nodes.
+Neste módulo, vamos destacar um módulo criado pela comunidade    [terraform] (https://www.terraform.io/) e usá-la para lançar e configurar nosso cluster EKS e nós.
