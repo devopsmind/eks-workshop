@@ -1,6 +1,6 @@
 ---
 title: "Provisionar  usando o Terraform"
-chapter: false
+chapter: true
 weight: 25
 draft: true
 ---
