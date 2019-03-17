@@ -1,5 +1,5 @@
 ---
-title: "Control Plane"
+title: "Plano de controle"
 date: 2018-10-03T10:18:27-07:00
 draft: false
 weight: 100
@@ -29,12 +29,12 @@ kubectl{kubectl}
   class kubectl orange;
 {{< /mermaid >}}
 
-* One or More API Servers: Entry point for REST / kubectl
+* Um ou mais servidores de API: ponto de entrada para REST / kubectl
 
-* etcd: Distributed key/value store
+* etcd: Armazenamento de chave/valor distribuído
 
-* Controller-manager: Always evaluating current vs desired state
+* Controller-manager: Sempre avaliando o estado atual vs desejado
 
-* Scheduler: Schedules pods to worker nodes
+* Scheduler: Agendamentos de pods para worker nodes
 
-Check out [the official Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/components/#master-components) for a more in-depth explanation of control plane components.
+Confira [a documentação oficial do Kubernetes](https://kubernetes.io/docs/concepts/overview/components/#master-components) para uma explicação mais detalhada dos componentes do plano de controle.

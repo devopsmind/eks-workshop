@@ -1,11 +1,11 @@
 ---
-title: "K8s Objects Overview"
+title: "Visão Geral dos Objetos K8s"
 date: 2018-10-03T10:15:55-07:00
 draft: false
 weight: 50
 ---
 
-Kubernetes objects are entities that are used to represent the state of the cluster.  
+Objetos do Kubernetes são entidades usadas para representar o estado do cluster.
 
 An object is a “record of intent” – once created, the cluster does its best to ensure it exists as defined.  This is known as the cluster’s “desired state.”
 

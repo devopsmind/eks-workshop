@@ -1,36 +1,33 @@
 ---
-title: "Install Kubernetes Tools"
+title: "Instalar ferramentas do Kubernetes"
 chapter: false
 weight: 22
 ---
 
-Amazon EKS clusters require kubectl and kubelet binaries and the aws-iam-authenticator
-binary to allow IAM authentication for your Kubernetes cluster.
+Os clusters do Amazon EKS requerem binários kubectl e kubelet e o binário aws-iam-authenticator para permitir a autenticação do IAM para seu cluster do Kubernetes.
 
 {{% notice tip %}}
-In this workshop we will give you the commands to download the Linux
-binaries. If you are running Mac OSX / Windows, please [see the official EKS docs
-for the download links.](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html)
+Neste workshop nós lhe daremos os comandos para baixar os binários do Linux. Se você estiver executando o Mac OSX / Windows, por favor [consulte os documentos oficiais do EKS para os links de download.](https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html)
 {{% /notice %}}
 
-#### Create the default ~/.kube directory for storing kubectl configuration
+#### Crie o diretório ~/.kube padrão para armazenar a configuração do kubectl
 ```
 mkdir -p ~/.kube
 ```
 
-#### Install kubectl
+#### Instalar o kubectl
 ```
 sudo curl --silent --location -o /usr/local/bin/kubectl "https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/kubectl"
 sudo chmod +x /usr/local/bin/kubectl
 ```
 
-#### Install AWS IAM Authenticator
+#### Instale o AWS IAM Authenticator
 ```
 go get -u -v github.com/kubernetes-sigs/aws-iam-authenticator/cmd/aws-iam-authenticator
 sudo mv ~/go/bin/aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
 ```
 
-#### Verify the binaries
+#### Verifique os binários
 ```
 kubectl version --short --client
 aws-iam-authenticator help

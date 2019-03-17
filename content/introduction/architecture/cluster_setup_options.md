@@ -1,18 +1,18 @@
 ---
-title: "Kubernetes Cluster Setup"
+title: "Configuração de cluster do Kubernetes"
 date: 2018-10-03T10:21:11-07:00
 draft: false
 weight: 120
 ---
 
 
-In addition to the managed Amazon EKS solution, there are many tools available to help bootstrap and configure a self-managed Kubernetes cluster.  They include:
+Além da solução gerenciada do Amazon EKS, há muitas ferramentas disponíveis para ajudar a inicializar e configurar um cluster Kubernetes autogerenciado.  Eles incluem:
 
-* [Minikube](https://kubernetes.io/docs/setup/minikube/) – Development and Learning
-* [Kops](https://github.com/kubernetes/kops) – Learning, Development, Production
-* [Kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) – Learning, Development, Production
-* [Docker for Mac](https://docs.docker.com/docker-for-mac/#kubernetes) - Learning, Development
+* [Minikube](https://kubernetes.io/docs/setup/minikube/) – Desenvolvimento e Aprendizagem
+* [Kops](https://github.com/kubernetes/kops) – Aprendizagem, Desenvolvimento, Produção
+* [Kubeadm](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/) – Aprendizagem, Desenvolvimento, Produção
+* [Docker for Mac](https://docs.docker.com/docker-for-mac/#kubernetes) - Aprendizagem e Desenvolvimento
 
-Alongside these open source solutions, there are also many commercial options available.
+Juntamente com essas soluções de código aberto, há também muitas opções comerciais disponíveis.
 
-Let's take a look at Amazon EKS!
+Vamos dar uma olhada no Amazon EKS!

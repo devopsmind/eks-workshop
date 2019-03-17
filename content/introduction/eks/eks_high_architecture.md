@@ -6,4 +6,4 @@ weight: 150
 ---
 
 
-![EKS Architecture](/images/introduction/eks-architecture.svg)
+![Arquitetura EKS](/images/introduction/eks-architecture.svg)

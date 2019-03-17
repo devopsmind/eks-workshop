@@ -1,38 +1,33 @@
 ---
-title: "Deploy Jenkins"
+title: "Implantar o Jenkins"
 date: 2018-08-07T08:30:11-07:00
 weight: 20
 draft: true
 ---
 
-With our Storage Class configured we then need to create our `jenkins` setup. To
-do this we'll just use the `helm` cli with a couple flags.
+Com nossa Classe de Armazenamento configurada, precisamos criar nossa configuração `jenkins`. Para fazer isso, vamos apenas usar o `helm` cli com alguns flags.
 
 {{% notice info %}}
-In a production system you should be using a `values.yaml` file so that you can
-manage the drift as you need to update releases
+Em um sistema de produção, você deve estar usando um arquivo `values.yaml` para poder gerenciar o desvio à medida que precisar atualizar as versões
 {{% /notice %}}
 
-#### Install Jenkins
+#### Instalar o Jenkins
 
 ```
 helm install stable/jenkins --set rbac.install=true --name cicd
 ```
 
-The output of this command will give you some additional information such as the
-`admin` password and the way to get the host name of the ELB that was
-provisioned.
+A saída desse comando fornecerá algumas informações adicionais, como a senha `admin` e a maneira de obter o nome do host do ELB que foi provisionado.
 
-Let's give this some time to provision and while we do let's watch for pods
-to boot.
+Vamos dar um tempo para provisionar e, enquanto isso, vamos observar os pods de inicialização.
 
 ```
 kubectl get pods -w
 ```
 
-You should see the pods in `init`, `pending` or `running` state.
+Você deveria ver os pods no status `init`, `pending` ou `running`.
 
-Once this changes to `running` we can get the `load balancer` address.
+Uma vez que isso mude para `running`, podemos obter o endereço do `load balancer`.
 
 ```
 export SERVICE_IP=$(kubectl get svc --namespace default cicd-jenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
