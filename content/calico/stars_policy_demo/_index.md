@@ -1,9 +1,9 @@
 ---
-title: "Stars Policy Demo"
+title: "Demonstração de política do star"
 chapter: true
 weight: 62
 ---
 
-# Stars Policy Demo
+# Demonstração de política do stars
 
-In this sub-chapter we create frontend, backend, client and UI services on the EKS cluster and define network policies to allow or block communication between these services. This demo also has a management UI that shows the available ingress and egress paths between each service.
+Neste subcapítulo, criamos serviços frontend, backend, client e UI no cluster EKS e definimos políticas de rede para permitir ou bloquear a comunicação entre esses serviços. Essa demonstração também possui uma interface de gerenciamento que mostra os caminhos de entrada e saída disponíveis entre cada serviço.

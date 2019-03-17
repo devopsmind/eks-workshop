@@ -1,12 +1,12 @@
 ---
-title: "Deploy Frontend Service"
+title: "Implantar o serviço de front-end"
 date: 2018-09-18T17:40:09-05:00
 weight: 30
 ---
 
-Let’s bring up the Ruby Frontend!
+Vamos implantar o Frontend Ruby !
 
-Copy/Paste the following commands into your Cloud9 workspace:
+Copie/cole os seguintes comandos no seu workspace Cloud9 :
 
 ```
 cd ~/environment/ecsdemo-frontend
@@ -14,7 +14,7 @@ kubectl apply -f kubernetes/deployment.yaml
 kubectl apply -f kubernetes/service.yaml
 ```
 
-We can watch the progress by looking at the deployment status:
+Podemos acompanhar o progresso observando o status da implantação:
 ```
 kubectl get deployment ecsdemo-frontend
 ```

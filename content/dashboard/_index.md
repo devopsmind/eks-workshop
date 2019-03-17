@@ -1,12 +1,11 @@
 ---
-title: "Deploy the Kubernetes Dashboard"
+title: "Implantar o Dashboard do Kubernetes"
 chapter: true
 weight: 30
 ---
 
-# Deploy the Kubernetes Dashboard
+# Implantar o Dashboard do Kubernetes
 
-In this Chapter, we will deploy the official Kubernetes dashboard, and connect
-through our Cloud9 Workspace.
+Neste capítulo, vamos implantar o Dashboard oficial do Kubernetes e conectar através de nosso Workspace Cloud9 .
 
 ![dashboard](/images/dashboard.png)

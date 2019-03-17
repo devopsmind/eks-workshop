@@ -1,17 +1,17 @@
 ---
-title: "Apply Network Policies"
+title: "Aplicar políticas de rede"
 date: 2018-08-07T08:30:11-07:00
 weight: 3
 ---
-In a production level cluster, it is not secure to have open pod to pod communication. Let's see how we can isolate the services from each other.
+Em um cluster de nível de produção, não é seguro ter uma comunicação aberta de pod para pod. Vamos ver como podemos isolar os serviços uns dos outros.
 
-Copy/Paste the following commands into your Cloud9 Terminal.
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
 ```
 cd ~/environment/calico_resources
 wget https://eksworkshop.com/calico/stars_policy_demo/apply_network_policies.files/default-deny.yaml
 ```
 
-Let's examine our file by running `cat default-deny.yaml`.
+Vamos examinar nosso arquivo executando `cat default-deny.yaml`.
 
 ```
 kind: NetworkPolicy
@@ -23,29 +23,29 @@ spec:
     matchLabels: {}
 ```
 
-Let's go over the network policy. Here we see the podSelector does not have any matchLabels, essentially blocking all the pods from accessing it.
+Vamos repassar a política de rede. Aqui vemos que o podSelector não tem nenhum matchLabels, essencialmente bloqueando todos os pods de acessá-lo.
 
-Apply the network policy in the **stars** namespace (frontend and backend services) and the **client** namespace (client service):
+Aplique a política de rede no namespace **stars** (serviços frontend e backend) e o namespace **client** (client service):
 
 ```
 kubectl apply -n stars -f default-deny.yaml
 kubectl apply -n client -f default-deny.yaml
 ```
 
-Upon refreshing your browser, you see that the management UI cannot reach any of the nodes, so nothing shows up in the UI.
+Ao atualizar seu navegador, você vê que a Interface de gerenciamento não pode alcançar nenhum dos nós, portanto, nada aparece na interface do usuário.
 
-Network policies in Kubernetes use labels to select pods, and define rules on what traffic is allowed to reach those pods. They may specify ingress or egress or both. Each rule allows traffic which matches both the from and ports sections.
+As políticas de rede no Kubernetes usam rótulos para selecionar pods e definir regras sobre o tráfego permitido para alcançar esses pods. Eles podem especificar entrada ou saída ou ambos. Cada regra permite o tráfego que corresponde às seções de e portas.
 
-Create two new network policies.
+Crie duas novas políticas de rede.
 
-Copy/Paste the following commands into your Cloud9 Terminal.
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
 ```
 cd ~/environment/calico_resources
 wget https://eksworkshop.com/calico/stars_policy_demo/apply_network_policies.files/allow-ui.yaml
 wget https://eksworkshop.com/calico/stars_policy_demo/apply_network_policies.files/allow-ui-client.yaml
 ```
 
-Again, we can examine our file contents by running: `cat allow-ui.yaml`
+Mais uma vez, podemos examinar o conteúdo dos nossos arquivos executando: `cat allow-ui.yaml`
 
 ```
 kind: NetworkPolicy
@@ -80,16 +80,16 @@ spec:
               role: management-ui
 ```
 
-#### Challenge:
-**How do we apply our network policies to allow the traffic we want?**
+#### Desafio:
+**Como aplicamos nossas políticas de rede para permitir o tráfego que desejamos?**
 
-{{%expand "Expand here to see the solution" %}}
+{{%expand "Expanda aqui para ver a solução" %}}
 ```
 kubectl apply -f allow-ui.yaml
 kubectl apply -f allow-ui-client.yaml
 ```
 {{% /expand %}}
 
-Upon refreshing your browser, you can see that the management UI can reach all the services, but they cannot communicate with each other.
+Ao atualizar seu navegador, você pode ver que a interface do usuário de gerenciamento pode alcançar todos os serviços, mas eles não podem se comunicar uns com os outros.
 
-![Management UI access all services](/images/calico-mgmtui-access.png)
+![Interface de gerenciamento acessar todos os serviços](/images/calico-mgmtui-access.png)

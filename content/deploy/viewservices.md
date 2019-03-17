@@ -1,32 +1,29 @@
 ---
-title: "Find the Service Address"
+title: "Encontre o endereço do serviço"
 date: 2018-09-18T17:40:09-05:00
 weight: 40
 ---
 
-Now that we have a running service that is `type: LoadBalancer` we need to find
-the ELB's address.  We can do this by using the `get services` operation of kubectl:
+Agora que temos um serviço em execução que é `type: LoadBalancer`, precisamos encontrar o endereço do ELB.  Podemos fazer isso usando a operação `get services` do kubectl:
 
 ```
 kubectl get service ecsdemo-frontend
 ```
 
-Notice the field isn't wide enough to show the FQDN of the ELB. We can adjust the
-output format with this command:
+Observe que o campo não é largo o suficiente para mostrar o FQDN do ELB. Podemos ajustar o formato de saída com este comando:
 ```
 kubectl get service ecsdemo-frontend -o wide
 ```
 
-If we wanted to use the data pragmatically, we can also output via json. This is
-an example of how we might be able to make use of json output:
+Se quiséssemos usar os dados pragmaticamente, também poderíamos produzir via json. Este é um exemplo de como podemos usar a saída json:
 ```
 ELB=$(kubectl get service ecsdemo-frontend -o json | jq -r '.status.loadBalancer.ingress[].hostname')
 
 curl -m3 -v $ELB
 ```
 {{% notice tip %}}
-It will take several seconds for the ELB to become healthy and start passing traffic to the frontend pods.
+Levará vários segundos para o ELB ficar saudável e começar a passar o tráfego para os pods do frontend.
 {{% /notice %}}
 
-You should also be able to copy/paste the loadBalancer hostname into your browser and see the application running.
-Keep this tab open while we scale the services up on the next page.
+Você também deve poder copiar/colar o nome do host loadBalancer em seu navegador e ver o aplicativo em execução.
+Mantenha esta aba aberta enquanto escalamos os serviços na próxima página.

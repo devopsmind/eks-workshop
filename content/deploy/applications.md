@@ -1,5 +1,5 @@
 ---
-title: "Deploy our Sample Applications"
+title: "Faça deploy de nossos aplicativos de exemplo"
 date: 2018-09-18T16:01:14-05:00
 weight: 5
 ---
@@ -35,9 +35,7 @@ spec:
         - containerPort: 3000
           protocol: TCP
 ```
-In the sample file above, we describe the service and  *how* it should be deployed.
-We will write this description to the kubernetes api using kubectl, and kubernetes
-will ensure our preferences are met as the application is deployed.
+No arquivo de exemplo acima, descrevemos o serviço e  *como* deve ser implantado.
+Vamos escrever esta descrição para a API do kubernetes usando o kubectl, e o kubernetes irá garantir que nossas preferências sejam atendidas à medida que o aplicativo for implementado.
 
-The containers listen on port 3000, and native service discovery will be used
-to locate the running containers and communicate with them.
+Os contêineres escutam na porta 3000 e a descoberta de serviço nativo será usada para localizar os contêineres em execução e se comunicar com eles..

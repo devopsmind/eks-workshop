@@ -1,13 +1,12 @@
 ---
-title: "Cleanup the applications"
+title: "Limpar os aplicativos"
 date: 2018-08-07T13:37:53-07:00
 weight: 90
 ---
 
-To delete the resources created by the applications, we should delete the application
-deployments:
+Para excluir os recursos criados pelos aplicativos, devemos excluir os deployments de aplicativos:
 
-Undeploy the applications:
+Remover implantação dos aplicativos:
 ```
 cd ~/environment/ecsdemo-frontend
 kubectl delete -f kubernetes/service.yaml

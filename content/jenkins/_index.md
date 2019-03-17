@@ -1,11 +1,10 @@
 ---
-title: "Deploying Jenkins"
+title: "Implantando o Jenkins"
 chapter: true
 weight: 64
 draft: true
 ---
 
-# Deploy Jenkins
+# Implantar Jenkins
 
-In this Chapter, we will deploy Jenkins using the `helm` package manager we
-installed in the last module.
+Neste capítulo, vamos implantar o Jenkins usando o gerenciador de pacotes `helm` que instalamos no último módulo.
