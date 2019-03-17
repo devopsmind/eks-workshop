@@ -2,7 +2,7 @@
 title: "Crie o Worker ConfigMap"
 date: 2018-08-07T12:00:40-07:00
 weight: 50
-draft: true
+draft: false
 ---
 
 O estado terraform também contém um configmap que podemos usar para o nosso EKS workers.

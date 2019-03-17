@@ -2,7 +2,7 @@
 title: "Obter o módulo Terraform"
 date: 2018-08-07T13:01:23-07:00
 weight: 20
-draft: true
+draft: false
 ---
 
 Agora vamos clonar o módulo terraform da comunidade para o EKS:

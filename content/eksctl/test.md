@@ -1,6 +1,7 @@
 ---
 title: "Teste o cluster"
 date: 2018-08-07T13:36:57-07:00
+draft: true
 weight: 30
 ---
 

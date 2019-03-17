@@ -2,7 +2,7 @@
 title: "Pré-requisitos"
 date: 2018-08-07T12:50:08-07:00
 weight: 10
-draft: true
+draft: false
 ---
 
 Para este capítulo, precisamos baixar o binário do [Terraform](https://www.terraform.io/) :

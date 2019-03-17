@@ -2,7 +2,7 @@
 title: "Launch EKS Cluster"
 date: 2018-08-07T13:03:16-07:00
 weight: 30
-draft: true
+draft: false
 ---
 
 Começamos inicializando o estado do Terraform:

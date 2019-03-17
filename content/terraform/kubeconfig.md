@@ -2,7 +2,7 @@
 title: "Create Kubeconfig File"
 date: 2018-08-07T13:07:50-07:00
 weight: 40
-draft: true
+draft: false
 ---
 Agora que temos o cluster em execução, precisamos criar o arquivo KubeConfig que será usado para gerenciar o cluster.
 
