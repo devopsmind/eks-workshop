@@ -54,7 +54,7 @@ Em seguida, aplique a configuração:
 kubectl apply -f ~/environment/rbac.yaml
 ```
 
-Então podemos instalar **helm** usando a ferramenta helm **helm** 
+Então podemos instalar **helm** usando a ferramenta **helm** 
 
 ```
 helm init --service-account tiller

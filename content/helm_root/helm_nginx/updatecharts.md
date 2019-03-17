@@ -1,31 +1,30 @@
 ---
-title: "Update the Chart Repository"
+title: "Atualize o Repositório do Chart"
 date: 2018-08-07T08:30:11-07:00
 weight: 100
 ---
 
-Helm uses a packaging format called [Charts](https://github.com/helm/helm/blob/master/docs/charts.md).  A Chart is a collection of files that describe k8s resources.  
+Helm usa um formato de embalagem chamado [Charts](https://github.com/helm/helm/blob/master/docs/charts.md).  Um Chart é uma coleção de arquivos que descrevem recursos do k8s.
 
-Charts can be simple, describing something like a standalone web server (which is what we are going to create), but they can also be more complex, for example, a chart that represents a full web application stack included web servers, databases, proxies, etc.
+Os Charts podem ser simples, descrevendo algo como um servidor da Web independente (que é o que vamos criar), mas eles também podem ser mais complexos, por exemplo, um charts que representa uma stack completa de aplicativos da Web, incluindo servidores da Web, bancos de dados, proxys etc.
 
-Instead of installing k8s resources manually via kubectl, we can use Helm to install pre-defined Charts faster, with less chance of typos or other operator errors.
+Em vez de instalar os recursos do k8s manualmente por meio do kubectl, podemos usar o Helm para instalar charts pré-definidos mais rapidamente, com menos chances de erros de digitação ou outros erros do operador.
 
-When you install Helm, you are provided with a default repository of Charts from the [official Helm Chart Repository](https://github.com/helm/charts/tree/master/stable).
+Quando você instala o Helm, você recebe um repositório padrão de Charts do [Repositório Oficial de Chart do Helm](https://github.com/helm/charts/tree/master/stable).
 
-This is a very dynamic list that always changes due to updates and new additions.  To keep Helm's local list updated with all these changes, we need to occasionally run the [repository update](https://docs.helm.sh/helm/#helm-repo-update) command.
+Esta é uma lista muito dinâmica que sempre muda devido a atualizações e novas adições.  Para manter a lista local de Helm atualizada com todas essas mudanças, precisamos executar ocasionalmente [atualização de repositório]comando (https://docs.helm.sh/helm/#helm-repo-update).
 
-To update Helm's local list of Charts, run:
+Para atualizar a lista local de charts do Helm, execute:
 
 ```
 helm repo update
 ```
 
-And you should see something similar to:
+E você deve ver algo semelhante a:
 
 ```
-Hang tight while we grab the latest from your chart repositories...
-...Successfully got an update from the "stable" chart repository
-Update Complete. ⎈ Happy Helming!⎈
+Aguarde enquanto pegamos as últimas novidades dos seus repositórios de charts...
+...Obteve com sucesso uma atualização do "stable" chart Atualização do repositório concluída. ⎈ Feliz Helming!⎈
 ```
 
-Next, we'll search for the NGINX web server Chart.
+Em seguida, procuraremos o gráfico do servidor da Web NGINX.

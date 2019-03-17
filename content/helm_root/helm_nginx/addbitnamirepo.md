@@ -1,26 +1,26 @@
 ---
-title: "Add the Bitnami Repository"
+title: "Adicione o repositório Bitnami"
 date: 2018-08-07T08:30:11-07:00
 weight: 300
 ---
 
-In the last slide, we saw that NGINX offers many different products via the default Helm Chart repository, but the NGINX standalone web server is not one of them.
+No último slide, vimos que o NGINX oferece muitos produtos diferentes através do repositório Helm Chart padrão, mas o servidor web autônomo NGINX não é um deles.
 
-After a quick web search, we discover that there is a Chart for the NGINX standalone web server available via the [Bitnami Chart repository](https://github.com/bitnami/charts).
+Depois de uma rápida pesquisa na web, descobrimos que existe um gráfico para o servidor da Web autônomo NGINX disponível por meio do [repositório Chart Bitnami](https://github.com/bitnami/charts).
 
-To add the Bitnami Chart repo to our local list of searchable charts:
+Para adicionar o repositório do Bitnami Chart à nossa lista local de gráficos pesquisáveis:
 
 ```
-helm repo add bitnami https://charts.bitnami.com/bitnami
+adicionar repositório helm bitnami https://charts.bitnami.com/bitnami
 ```
 
-Once that completes, we can search all Bitnami Charts:
+Depois disso, podemos pesquisar todos Bitnami Charts:
 
 ```
 helm search bitnami
 ```
 
-Which results in:
+O que resulta em:
 
 ```
 NAME                                    CHART VERSION   APP VERSION             DESCRIPTION                                                 
@@ -30,13 +30,13 @@ bitnami/cassandra                       0.1.0           3.11.3                  
 ...
 ```
 
-Search once again for NGINX:
+Procure novamente pelo NGINX:
 
 ```
 helm search nginx
 ```
 
-Now we are seeing more NGINX options, across both repositories:
+Agora estamos vendo mais opções do NGINX em todos os repositórios:
 
 ```
 NAME                                    CHART VERSION   APP VERSION     DESCRIPTION                                                 
@@ -45,13 +45,13 @@ bitnami/nginx-ingress-controller        2.1.4           0.20.0          Chart fo
 stable/nginx-ingress                    0.31.0          0.20.0          An nginx Ingress controller ...
 ```
 
-Or even search the Bitnami repo, just for NGINX:
+Ou até mesmo pesquise o repositório Bitnami, apenas para NGINX:
 
 ```
 helm search bitnami/nginx
 ```
 
-Which narrows it down to NGINX on Bitnami:
+O que limita isso ao NGINX do Bitnami:
 
 ```
 NAME                                    CHART VERSION   APP VERSION     DESCRIPTION                           
@@ -59,10 +59,10 @@ bitnami/nginx                           1.1.2           1.14.1          Chart fo
 bitnami/nginx-ingress-controller        2.1.4           0.20.0          Chart for the nginx Ingress...
 ```
 
-In both of those last two searches, we see
+Em ambas as duas últimas pesquisas, vemos
 
 ```
 bitnami/nginx
 ```
 
-as a search result.  That's the one we're looking for, so let's use Helm to install it to the EKS cluster.
+como um resultado de pesquisa. Esse é o que estamos procurando, então vamos usar o Helm para instalá-lo no cluster EKS.

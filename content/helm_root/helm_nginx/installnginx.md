@@ -1,25 +1,25 @@
 ---
-title: "Install bitnami/nginx"
+title: "Instalar o bitnami/nginx"
 date: 2018-08-07T08:30:11-07:00
 weight: 400
 ---
 
-Installing the Bitnami standalone NGINX web server Chart involves us using the [helm install](https://docs.helm.sh/helm/#helm-install) command.
+Instalando o chart do servidor  Web NGINX autônomo Bitnami nos envolve usando o comando [helm install](https://docs.helm.sh/helm/#helm-install) command.
 
-When we install using Helm, we need to provide a deployment name, or a random one will be assigned to the deployment automatically.
+Quando instalamos usando o Helm, precisamos fornecer um nome de implantação ou um nome aleatório será atribuído à implantação automaticamente.
 
-#### Challenge:
-**How can you use Helm to deploy the bitnami/nginx chart?**
+#### Desafio:
+**Como você pode usar o Helm para implantar o chart bitnami/nginx?**
 
-**HINT:** Use the **helm** utility to **install** the **bitnami/nginx** chart and specify the name **mywebserver** for the Kubernetes deployment. Consult the [helm install](https://docs.helm.sh/helm/#helm-install) documentation or run the ```helm install --help``` command to figure out the syntax
+**SUGESTÃO:** Use o utilitário **helm** para **instalar** o chart **bitnami/nginx**  e especifique o nome **mywebserver** para a implantação do Kubernetes. Consulte a documentação do [helm install](https://docs.helm.sh/helm/#helm-install)  ou executar o comando ```helm install --help```  para descobrir a sintaxe
 
-{{%expand "Expand here to see the solution" %}}
+{{%expand "Expanda aqui para ver a solução" %}}
 ```
 helm install --name mywebserver bitnami/nginx
 ```
 {{% /expand %}}
 
-Once you run this command, the output confirms the types of k8s objects that were created as a result:
+Depois de executar este comando, a saída confirma os tipos de objetos k8s que foram criados como resultado:
 
 ```
 NAME:   mywebserver
@@ -44,53 +44,53 @@ mywebserver-nginx  0s
 ```
 
 {{% notice info %}}
-In the following **kubectl** command examples, it may take a minute or two for each of these objects' **DESIRED** and **CURRENT** values to match; if they don't match on the first try, wait a few seconds, and run the command again to check the status.
+Nos seguintes exemplos de comandos do  **kubectl** , pode levar um minuto ou dois para cada um desses objetos **DESIRED** e **CURRENT** valores para corresponder; se eles não corresponderem na primeira tentativa, aguarde alguns segundos e execute o comando novamente para verificar o status.
 {{% /notice %}}
 
-The first object shown in this output is a [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).  A Deployment object manages rollouts (and rollbacks) of different versions of an application.
+O primeiro objeto mostrado nesta saída é um [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/).  Um objeto de implantação gerencia distribuições (e reversões) de diferentes versões de um aplicativo.
 
-You can inspect this Deployment object in more detail by running the following command:
+Você pode inspecionar esse objeto de implementação mais detalhadamente executando o seguinte comando:
 
 ```
 kubectl describe deployment mywebserver-nginx
 ```
 
-The next object shown created by the Chart is a [Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/).  A Pod is a group of one or more containers.
+O próximo objeto mostrado criado pelo gráfico é um [Pod](https://kubernetes.io/docs/concepts/workloads/pods/pod/).  Um Pod é um grupo de um ou mais contêineres.
 
-To verify the Pod object was successfully deployed, we can run the following command:
+Para verificar se o objeto Pod foi implantado com sucesso, podemos executar o seguinte comando:
 
 ```
 kubectl get pods -l app=mywebserver-nginx
 ```
-And you should see output similar to:
+E você deve ver uma saída semelhante a:
 
 ```
 NAME                                 READY     STATUS    RESTARTS   AGE
 mywebserver-nginx-85985c8466-tczst   1/1       Running   0          10s
 ```
 
-The third object that this Chart creates for us is a [Service](https://kubernetes.io/docs/concepts/services-networking/service/)  The Service enables us to contact this NGINX web server from the Internet, via an Elastic Load Balancer (ELB).  
+O terceiro objeto que este chart cria para nós é um [Service](https://kubernetes.io/docs/concepts/services-networking/service/)  O Serviço nos permite entrar em contato com esse servidor da Web NGINX pela Internet, por meio de um Elastic Load Balancer (ELB). 
 
-To get the complete URL of this Service, run:
+Para obter o URL completo deste serviço, execute:
 
 ```
 kubectl get service mywebserver-nginx -o wide
 ```
 
-That should output something similar to:
+Isso deve produzir algo semelhante a:
 
 ```
 NAME                TYPE           CLUSTER-IP      EXTERNAL-IP                                                              
 mywebserver-nginx   LoadBalancer   10.100.223.99   abc123.amazonaws.com
 ```
 
-Copy the value for **EXTERNAL-IP**, open a new tab in your web browser, and paste it in.
+Copie o valor para **EXTERNAL-IP**, abra uma nova guia no seu navegador da Web e cole-a.
 {{% notice info %}}
-It may take a couple minutes for the ELB and its associated DNS name to become available; if you get an error, wait one minute, and hit reload.
+Pode levar alguns minutos para que o ELB e seu nome DNS associado fiquem disponíveis; Se você receber um erro, aguarde um minuto e clique em Atualizar.
 {{% /notice %}}
 
-When the Service does come online, you should see a welcome message similar to:
+Quando o Serviço fica on-line, você deve ver uma mensagem de boas-vindas semelhante a:
 
 ![Helm Logo](/images/helm-nginx/welcome_to_nginx.png)
 
-Congrats!  You've now successfully deployed the NGINX standalone web server to your EKS cluster!
+Parabéns! Agora você implantou com sucesso o servidor da Web autônomo NGINX em seu cluster EKS!
