@@ -37,11 +37,11 @@ Change the following settings:
 
 Click `Save`
 
-### Configure the Cluster Autoscaler
+### Configurar o autoescalador do cluster
 
-Using the file browser on the left, open cluster_autoscaler.yml
+Usando o navegador de arquivos à esquerda, abra cluster_autoscaler.yml
 
-Search for `command:` and within this block, replace the placeholder text `<AUTOSCALING GROUP NAME>` with the ASG name that you copied in the previous step. Also, update AWS_REGION value to reflect the region you are using and **Save** the file.
+Procure por `command:` e dentro deste bloco, substitua o texto do placeholder `<AUTOSCALING GROUP NAME>` com o nome do ASG que você copiou na etapa anterior. Além disso, atualize o valor AWS_REGION para refletir a região que você está usando e **Salve ** o arquivo.
 
 ```
 command:
@@ -55,14 +55,14 @@ env:
   - name: AWS_REGION
     value: us-east-1
 ```
-This command contains all of the configuration for the Cluster Autoscaler. The primary config is the `--nodes` flag. This specifies the minimum nodes **(2)**, max nodes **(8)** and **ASG Name**.
+Este comando contém toda a configuração do Autoescalador do cluster. A configuração principal é a flag `--nodes` . Isso especifica o mínimo de  nodes **(2)**, máximo de nodes **(8)** e **Nome do ASG**.
 
-Although Cluster Autoscaler is the de facto standard for automatic scaling in K8s, it is not part of the main release. We deploy it like any other pod in the kube-system namespace, similar to other management pods.
+Embora o Autoescalador de cluster seja o padrão de fato para o dimensionamento automático em K8s, não faz parte do release principal. Nós o implantamos como qualquer outro pod no namespac do  kube-system, semelhante a outros pods de gerenciamento.
 
-### Create an IAM Policy
-We need to configure an inline policy and add it to the EC2 instance profile of the worker nodes
+### Crie uma política do IAM
+Precisamos configurar uma política embutida e adicioná-la ao perfil da instância do EC2 do worker nodes
 
-Collect the Instance Profile and Role NAME from the CloudFormation Stack
+Colete o perfil da instância e o NOME da role na stack do CloudFormation
 ```
 INSTANCE_PROFILE_PREFIX=$(aws cloudformation describe-stacks | jq -r .Stacks[].StackName | grep eksctl-eksworkshop-eksctl-nodegroup)
 INSTANCE_PROFILE_NAME=$(aws iam list-instance-profiles | jq -r '.InstanceProfiles[].InstanceProfileName' | grep $INSTANCE_PROFILE_PREFIX)
@@ -90,22 +90,22 @@ EoF
 aws iam put-role-policy --role-name $ROLE_NAME --policy-name ASG-Policy-For-Worker --policy-document file://~/environment/asg_policy/k8s-asg-policy.json
 ```
 
-Validate that the policy is attached to the role
+Valide se a política está anexada a role
 ```
 aws iam get-role-policy --role-name $ROLE_NAME --policy-name ASG-Policy-For-Worker
 ```
 
-### Deploy the Cluster Autoscaler
+### Implantar o autoescalador do cluster
 
 ```
 kubectl apply -f ~/environment/cluster-autoscaler/cluster_autoscaler.yml
 ```
 
-Watch the logs
+Acompanhe os logs
 ```
 kubectl logs -f deployment/cluster-autoscaler -n kube-system
 ```
 
-#### We are now ready to scale our cluster
+#### Agora estamos prontos para escalar nosso cluster
 
 {{%attachments title="Related files" pattern=".yml"/%}}

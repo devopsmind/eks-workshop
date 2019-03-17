@@ -38,7 +38,7 @@ Vamos criar o pod usando o manifesto
 kubectl apply -f ~/environment/healthchecks/liveness-app.yaml
 ```
 
-O comando acima cria um pod com sonda de vivacidade
+O comando acima cria um pod com healthchecks liveness
 
 ```
 kubectl get pod liveness-app
@@ -68,7 +68,7 @@ Events:
 ```
 
 
-#### Introduzir um fracasso
+#### Introduzir uma falha
 Vamos executar o próximo comando para enviar um sinal SIGUSR1 para o aplicativo nodejs. Ao emitir este comando, enviaremos um sinal de kill ao processo de aplicativo no tempo de execução do docker.
 
 ```

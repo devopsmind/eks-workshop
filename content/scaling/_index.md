@@ -6,8 +6,8 @@ weight: 41
 
 # Implement AutoScaling with HPA and CA
 
-In this Chapter, we will show patterns for scaling your worker nodes and applications deployments automatically. Automatic scaling in K8s comes in two forms:
+Neste capítulo, mostraremos padrões para dimensionar automaticamente os node worker e as implantações de aplicativos. O escalonamento automático no K8s vem em duas formas:
 
-* **Horizontal Pod Autoscaler (HPA)** scales the pods in a deployment or replica set. It is implemented as a K8s API resource and a controller. The controller manager queries the resource utilization against the metrics specified in each HorizontalPodAutoscaler definition. It obtains the metrics from either the resource metrics API (for per-pod resource metrics), or the custom metrics API (for all other metrics).
+* **Horizontal Pod Autoscaler (HPA)** dimensiona os pods em um conjunto de implantação ou réplica. Ele é implementado como um recurso de API do K8s e um controlador. O gerenciador do controlador consulta a utilização de recursos em relação às métricas especificadas em cada definição de HorizontalPodAutoscaler. Obtém as métricas da API de métricas de recursos (para métricas de recurso por pod) ou da API de métricas personalizadas (para todas as outras métricas).
 
-* **Cluster Autoscaler (CA)** is the default K8s component that can be used to perform pod scaling as well as scaling nodes in a cluster. It automatically increases the size of an Auto Scaling group so that pods have a place to run. And it attempts to remove idle nodes, that is, nodes with no running pods.
+* **Cluster Autoscaler (CA)** é o componente K8s padrão que pode ser usado para executar dimensionamento de pod e dimensionar nós em um cluster. Aumenta automaticamente o tamanho de um grupo Auto Scaling para que os pods tenham um lugar para ser executado. E tenta remover nós inativos, ou seja, nós sem pods em execução.

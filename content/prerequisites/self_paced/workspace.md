@@ -2,6 +2,7 @@
 title: "Criar um Workspace"
 chapter: false
 weight: 10
+draft: true
 ---
 
 {{% notice warning %}}
