@@ -5,7 +5,7 @@ weight: 16
 draft: false
 ---
 
-Congratulations on completing the CI/CD with CodePipeline module.
+Parabéns pela conclusão do CI/CD com o módulo CodePipeline.
 
 This module is not used in subsequent steps, so you can remove the resources now, or at the end of the workshop.
 

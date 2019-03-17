@@ -1,26 +1,25 @@
 ---
-title: "GitHub Access Token"
+title: "Token de Acesso do GitHub"
 date: 2018-10-087T08:30:11-07:00
 weight: 13
 draft: false
 ---
 
-In order for CodePipeline to receive callbacks from GitHub, we need to generate a personal access token.
+Para que o CodePipeline receba retornos de chamada do GitHub, precisamos gerar um token de acesso pessoal.
 
-Once created, an access token can be stored in a secure enclave and reused, so this step is only required
-during the first run or when you need to generate new keys.
+Uma vez criado, um token de acesso pode ser armazenado em um código seguro e reutilizado, portanto, essa etapa só é necessária durante a primeira execução ou quando você precisar gerar novas chaves.
 
-Open up the [New personal access page](https://github.com/settings/tokens/new) in GitHub.
+Abra uma [nova página de acesso pessoal](https://github.com/settings/tokens/new) no GitHub.
 
 {{% notice info %}}
-You may be prompted to enter your GitHub password
+Você pode ser solicitado a digitar sua senha do GitHub
 {{% /notice %}}
 
-Enter a value for **Token description**, check the **repo** permission scope and scroll down and click the **Generate token** button
+Insira um valor para **Token description**, verifique o escopo de permissão **repo** e role para baixo e clique no botão ** Gerar token **
 
 ![Generate New](/images/codepipeline/github_token_name.png)
 
-Copy the **personal access token** and save it in a secure place for the next step
+Copie o **token de acesso pessoal** e salve-o em um local seguro para a próxima etapa
 
 ![Generate New](/images/codepipeline/github_copy_access.png)
 

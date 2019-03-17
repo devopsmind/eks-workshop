@@ -1,21 +1,20 @@
 ---
-title: "Cleanup the Workspace"
+title: "Limpar o Workspace"
 chapter: false
 weight: 50
 ---
 
-Let's delete our SSH key:
+Vamos deletar nossa chave SSH:
 ```
 aws ec2 delete-key-pair --key-name "eksworkshop"
 ```
 
-Since we no longer need the Cloud9 instance to have Administrator access
-to our account, we can delete the role we created:
+Como não precisamos mais da instância Cloud9 para ter acesso de administrador à nossa conta, podemos excluir a role que criamos:
 
-  - Go to [the IAM Console](https://console.aws.amazon.com/iam/home?#/roles/eksworkshop-admin)
-  - Click **Delete role** in the upper right corner
+  - Vamos para [Console do IAM  ](https://console.aws.amazon.com/iam/home?#/roles/eksworkshop-admin)
+  - Clique **Delete a role** no canto superior direito
 
-Finally, let's delete our Cloud9 EC2 Instance:
+Por fim, vamos excluir nossa instância do Cloud9 EC2:
 
-- Go to your [Cloud9 Environment](https://console.aws.amazon.com/cloud9/home)
-- Select the environment named **eksworkshop** and pick **delete**
+- Vá para sua[Cloud9 Environment](https://console.aws.amazon.com/cloud9/home)
+- Selecione o ambiente chamado **eksworkshop** e escolha **delete**

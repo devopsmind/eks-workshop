@@ -1,18 +1,16 @@
 ---
-title: "Create IAM Role"
+title: "Criar Role IAM "
 date: 2018-10-087T08:30:11-07:00
 weight: 10
 draft: false
 ---
 
-In an AWS CodePipeline, we are going to use AWS CodeBuild to deploy a sample Kubernetes service.
-This requires an [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) role capable of interacting
-with the EKS cluster.
+Em um CodePipeline da AWS, vamos usar o AWS CodeBuild para implantar um serviço de exemplo do Kubernetes.
+Isso requer uma Role [Gerenciamento de identidade e acesso da AWS](https://aws.amazon.com/iam/) (IAM) capaz de interagir com o cluster EKS.
 
-In this step, we are going to create an IAM role and add an inline policy that we will use in the CodeBuild stage
-to interact with the EKS cluster via kubectl.
+Nesta etapa, criaremos uma role do IAM e adicionaremos uma política in-line que usaremos no estágio CodeBuild para interagir com o cluster EKS por meio do kubectl.
 
-Create the role:
+Crie o Role:
 
 ```
 cd ~/environment

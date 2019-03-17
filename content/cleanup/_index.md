@@ -1,8 +1,8 @@
 ---
-title: "Cleanup"
+title: "Limpar"
 chapter: true
 weight: 70
 ---
 
-# Cleanup
+# Limpar
 ![Cleaned Environment](/images/cleanup.svg)

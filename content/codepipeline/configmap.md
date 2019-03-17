@@ -1,14 +1,14 @@
 ---
-title: "Modify aws-auth ConfigMap"
+title: "Modificar aws-auth ConfigMap"
 date: 2018-10-087T08:30:11-07:00
 weight: 11
 draft: false
 ---
 
-Now that we have the IAM role created, we are going to add the role to the [aws-auth ConfigMap](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html)
-for the EKS cluster.
+Agora que temos o papel do IAM criado, vamos adicionar o role ao [aws-auth ConfigMap](https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html)
+para o cluster EKS.
 
-Once the ConfigMap includes this new role, kubectl in the CodeBuild stage of the pipeline will be able to interact with the EKS cluster via the IAM role.
+Depois que o ConfigMap incluir essa nova role, o kubectl no estágio CodeBuild do pipeline poderá interagir com o cluster EKS por meio da role IAM.
 
 ```
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
@@ -22,6 +22,6 @@ kubectl patch configmap/aws-auth -n kube-system --patch "$(cat /tmp/aws-auth-pat
 
 
 {{% notice tip %}}
-If you would like to edit the aws-auth ConfigMap manually, you can run: $ kubectl edit -n kube-system configmap/aws-auth
+Se você gostaria de editar o aws-auth ConfigMap manualmente, você pode executar: $ kubectl edit -n kube-system configmap/aws-auth
 {{% /notice %}}
 

@@ -1,13 +1,13 @@
 ---
-title: "Provision an Elasticsearch Cluster"
+title: "Provisionar um cluster do Elasticsearch"
 date: 2018-08-07T08:30:11-07:00
 weight: 20
 ---
 
-This example creates a two instance Amazon Elasticsearch cluster named kubernetes-logs. This cluster is created in the same region as the Kubernetes cluster and CloudWatch log group. 
+Este exemplo cria um cluster de duas instâncias do Amazon Elasticsearch chamado kubernetes-logs. Esse cluster é criado na mesma região que o cluster do Kubernetes e o grupo de log do CloudWatch. 
 
 {{% notice warning %}}
-Note that this cluster has an open access policy which will need to be locked down in production environments.
+Observe que esse cluster tem uma política de acesso aberto que precisa ser bloqueada em ambientes de produção.
 {{% /notice %}}
 
 ```
@@ -20,14 +20,14 @@ aws es create-elasticsearch-domain \
   --access-policies '{"Version":"2012-10-17","Statement":[{"Effect":"Allow","Principal":{"AWS":["*"]},"Action":["es:*"],"Resource":"*"}]}'
 ```
 
-It takes a little while for the cluster to be created and arrive at an active state. The AWS Console should show the following status when the cluster is ready. 
+Demora um pouco para o cluster ser criado e chegar a um estado ativo. O AWS Console deve mostrar o seguinte status quando o cluster estiver pronto.
 
 ![Elasticsearch Dashboard](/images/logging_es_dashboard.png)
 
-You could also check this via AWS CLI:
+Você também pode verificar isso via AWS CLI:
 ```
 aws es describe-elasticsearch-domain --domain-name kubernetes-logs --query 'DomainStatus.Processing'
 ```
-If the output value is false that means the domain has been processed and is now available to use.
+Se o valor de saída for falso, significa que o domínio foi processado e agora está disponível para uso.
 
-Feel free to move on to the next section for now.
+Sinta-se à vontade para seguir para a próxima seção por enquanto.

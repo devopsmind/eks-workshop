@@ -1,5 +1,5 @@
 ---
-title: "Create the EKS Cluster"
+title: "Crie o cluster EKS"
 date: 2018-08-07T09:42:43-07:00
 weight: 40
 draft: true

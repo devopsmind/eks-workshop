@@ -5,28 +5,26 @@ weight: 70
 draft: true
 ---
 
-The file found in the repository at *assets/worker-configmap.yml* contains a
-configmap we can use for our EKS workers. We need to substitute our instance
-role ARN into the template:
+O arquivo encontrado no repositório em *assets/worker-configmap.yml* contém um mapa de configuração que podemos usar para nossos funcionários da EKS. Precisamos substituir nossa Role de instância ARN no template:
 
-View the template:
+Veja o template:
 ```
 cd ${HOME}/environment/howto-launch-eks-workshop/
 
 cat assets/worker-configmap.yml
 ```
-Lookup and store the Instance ARN:
+Pesquise e armazene o ARN da instância:
 ```
 export INSTANCE_ARN=$(aws cloudformation describe-stacks --stack-name "eksworkshop-cf-worker-nodes" --query "Stacks[0].Outputs[?OutputKey=='NodeInstanceRole'].OutputValue" --output text)
 
 echo INSTANCE_ARN=$INSTANCE_ARN
 ```
 
-Test modify the template to see what changes:
+Teste modifique o template para ver quais alterações:
 ```
 sed "s@.*rolearn.*@    - rolearn: $INSTANCE_ARN@" assets/worker-configmap.yml
 ```
-Actually apply the configmap:
+Agota realmente aplique o configmap:
 ```
 sed "s@.*rolearn.*@    - rolearn: $INSTANCE_ARN@" assets/worker-configmap.yml | kubectl apply -f /dev/stdin
 ```

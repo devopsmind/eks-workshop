@@ -1,20 +1,20 @@
 ---
-title: "Configure CloudWatch Logs and Kibana"
+title: "Configurar logs do CloudWatch e Kibana"
 date: 2018-08-07T08:30:11-07:00
 weight: 40
 ---
 
-### Configure CloudWatch Logs Subscription
+### Configurar Subscrição de Logs do CloudWatch
 
-CloudWatch Logs can be delivered to other services such as Amazon Elasticsearch for custom processing. This can be achieved by subscribing to a real-time feed of log events. A subscription filter defines the filter pattern to use for filtering which log events gets delivered to Elasticsearch, as well as information about where to send matching log events to.
+Os logs do CloudWatch podem ser entregues a outros serviços, como o Amazon Elasticsearch, para processamento personalizado. Isso pode ser obtido assinando um feed em tempo real de eventos de log. Um filtro de assinatura define o padrão de filtro a ser usado para filtrar quais eventos de log são entregues ao Elasticsearch, bem como informações sobre para onde enviar eventos de log correspondentes.
 
-In this section, we’ll subscribe to the CloudWatch log events from the fluent-cloudwatch stream from the eks/eksworkshop-eksctl log group. This feed will be streamed to the Elasticsearch cluster.
+Nesta seção, inscreveremos os eventos de log do CloudWatch do fluxo fluent-cloudwatch do grupo de logs eks/eksworkshop-eksctl. Esse feed será transmitido para o cluster do Elasticsearch.
 
-Original instructions for this are available at:
+As instruções originais para isso estão disponíveis em:
 
 http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_ES_Stream.html
 
-Create Lambda Basic Execution Role
+Crie a role de execução básica do Lambda
 
 ```
 cat <<EoF > ~/environment/iam_policy/lambda.json
@@ -37,36 +37,36 @@ aws iam create-role --role-name lambda_basic_execution --assume-role-policy-docu
 aws iam attach-role-policy --role-name lambda_basic_execution --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
 ```
 
-Go to the [CloudWatch Logs console](https://console.aws.amazon.com/cloudwatch/home?#logs:)
+Vá ao [console de logs CloudWatch](https://console.aws.amazon.com/cloudwatch/home?#logs:)
 
-Select the log group `/eks/eksworkshop-eksctl/containers`. Click on `Actions` and select `Stream to Amazon ElasticSearch Service`.
+Selecione o grupo de log `/eks/eksworkshop-eksctl/containers`. Clique em `Actions` e selecione` Stream to Amazon ElasticSearch Service`.
 ![Stream to ElasticSearch](/images/logging_cwl_es.png)
 
-Select the ElasticSearch Cluster `kubernetes-logs` and IAM role `lambda_basic_execution`
+Selecione o cluster do ElasticSearch `kubernetes-logs` e a role do IAM `lambda_basic_execution`
 
 ![Subscribing to logs](/images/logging-cloudwatch-es-subscribe-iam.png)
 
-Click `Next`
+Clique em 'Next'
 
-Select `Common Log Format` and click `Next`
+Selecione `Common Log Format` e clique em` Next`
 
 ![ES Log Format](/images/logging-cloudwatch-es-subscribe-log-format.png)
 
-Review the configuration. Click `Next` and then `Start Streaming`
+Revise a configuração. Clique em `Next` e depois em 'Start Streaming'
 
 ![Review ES Subscription](/images/logging-cloudwatch-es-subscribe-confirmation.png)
 
-Cloudwatch page is refreshed to show that the filter was successfully created
+A página do Cloudwatch é atualizada para mostrar que o filtro foi criado com sucesso
 
-### Configure Kibana
+### Configurar o Kibana
 
-In Amazon Elasticsearch console, select the [kubernetes-logs under My domains](https://console.aws.amazon.com/es/home?#domain:resource=kubernetes-logs;action=dashboard)
+No console do Amazon Elasticsearch, selecione o [kubernetes-logs sob Meus domínios](https://console.aws.amazon.com/es/home?#domain:resource=kubernetes-logs;action=dashboard)
 
-![ElasticSearch Details](/images/logging_es_details.png)
+![Detalhes do ElasticSearch](/images/logging_es_details.png)
 
-Open the Kibana dashboard from the link. After a few minutes, records will begin to be indexed by ElasticSearch. You'll need to configure an index patterns in Kibana.
+Abra o dashboard do Kibana no link. Após alguns minutos, os logs começarão a ser indexados pelo ElasticSearch. Você precisará configurar um padrão de índice no Kibana.
 
-Set `Index Pattern` as **cwl-\*** and click `Next`
+Configure `Index Pattern` como **cwl-\*** e clique `Next`
 
 ![Index Pattern](/images/logging_index_pattern.png)
 
@@ -76,6 +76,6 @@ Select `@timestamp` from the dropdown list and select `Create index pattern`
 
 ![Kibana Summary](/images/logging_kibana.png)
 
-Click on `Discover` and explore your logs
+Clique em 'Discover' e explore seus logs
 
 ![Kibana Dashboard](/images/logging_kibana_dashboard.png)
