@@ -1,6 +1,6 @@
 ---
 title: "Iniciar usando o eksctl"
-chapter: true
+chapter: false
 weight: 20
 ---
 
