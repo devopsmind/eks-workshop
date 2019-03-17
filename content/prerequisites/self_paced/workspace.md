@@ -1,13 +1,12 @@
 ---
-title: "Create a Workspace"
+title: "Criar um Workspace"
 chapter: false
 weight: 10
 ---
 
 {{% notice warning %}}
-The Cloud9 workspace should be built by an IAM user with Administrator privileges,
-not the root account user. Please ensure you are logged in as an IAM user, not the root
-account user.
+O espaço de trabalho Cloud9 deve ser construído por um usuário do IAM com privilégios de administrador, não o usuário da conta root. Por favor, verifique se você está logado como um usuário do IAM, não o usuário da conta root
+.
 {{% /notice %}}
 
 <!---

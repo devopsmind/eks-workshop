@@ -5,4 +5,4 @@ disableToc: true
 hidden: true
 ---
 
-Create a Cloud9 Environment: [https://us-east-2.console.aws.amazon.com/cloud9/home?region=us-east-2](https://us-east-2.console.aws.amazon.com/cloud9/home?region=us-east-2)
+Crie um ambiente Cloud9: [https://us-east-2.console.aws.amazon.com/cloud9/home?region=us-east-2](https://us-east-2.console.aws.amazon.com/cloud9/home?region=us-east-2)

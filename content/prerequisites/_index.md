@@ -1,15 +1,15 @@
 ---
-title: "Start the workshop..."
+title: "Comece o workshop..."
 chapter: true
 weight: 10
 ---
 
-# Getting Started
+# Começando
 
-To start the workshop, follow one of the following depending on whether you are...
+Para iniciar o workshop, siga um dos seguintes procedimentos, dependendo se você...
 
-* ...[running the workshop on your own](self_paced/), or
-* ...[attending an AWS hosted event](aws_event/)
+* ...[executando o workshop por conta própria](self_paced/), or
+* ...[participando de um evento hospedado pela AWS](aws_event/)
 
 
-Once you have completed with either setup, continue with [**Create a SSH key section**](/prerequisites/sshkey/)
+Depois de concluir a configuração, continue com [**Crie uma seção de chave SSH**](/prerequisites/sshkey/)

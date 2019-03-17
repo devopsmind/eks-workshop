@@ -1,16 +1,16 @@
 ---
-title: "Test the Cluster"
+title: "Teste o cluster"
 date: 2018-08-07T13:36:57-07:00
 weight: 30
 ---
 
-Confirm your Nodes:
+Confirme seu Nodes:
 
 ```bash
 kubectl get nodes
 ```
 
-Export the Worker Role Name for use throughout the workshop
+Exportar o nome da função do Worker para uso em todo o workshop
 
 ```bash
 INSTANCE_PROFILE_PREFIX=$(aws cloudformation describe-stacks | jq -r .Stacks[].StackName | grep eksctl-eksworkshop-eksctl-nodegroup)
@@ -20,6 +20,6 @@ echo "export ROLE_NAME=${ROLE_NAME}" >> ~/.bash_profile
 
 ```
 
-#### Congratulations!
+#### Parabéns!
 
-You now have a fully working Amazon EKS Cluster that is ready to use!
+Agora você tem um cluster do Amazon EKS totalmente funcional pronto para uso!
