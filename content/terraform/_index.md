@@ -2,7 +2,7 @@
 title: "Provisionar  usando o Terraform"
 chapter: true
 weight: 25
-draft: true
+draft: false
 ---
 
 # Como usar o [Terraform](https://www.terraform.io/)
