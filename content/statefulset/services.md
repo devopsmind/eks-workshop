@@ -1,23 +1,23 @@
 ---
-title: "Create Services"
+title: "Criar serviços"
 date: 2018-08-07T08:30:11-07:00
 weight: 15
 ---
-#### Introduction
-[Kubernetes Service](https://kubernetes.io/docs/concepts/services-networking/service/) defines a logical set of Pods and a policy by which to access them. Service can be exposed in different ways by specifying a [type](https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/) in the serviceSpec. StatefulSet currently requires a [Headless Service](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services) to control the domain of its Pods, directly reach each Pod with stable DNS entries. By specifying **"None"** for the clusterIP, you can create Headless Service.
-#### Create Services
-Copy/Paste the following commands into your Cloud9 Terminal.
+#### Introdução
+[Serviço Kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/) define um conjunto lógico de pods e uma política pela qual acessá-los. O serviço pode ser exposto de diferentes formas, especificando um [tipo](https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/) no serviceSpec. StatefulSet atualmente requer um [Headless Service](https://kubernetes.io/docs/concepts/services-networking/service/#headless-services) para controlar o domínio de seus Pods, alcançar diretamente cada Pod com entradas de DNS estáveis. Especificando  **"None"** para o clusterIP, você pode criar o serviço Headless.
+#### Criar serviços
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
 ```
 cd ~/environment/templates
 wget https://eksworkshop.com/statefulset/services.files/mysql-services.yml
 ```
-Check the configuration of mysql-services.yml by following command.
+Verifique a configuração do mysql-services.yml, com o seguinte comando.
 ```
 cat ~/environment/templates/mysql-services.yml
 ```
-You can see the **mysql** service is for DNS resolution so that when pods are placed by StatefulSet controller, pods can be resolved using pod-name.mysql. **mysql-read** is a client service that does load balancing for all slaves. 
+Você pode ver que o serviço **mysql** é para resolução de DNS, de modo que quando os pods são colocados pelo controlador StatefulSet, pods podem ser resolvidos usando pod-name.mysql. **mysql-read** é um serviço de cliente que faz o balanceamento de carga para todos slaves. 
 ```
-# Headless service for stable DNS entries of StatefulSet members.
+# Serviço Headless de DNS estáveis ​​de membros do StatefulSet.
 apiVersion: v1
 kind: Service
 metadata:
@@ -32,8 +32,8 @@ spec:
   selector:
     app: mysql
 ---
-# Client service for connecting to any MySQL instance for reads.
-# For writes, you must instead connect to the master: mysql-0.mysql.
+# Serviço de cliente para conectar-se a qualquer instância do MySQL para leituras.
+# Para gravações, você deve se conectar ao master: mysql-0.mysql.
 apiVersion: v1
 kind: Service
 metadata:
@@ -47,7 +47,7 @@ spec:
   selector:
     app: mysql
 ```
-Create service mysql and mysql-read by following command
+Criar serviço mysql e mysql-read com o seguinte comando
 ```
 kubectl create -f ~/environment/templates/mysql-services.yml
 ```

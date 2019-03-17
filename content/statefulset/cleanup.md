@@ -1,14 +1,14 @@
 ---
-title: "Cleanup"
+title: "Limpar"
 date: 2018-08-07T08:30:11-07:00
 weight: 40
 ---
-First delete the StatefulSet. This will also terminates the pods. 
-It may take some while.
+Primeiro exclua o StatefulSet. Isso também excluirá os pods. 
+Pode demorar um pouco.
 ```
 kubectl delete statefulset mysql
 ```
-Verify there are no pods running by following command.
+Verifique se não há pods em execução executando o comando.
 ```
 kubectl get pods -l app=mysql
 ```
@@ -16,7 +16,7 @@ kubectl get pods -l app=mysql
 No resources found.
 ```
 
-Delete ConfigMap, Service and PVC by following command.
+Exclua o ConfigMap, Service e PVC, executando o comando.
 ```
 kubectl delete configmap,service,pvc -l app=mysql
 ```
@@ -28,4 +28,4 @@ persistentvolumeclaim "data-mysql-0" deleted
 persistentvolumeclaim "data-mysql-1" deleted
 persistentvolumeclaim "data-mysql-2" deleted
 ```
-#### Congratulation! You've finished the StatefulSets lab.
+#### Parabéns! Você terminou o laboratório StatefulSets.

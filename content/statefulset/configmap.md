@@ -1,24 +1,24 @@
 ---
-title: "Create ConfigMap"
+title: "Crie o ConfigMap"
 date: 2018-08-07T08:30:11-07:00
 weight: 10
 ---
 
-#### Introduction
-[ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) allow you to decouple configuration artifacts and secrets from image content to keep containerized applications portable. Using ConfigMap, you can independently control MySQL configuration. 
+#### Introdução
+[ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) permite dissociar artefatos de configuração e secrets do conteúdo da imagem para manter os aplicativos em contêiner portáteis. Usando o ConfigMap, você pode controlar independentemente a configuração do MySQL. 
 
-#### Create ConfigMap
-Copy/Paste the following commands into your Cloud9 Terminal.
+#### Crie o ConfigMap
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
 ```
 cd ~/environment/templates
 wget https://eksworkshop.com/statefulset/configmap.files/mysql-configmap.yml
 
 ```
-Check the configuration of mysql-configmap.yml file by following command.
+Verifique a configuração do arquivo mysql-configmap.yml, seguindo o comando.
 ```
 cat ~/environment/templates/mysql-configmap.yml
 ```
-ConfigMap stores master.cnf, slave.cnf and pass them when initializing master and slave pods defined in statefulset. **master.cnf** is for the MySQL master pod which has binary log option (log-bin) to provides a record of the data changes to be sent to slave servers and **slave.cnf** is for slave pods which has super-read-only option.
+ConfigMap armazena master.cnf, slave.cnf e passa a inicializar os pods master e slave definidos no statefulset. **master.cnf** é para o pod master do MySQL que possui opção de log binário(log-bin) para fornece um registro das alterações de dados a serem enviadas para servidores slaves **slave.cnf** com pods slaves que tem opção super-read-only .
 ```
 apiVersion: v1
 kind: ConfigMap
@@ -37,7 +37,7 @@ data:
     super-read-only
 ```
 
-Create configmap "mysql-config" by following command.
+Crie o configmap 'mysql-config' seguindo o comando.
 ```
 kubectl create -f ~/environment/templates/mysql-configmap.yml
 ```

@@ -22,14 +22,14 @@ println "This is tab 2."
 {{< /tab >}}}
 {{< /tabs >}}
 
-### Tabs showing installation process:
+### Guias que mostram o processo de instalação:
 {{< tabs name="tab_installation" >}}
-{{< tab name="eksctl" include="tabs/eksctl.md" />}}
+###{{< tab name="eksctl" include="tabs/eksctl.md" />}}
 {{< tab name="terraform" include="tabs/launcheks.md" />}}
 {{< tab name="cloudformation" include="tabs/eks.md" />}}
 {{< /tabs >}}
 
-### Second set of tabs showing installation process:
+### Segundo conjunto de guias mostrando o processo de instalação:
 {{< tabs name="more_tab_installation" >}}
 {{< tab name="eksctl" include="tabs/eksctl.md" />}}
 {{< tab name="terraform" include="tabs/launcheks.md" />}}

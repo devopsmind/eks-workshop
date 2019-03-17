@@ -1,10 +1,10 @@
 ---
-title: "Test MySQL"
+title: "Teste o MySQL"
 date: 2018-08-07T08:30:11-07:00
 weight: 25
 ---
-You can use **mysql-client** to send some data to the master, **mysql-0.mysql**
-by following command.
+Você pode usar **mysql-client** para enviar alguns dados para o master, **mysql-0.mysql**
+executando o comando.
 ```
 kubectl run mysql-client --image=mysql:5.7 -i --rm --restart=Never --\
   mysql -h mysql-0.mysql <<EOF
@@ -14,12 +14,12 @@ INSERT INTO test.messages VALUES ('hello, from mysql-client');
 EOF
 
 ```
-Run the following to test slaves (mysql-read) received the data.
+Execute o seguinte para testar slaves (mysql-read) recebeu o data.
 ```
 kubectl run mysql-client --image=mysql:5.7 -it --rm --restart=Never --\
   mysql -h mysql-read -e "SELECT * FROM test.messages"
 ```
-The output should look like this.
+A saída deve ficar assim.
 ```
 +--------------------------+
 | message                  |
@@ -27,12 +27,12 @@ The output should look like this.
 | hello, from mysql-client |
 +--------------------------+
 ```
-To test load balancing across slaves, run the following command.
+Para testar o balanceamento de carga entre slaves, execute o seguinte comando.
 ```
 kubectl run mysql-client-loop --image=mysql:5.7 -i -t --rm --restart=Never --\
    bash -ic "while sleep 1; do mysql -h mysql-read -e 'SELECT @@server_id,NOW()'; done"
 ```
-Each MySQL instance is assigned a unique identifier, and it can be retrieved using @@server_id. It will print the server id serving the request and the timestamp.
+Cada instância do MySQL é atribuída a um identificador único e pode ser recuperada usando @@server_id. Ele imprimirá o ID do servidor que atende a solicitação e o timestamp.
 ```
 +-------------+---------------------+
 | @@server_id | NOW()               |
@@ -60,4 +60,4 @@ Each MySQL instance is assigned a unique identifier, and it can be retrieved usi
 |         101 | 2018-11-14 12:45:01 |
 +-------------+---------------------+
 ```
-Leave this open in a separate window while you test failure in the next section.
+Deixe isso aberto em uma janela separada enquanto você testa a falha na próxima seção.

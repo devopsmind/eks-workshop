@@ -1,9 +1,9 @@
 ---
-title: "Test Failure"
+title: "Teste de falha"
 date: 2018-08-07T08:30:11-07:00
 weight: 30
 ---
-#### Unhealthy container
+####  container Pouco saudável
 MySQL container uses readiness probe by running mysql -h 127.0.0.1 -e 'SELECT 1' on the server to make sure MySQL server is still active.
 Open a new terminal and simulate MySQL as being unresponsive by following command.
 ```
