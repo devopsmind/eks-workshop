@@ -7,9 +7,9 @@ draft: false
 
 ### Kubernetes Jobs
 
-A _job_ creates one or more pods and ensures that a specified number of them successfully terminate. As pods successfully complete, the job tracks the successful completions. When a specified number of successful completions is reached, the job itself is complete. Deleting a Job will cleanup the pods it created.
+Um _job_ cria um ou mais pods e garante que um número especificado deles termine com sucesso. À medida que os pods são concluídos com êxito, o trabalho rastreia as conclusões bem-sucedidas. Quando um número especificado de conclusões bem-sucedidas é atingido, o trabalho em si é concluído. Excluir um Job limpará os pods criados.
 
-Save the below manifest as 'job-whalesay.yaml' using your favorite editor.
+Salve o manifesto abaixo como 'job-whalesay.yaml' usando seu editor favorito.
 
 ```
 apiVersion: batch/v1
@@ -27,7 +27,7 @@ spec:
   backoffLimit: 4
 ```
 
-Run a sample Kubernetes Job using the `whalesay` image.
+Execute um exemplo de job do Kubernetes usando a imagem `whalesay` .
 
 ```
 kubectl apply -f job-whalesay.yaml

@@ -1,16 +1,16 @@
 ---
-title: "Launch using eksctl"
+title: "Iniciar usando o eksctl"
 chapter: true
 weight: 20
 ---
 
 # Launch using [eksctl by Weaveworks](https://eksctl.io/)
 
-We have some very powerful partner tools that allow us to automate much of
-the experience of creating an EKS cluster, simplifying the process.
+Temos algumas ferramentas de parceiros muito poderosas que nos permitem automatizar muito
+, simplificando o processo.
 
-In this module, we will highlight a tool contributed by [Weaveworks](https://weave.works)
-called [eksctl](https://eksctl.io), based on the official AWS CloudFormation templates,
-and will use it to launch and configure our EKS cluster and nodes.
+Neste módulo, vamos destacar uma ferramenta contribuída por [Weaveworks](https://weave.works)
+chamado [eksctl](https://eksctl.io), com base nos modelos oficiais do AWS CloudFormation,
+e usá-lo para lançar e configurar nosso cluster e nós EKS.
 
 {{< youtube 3-OZqA5p1HA >}}

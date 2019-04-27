@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Introdução"
 date: 2018-11-18T00:00:00-05:00
 weight: 10
 draft: false
@@ -7,7 +7,7 @@ draft: false
 
 ### Introduction
 
-Batch processing refers to performing units of work, referred to as a `job` in a repetitive and unattended fashion. Jobs are typically grouped together and processed in batches (hence the name).
+Processamento em lote refere-se à execução de unidades de trabalho, referido como`job` in a repetitive and unattended fashion. Jobs are typically grouped together and processed in batches (hence the name).
 
 Kubernetes includes native support for [running Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/). Jobs can run multiple pods in parallel until receiving a set number of completions. Each pod can contain multiple containers as a single unit of work.
 

@@ -1,15 +1,15 @@
 ---
-title: "Configure Artifact Repository"
+title: "Configurar Repositório de Artefato"
 date: 2018-11-18T00:00:00-05:00
 weight: 50
 draft: false
 ---
 
-### Configure Artifact Repository
+### Configurar Repositório de Artefato
 
-Argo uses an artifact repository to pass data between jobs in a workflow, known as artifacts. Amazon S3 can be used as an artifact repository.
+O Argo usa um repositório de artefatos para passar dados entre tarefas em um fluxo de trabalho, conhecido como artefatos. 
 
-Let's create a S3 bucket using the AWS CLI.
+Vamos criar um bucket S3 usando o AWS CLI.
 
 ```bash
 ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)

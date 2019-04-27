@@ -7,13 +7,13 @@ draft: false
 
 ### Batch Processing
 
-In this Chapter, we will deploy common batch processing scenarios using Kubernetes and [Argo](https://argoproj.github.io/).
+Neste capítulo, vamos implantar cenários comuns de processamento em lote usando Kubernetes e [Argo](https://argoproj.github.io/).
 
 ![Argo Logo](/images/argo-logo.png)
 
-#### What is Argo?
-Argo is an open source container-native workflow engine for getting work done on Kubernetes. Argo is implemented as a Kubernetes CRD (Custom Resource Definition).
+#### O que é Argo?
+O Argo é um mecanismo de fluxo de trabalho nativo de contêiner de software livre para executar o trabalho no Kubernetes. 
 
-* Define workflows where each step in the workflow is a container.
-* Model multi-step workflows as a sequence of tasks or capture the dependencies between tasks using a graph (DAG).
-* Easily run compute intensive jobs for machine learning or data processing in a fraction of the time using Argo workflows on Kubernetes.
+* Definir fluxos de trabalho em que cada etapa do fluxo de trabalho é um contêiner.
+* Modele fluxos de trabalho de várias etapas como uma sequência de tarefas ou capture as dependências entre tarefas usando um gráfico (DAG).
+* Execute facilmente tarefas intensivas de computação para aprendizado de máquina ou processamento de dados em uma fração do tempo usando fluxos de trabalho Argo no Kubernetes.
