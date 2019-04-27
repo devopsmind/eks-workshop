@@ -6,7 +6,7 @@ weight: 10
 
 # Começando
 
-Para iniciar o workshop, siga um dos seguintes procedimentos, dependendo se você...
+Para iniciar o workshop, siga um dos seguintes procedimentos, dependendo se você estiver...
 
 * ...[executando o workshop por conta própria](self_paced/), or
 * ...[participando de um evento hospedado pela AWS](aws_event/)
