@@ -1,7 +1,7 @@
 ---
-title: "Conclusion"
+title: "Conclusão"
 chapter: true
 weight: 90
 ---
 
-# Conclusion
+# Conclusão

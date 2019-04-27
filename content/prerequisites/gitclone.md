@@ -1,13 +1,12 @@
 ---
-title: "Clone the Workshop Repository"
+title: "Clonar o repositório do Workshop"
 chapter: false
 weight: 65
 draft: true
-comment: disabled since eksctl doesn't require it
+comment: desativado, pois o eksctl não exige
 ---
 
-We have a repository of tools to help with the remaining workshop. Clone the
-repository to your local workspace with this command:
+Temos um repositório de ferramentas para ajudar no workshop restante. Clone o repositório em seu espaço de trabalho local com este comando:
 ```
 cd ~/environment
 git clone https://github.com/mandusm/howto-launch-eks-workshop.git

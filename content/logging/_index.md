@@ -1,15 +1,15 @@
 ---
-title: "Logging with Elasticsearch, Fluentd, and Kibana (EFK)"
+title: "Registrando logs com Elasticsearch, Fluentd, and Kibana (EFK)"
 chapter: true
 weight: 51
 ---
 
-# Implement Logging with EFK
+# Implemente o log com o EFK
 
-In this Chapter, we will deploy a common Kubernetes logging pattern which consists of the following:
+Neste capítulo, vamos implantar um padrão de registro em log comum do Kubernetes, que consiste no seguinte:
 
-* [Fluentd](https://www.fluentd.org/) is an open source data collector providing a unified logging layer, supported by 500+ plugins connecting to many types of systems.
-* [Elasticsearch](https://www.elastic.co/products/elasticsearch) is a distributed, RESTful search and analytics engine.
-* [Kibana](https://www.elastic.co/products/kibana) lets you visualize your Elasticsearch data.
+* [Fluentd](https://www.fluentd.org/) é um coletor de dados de código aberto que fornece uma camada de registro unificada, suportada por 500 plugins conectados a vários tipos de sistemas.
+* [Elasticsearch](https://www.elastic.co/products/elasticsearch) é um mecanismo de pesquisa e análise distribuído e RESTful.
+* [Kibana](https://www.elastic.co/products/kibana) permite visualizar seus dados do Elasticsearch.
 
-Together, Fluentd, Elasticsearch and Kibana is also known as “EFK stack”. Fluentd will forward logs from the individual instances in the cluster to a centralized logging backend (CloudWatch Logs) where they are combined for higher-level reporting using ElasticSearch and Kibana.
+Juntos, Fluentd, Elasticsearch e Kibana também são conhecidos como “stack” EFK . O Fluentd encaminhará os logs das instâncias individuais no cluster para um back-end de log centralizado (CloudWatch Logs), onde eles serão combinados para relatórios de nível mais alto usando o ElasticSearch e o Kibana.

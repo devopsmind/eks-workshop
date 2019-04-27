@@ -1,29 +1,28 @@
 ---
-title: "Deploy the eksdemo Chart"
+title: "Implantar o eksdemo Chart"
 date: 2018-08-07T08:30:11-07:00
 weight: 30
 ---
 
-#### Use the dry-run flag to test our templates
+#### Use a flag dry-run  para testar nossos templates
 
-To test the syntax and validity of the Chart without actually deploying it, we'll use the dry-run flag.
+Para testar a sintaxe e a validade do chart sem realmente implementá-lo, usaremos a flag dry-run .
 
-The following command will build and output the rendered templates without installing the Chart:
+O comando a seguir criará e exibirá os templates renderizados sem instalar oChart:
 
 ```sh
 helm install --debug --dry-run --name workshop ~/environment/eksdemo
 ```
-Confirm that the values created by the template look correct.
+Confirme se os valores criados pelo template estão corretos.
 
 
-#### Deploy the chart
-Now that we have tested our template, lets install it.
-
+#### Implante o chart
+Agora que testamos nosso template, vamos instalá-lo.
 ```
 helm install --name workshop ~/environment/eksdemo
 ```
 
-Similar to what we saw previously in the [NGINX Helm Chart example](/helm_root/helm_nginx/index.html), an output of the Deployment, Pod, and Service objects are output, similar to:
+Semelhante ao que vimos anteriormente no [NGINX Helm Chart example](/helm_root/helm_nginx/index.html), uma saída dos objetos Deployment, Pod e Service é gerada, semelhante a essa:
 
 ```
 NAME:   workshop

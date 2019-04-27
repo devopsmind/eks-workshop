@@ -1,12 +1,12 @@
 ---
-title: "Deploy Crystal Backend API"
+title: "Implantar a API do Crystal Backend"
 date: 2018-09-18T17:40:03-05:00
 weight: 20
 ---
 
-Let’s bring up the Crystal Backend API!
+Vamos trazer a API do Crystal Backend!
 
-Copy/Paste the following commands into your Cloud9 workspace:
+Copie/cole os seguintes comandos no seu workspace Cloud9 :
 
 ```
 cd ~/environment/ecsdemo-crystal
@@ -14,7 +14,7 @@ kubectl apply -f kubernetes/deployment.yaml
 kubectl apply -f kubernetes/service.yaml
 ```
 
-We can watch the progress by looking at the deployment status:
+Podemos acompanhar o progresso observando o status do deployment:
 ```
 kubectl get deployment ecsdemo-crystal
 ```

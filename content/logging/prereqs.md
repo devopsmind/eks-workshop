@@ -1,20 +1,20 @@
 ---
-title: "Configure IAM Policy for Worker Nodes"
+title: "Configurar política do IAM para Worker Nodes"
 date: 2018-08-07T08:30:11-07:00
 weight: 10
 ---
 
-We will be deploying Fluentd as a DaemonSet, or one pod per worker node. The fluentd log daemon will collect logs and forward to CloudWatch Logs. This will require the nodes to have permissions to send logs and create log groups and log streams. This can be accomplished with an IAM user, IAM role, or by using a tool like `Kube2IAM`.
+Nós estaremos implantando o Fluentd como um DaemonSet, ou um pod node por worker node. O Daemon de Log Fluentd irá coletar logs e encaminhar para o CloudWatch Logs.. Isso exigirá que os nodes tenham permissões para enviar logs e criar grupos de log e stream de logs. Isso pode ser feito com um usuário do IAM, uma Role do IAM ou usando uma ferramenta como `Kube2IAM`.
 
-In our example, we will create an IAM policy and attach it the the Worker node role.
+Em nosso exemplo, criaremos uma política do IAM e anexaremos a role do  Worker.
 
-Collect the Instance Profile and Role NAME from the CloudFormation Stack
+Colete o perfil da instância e o NOME da role na Stack do CloudFormation
 ```
 INSTANCE_PROFILE_PREFIX=$(aws cloudformation describe-stacks | jq -r .Stacks[].StackName | grep eksctl-eksworkshop-eksctl-nodegroup)
 INSTANCE_PROFILE_NAME=$(aws iam list-instance-profiles | jq -r '.InstanceProfiles[].InstanceProfileName' | grep $INSTANCE_PROFILE_PREFIX)
 ROLE_NAME=$(aws iam get-instance-profile --instance-profile-name $INSTANCE_PROFILE_NAME | jq -r '.InstanceProfile.Roles[] | .RoleName')
 ```
-Create a new IAM Policy and attach it to the Worker Node Role.
+Crie uma nova política do IAM e anexe-a a Role do Worker Node.
 ```
 mkdir ~/environment/iam_policy
 cat <<EoF > ~/environment/iam_policy/k8s-logs-policy.json
@@ -38,7 +38,7 @@ EoF
 aws iam put-role-policy --role-name $ROLE_NAME --policy-name Logs-Policy-For-Worker --policy-document file://~/environment/iam_policy/k8s-logs-policy.json
 ```
 
-Validate that the policy is attached to the role
+Valide se a política está anexada à role.
 ```
 aws iam get-role-policy --role-name $ROLE_NAME --policy-name Logs-Policy-For-Worker
 ```

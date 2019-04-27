@@ -1,13 +1,13 @@
 ---
-title: "...on your own"
+title: "...workshop sozinho"
 chapter: true
 weight: 11
 ---
 
-### Running the workshop on your own
+### Executando o workshop sozinho
 
 {{% notice warning %}}
-Only complete this section if you are running the workshop on your own. If you are at an AWS hosted event (such as re:Invent, Kubecon, Immersion Day, etc), go to [Start the workshop at an AWS event](../aws_event/).
+Só preencha esta seção se você estiver executando o workshop por conta própria. Se você estiver em um evento hospedado pela AWS (como: Invent, Kubecon, Immersion Day, etc), vá para [Inicie o workshop em um evento da AWS](../aws_event/).
 {{% /notice %}}
 
 {{% children %}}

@@ -4,10 +4,9 @@ date: 2018-08-07T13:37:53-07:00
 weight: 20
 ---
 
-To delete the resources created by the applications, we should delete the application
-deployments and kubernetes dashboard:
+Para excluir os recursos criados pelos aplicativos, devemos excluir as implantações do aplicativo e o dashboard do kubernetes:
 
-Undeploy the applications:
+remover Implantação das aplicações:
 ```
 cd ~/environment/ecsdemo-frontend
 kubectl delete -f kubernetes/service.yaml

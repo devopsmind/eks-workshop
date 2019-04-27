@@ -1,15 +1,14 @@
 ---
-title: "Ensure the ELB Service Role exists"
+title: "Assegure-se de que a função de serviço do ELB exista"
 date: 2018-09-18T17:40:09-05:00
 weight: 29
 ---
 
-In AWS accounts that have never created a load balancer before, it's possible
-that the service role for ELB might not exist yet.
+Nas contas da AWS que nunca criaram um balanceador de carga antes, é possível que a função de serviço para o ELB ainda não exista.
 
-We can check for the role, and create it if it's missing.
+Podemos verificar o papel e criá-lo se estiver faltando.
 
-Copy/Paste the following commands into your Cloud9 workspace:
+Copie/cole os seguintes comandos no seu workspace Cloud9 :
 
 ```
 aws iam get-role --role-name "AWSServiceRoleForElasticLoadBalancing" || aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com"

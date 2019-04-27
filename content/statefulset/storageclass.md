@@ -1,10 +1,10 @@
 ---
-title: "Define Storageclass"
+title: "Defenir Storageclass"
 
 date: 2018-08-07T08:30:11-07:00
 weight: 5
 ---
-#### Introduction
+#### Introdução
 [Dynamic Volume Provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/) allows storage volumes to be created on-demand. [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/) should be pre-created to define which provisoner should be used and what parameters should be passed when dynamic provisioning is invoked.
 (See parameters for [AWS EBS](https://kubernetes.io/docs/concepts/storage/storage-classes/#aws-ebs))
 #### Define Storage Class

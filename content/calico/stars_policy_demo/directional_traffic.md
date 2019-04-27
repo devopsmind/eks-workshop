@@ -1,18 +1,18 @@
 ---
-title: "Allow Directional Traffic"
+title: "Permitir tráfego direcional"
 date: 2018-08-07T08:30:11-07:00
 weight: 4
 ---
-Let's see how we can allow directional traffic from client to frontend and backend.
+Vamos ver como podemos permitir o tráfego direcional do cliente para frontend e backend.
 
-Copy/Paste the following commands into your Cloud9 Terminal.
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
 ```
 cd ~/environment/calico_resources
 wget https://eksworkshop.com/calico/stars_policy_demo/directional_traffic.files/backend-policy.yaml
 wget https://eksworkshop.com/calico/stars_policy_demo/directional_traffic.files/frontend-policy.yaml
 ```
 
-Let's examine this backend policy with `cat backend-policy.yaml`:
+Vamos examinar essa política de back-end com `cat backend-policy.yaml`:
 ```
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
@@ -33,9 +33,9 @@ spec:
           port: 6379
 ```
 #### Challenge:
-**After reviewing the manifest, you'll see we have intentionally left few of the configuration fields for you to EDIT. Please edit the configuration as suggested. You can find helpful info in this [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/network-policies/)**
+**Depois de analisar o manifesto, você verá que deixamos intencionalmente alguns dos campos de configuração para você EDITAR. Por favor, edite a configuração conforme sugerido. Você pode encontrar informações úteis nesta [Documentação do kubernetes](https://kubernetes.io/docs/concepts/services-networking/network-policies/)**
 
-{{% expand "Expand here to see the solution"%}}
+{{% expand "Expanda aqui para ver a solução"%}}
 ```
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
@@ -57,7 +57,7 @@ spec:
 ```
 {{%/expand%}}
 
-Let's examine the frontend policy with `cat frontend-policy.yaml`:
+Vamos examinar a política de frontend com`cat frontend-policy.yaml`:
 
 ```
 kind: NetworkPolicy
@@ -78,10 +78,10 @@ spec:
         - protocol: TCP
           port: 80
 ```
-#### Challenge:
-**Please edit the configuration as suggested. You can find helpful info in this [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/network-policies/)**
+#### Desafio:
+**Por favor, edite a configuração conforme sugerido. Você pode encontrar informações úteis nesta [Documentação do kubernetes](https://kubernetes.io/docs/concepts/services-networking/network-policies/)**
 
-{{% expand "Expand here to see the solution"%}}
+{{% expand "Expanda aqui para ver a solução"%}}
 ```
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
@@ -102,22 +102,22 @@ spec:
           port: 80
 ```
 {{%/expand%}}
-To allow traffic from frontend service to the backend service apply the following manifest:
+Para permitir o tráfego do serviço de frontend para o serviço de back-end, aplique o seguinte manifesto:
 
 ```
 kubectl apply -f backend-policy.yaml
 ```
 
-And allow traffic from the client namespace to the frontend service:
+E permitir tráfego do namespace do cliente para o serviço frontend:
 
 ```
 kubectl apply -f frontend-policy.yaml
 ```
-Upon refreshing your browser, you should be able to see the network policies in action:
+Ao atualizar seu navegador, você poderá ver as políticas de rede em ação:
 
 ![directional traffic](/images/calico-client-f-b-access.png)
 
-Let's have a look at the backend-policy. Its spec has a podSelector that selects all pods with the label **role:backend**, and allows ingress from all pods that have the label **role:frontend** and on TCP port **6379**, but not the other way round. Traffic is allowed in one direction on a specific port number.
+Vamos dar uma olhada na política de backend. Sua especificação tem um podSelector que seleciona todos os pods com a label **role:backend**, e permite a entrada de todos os pods que têm o label **role:frontend** e na porta TCP **6379**, mas não o contrário. O tráfego é permitido em uma direção em um número de porta específico.
 
 ```
 spec:
@@ -134,7 +134,7 @@ spec:
           port: 6379
 ```
 
-The frontend-policy is similar, except it allows ingress from **namespaces** that have the label **role: client** on TCP port **80**.
+O frontend-policy é semelhante, exceto pelo fato de permitir a entrada de ** namespaces ** que têm o label **role: client** na porta TCP **80**.
 
 ```
 spec:

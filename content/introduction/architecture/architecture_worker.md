@@ -1,5 +1,5 @@
 ---
-title: "Data Plane"
+title: "Plano de dados"
 date: 2018-10-03T10:18:27-07:00
 draft: false
 weight: 110
@@ -36,10 +36,10 @@ internet((internet))
   class kubectl orange;
 {{< /mermaid >}}
 
-* Made up of worker nodes
+* Feito de worker nodes
 
-* kubelet: Acts as a conduit between the API server and the node
+* kubelet: Atua como um canal entre o servidor da API e o node
 
-* kube-proxy: Manages IP translation and routing
+* kube-proxy: Gerenciamento de  tradução e roteamento de IP
 
-Check out [the official Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/components/#node-components) for a more in-depth explanation of data plane components.
+Confira [a documentação oficial do Kubernetes](https://kubernetes.io/docs/concepts/overview/components/#node-components) para uma explicação mais detalhada dos componentes do plano de dados.

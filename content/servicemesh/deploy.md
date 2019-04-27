@@ -1,59 +1,59 @@
 ---
-title: "Deploy Sample Apps"
+title: "Implantar aplicativos de exemplo"
 date: 2018-11-13T16:37:17+09:00
 weight: 40
 draft: false
 ---
 
-Now that we have all the resources installed for Istio, we will use sample application called BookInfo to review key capabilities of the service mesh such as intelligent routing, and review telemetry data using Prometheus & Grafana.
+Agora que temos todos os recursos instalados para o Istio, usaremos um aplicativo de exemplo chamado BookInfo para analisar os principais recursos da service mesh, como o roteamento inteligente, e analisar os dados de telemetria usando o Prometheus.
 
 ### Sample Apps
 
 
 ![Sample Apps](/images/servicemesh-deploy1.png)
 
-The Bookinfo application is broken into four separate microservices:
+O aplicativo Bookinfo é dividido em quatro microsserviços separados:
 
 * <span style="color:orange">**productpage**</span>
-  * The productpage microservice calls the details and reviews microservices to populate the page.
+  * O microsserviço da página do produto chama os detalhes e revisa microsserviços para preencher a página.
 
 * <span style="color:orange">**details**</span>
-  * The details microservice contains book information.
+  * O microsserviço de detalhes contém informações do livro.
 
 * <span style="color:orange">**reviews**</span>
-  * The reviews microservice contains book reviews. It also calls the ratings microservice.
+  * O microserviço de avaliações contém resenhas de livros. Ele também chama o microsserviço de classificações.
 
 * <span style="color:orange">**ratings**</span>
-  * The ratings microservice contains book ranking information that accompanies a book review.
+  * O microsserviço de classificações contém informações de classificação de livros que acompanham uma resenha do livro.
 
-There are 3 versions of the <span style="color:orange">*reviews*</span> microservice:
+Existem 3 versões do <span style="color:orange">*reviews*</span>microsserviço:
 
 * Version v1
-  * doesn’t call the ratings service.
+  * não chama o serviço de classificações.
 
 * Version v2
-  * calls the ratings service, and displays each rating as 1 to 5 <span style="color:black">**black stars**</span>.
+  * chama o serviço de classificação e exibe cada classificação como 1 a 5<span style="color:black">**black stars**</span>.
 
 * Version v3
-  * calls the ratings service, and displays each rating as 1 to 5 <span style="color:red">**red stars**</span>.
+  * chama o serviço de classificação e exibe cada classificação como 1 a 5 <span style="color:red">**red stars**</span>.
 
 ---
 
-### Deploy Sample Apps
+### Implantar aplicativos de exemplo
 
-Deploy sample apps by manually injecting istio proxy and confirm pods, services are running correctly
+Implante aplicativos de exemplo injetando manualmente o istio proxy e confirme os pods, os serviços estão sendo executados corretamente
 
 ```
 kubectl apply -f <(istioctl kube-inject -f samples/bookinfo/platform/kube/bookinfo.yaml)
 ```
 
-The output from
+Para verificar o resultado
 
 ```
 kubectl get pod,svc
 ```
 
-Should look similar to:
+Deve ser semelhante a:
 
 ```
 NAME                              READY     STATUS    RESTARTS   AGE
@@ -72,31 +72,31 @@ ratings       ClusterIP   10.100.1.63      <none>        9080/TCP   17s
 reviews       ClusterIP   10.100.255.157   <none>        9080/TCP   17s
 ```
 
-Next we'll define the virtual service and ingress gateway:
+Em seguida, vamos definir o serviço virtual e o gateway de ingress:
 
 ```
 kubectl apply -f samples/bookinfo/networking/bookinfo-gateway.yaml
 ```
 
-Next, we'll query the DNS name of the ingress gateway and use it to connect via the browser.
+Em seguida, vamos consultar o nome DNS do gateway de ingress e usá-lo para se conectar através do navegador.
 
 ```
 kubectl get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' -n istio-system ; echo
 ```
 
-This may take a minute or two, first for the Ingress to be created, and secondly for the Ingress to hook up with the services it exposes.
+Isso pode levar um ou dois minutos, primeiro para o Ingress ser criado e, em segundo lugar, para o Ingress conectar-se aos serviços que ele expõe.
 
-To test, do the following:
+Para testar, faça o seguinte:
 
-1. Open a new browser tab
-2. Paste the DNS endpoint returned from the previous ```get service istiogateway``` command
-3. Add /productpage to the end of that DNS endpoint
-4. Hit enter to retrieve the page.
+1. Abra uma nova guia do navegador
+2. Cole o endpoint DNS retornado do comando anterior ```get service istiogateway``` 
+3. Adicionar /productpage ao final desse DNS endpoint
+4. Pressione Enter para recuperar a página.
 
 {{% notice info %}}
-Remember to add **/productpage** to the end of the URI in the browser to see the sample webpage!
+Lembre-se de adicionar **/productpage** até o final do URI no navegador para ver a página de exemplo!
 {{% /notice %}}
 
 ![Sample Apps](/images/servicemesh-deploy2.png)
 
-Click reload multiple times to see how the layout and content of the reviews changes as differnt versions (v1, v2, v3) of the app are called.
+Clique em recarregar várias vezes para ver como o layout e o conteúdo das revisões são alterados como versões diferentes (v1, v2, v3) do aplicativo são chamados.

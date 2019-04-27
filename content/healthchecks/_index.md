@@ -6,12 +6,12 @@ weight: 40
 
 # Health Checks
 
-By default, Kubernetes will restart a container if it crashes for any reason. It uses Liveness and Readiness probes which can be configured for running a robust application by identifying the healthy containers to send traffic to and restarting the ones when required.
+Por padrão, o Kubernetes irá reiniciar um contêiner se ele falhar por algum motivo. Ele usa os probes Liveness e Readiness, que podem ser configurados para executar um aplicativo robusto, identificando os contêineres saudáveis ​​para enviar tráfego e reiniciando os quando necessário.
 
-In this section, we will understand how [liveness and readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) are defined and test the same against different states of a pod. Below is the high level description of how these probes work.
+Nesta seção, vamos entender como [liveness e readiness probes](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/) são definidos e testam o mesmo contra estados diferentes de um pod. Abaixo está a descrição de alto nível de como estas sondas funcionam.
 
-**Liveness probes** are used in Kubernetes to know when a pod is alive or dead. A pod can be in a dead state for different reasons while Kubernetes kills and recreates the pod when liveness probe does not pass.
+**Liveness probes** são usados ​​em Kubernetes para saber quando um pod está vivo ou morto. Um pod pode estar em um estado morto por diferentes razões, enquanto o Kubernetes mata e recria o pod quando a sonda de liveness não passa.
 
-**Readiness probes** are used in Kubernetes to know when a pod is ready to serve traffic. Only when the readiness probe passes, a pod will receive traffic from the service. When readiness probe fails, traffic will not be sent to a pod until it passes.
+**Readiness probes** são usados ​​no Kubernetes para saber quando um pod está pronto para atender ao tráfego. Somente quando o probe de prontidão passar, um pod receberá tráfego do serviço. Quando o probe de prontidão falhar, o tráfego não será enviado a um pod até que seja aprovado.
 
-We will review some examples in this module to understand different options for configuring liveness and readiness probes.
+Vamos revisar alguns exemplos neste módulo para entender as diferentes opções de configuração de probes de disponibilidade e disponibilidade.

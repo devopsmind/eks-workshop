@@ -5,13 +5,12 @@ weight: 20
 draft: false
 ---
 
-#### Create Dashboards
+#### Criar Dashboards
 
-Login into Grafana dashboard using credentials supplied during configuration
+Faça o login no Dashboards do Grafana usando as credenciais fornecidas durante a configuração
+Você vai notar que **'Install Grafana'** & **'crie sua primeira fonte de dados'** já estão concluídas. Vamos importar o Dashboards criado pela comunidade para este tutorial
 
-You will notice that **'Install Grafana'** & **'create your first data source'** are already completed. We will import community created dashboard for this tutorial
-
-Click '+' button on left panel and select 'Import'
+Clique '+'no  botão no painel esquerdo e selecione 'Import'
 
 Enter **3131** dashboard id under Grafana.com Dashboard & click **'Load'**.
 

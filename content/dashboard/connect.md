@@ -1,29 +1,29 @@
 ---
-title: "Access the Dashboard"
+title: "Acesse o Dashboard"
 date: 2018-08-07T08:30:11-07:00
 weight: 30
 ---
 
-Now we can access the Kubernetes Dashboard
+Agora podemos acessar o Dashboard do Kubernetes
 
-1. In your Cloud9 environment, click **Preview / Preview Running Application**
-1. Scroll to **the end of the URL** and append:
+1. Em seu ambiente Cloud9, clique **Preview / Preview Running Application**
+1. Vá até **the end of the URL** e acrescente:
 
 ```
 /api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 ```
 
-Open a New Terminal Tab  and enter
+Abra uma nova guia Terminal e digite
 ```
 aws-iam-authenticator token -i eksworkshop-eksctl --token-only
 ```
 
-Copy the output of this command and then *click* the radio button next to
-*Token* then in the text field below paste the output from the last command.
+Copie a saída deste comando e, em seguida, *click* o botão em formato radio ao lado
+*Token* em seguida, no campo de texto abaixo, cole a saída do último comando.
 
 ![Token page](/images/dashboard-connect.png)
 
-Then press *Sign In*.
+Então aperte *Sign In*.
 
-If you want to see the dashboard in a full tab, click the **Pop Out** button, like below:
+Se você quiser ver o Dashboard em uma guia completa, clique no botão **Pop Out** , como abaixo:
 ![popout](/images/popout.png)

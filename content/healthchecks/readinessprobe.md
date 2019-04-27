@@ -4,9 +4,9 @@ chapter: false
 weight: 10
 ---
 
-#### Configure the Probe
+#### Configurar o probe
 
-Save the text from following block as **~/environment/healthchecks/readiness-deployment.yaml**. The readinessProbe definition explains how a linux command can be configured as healthcheck. We create an empty file **/tmp/healthy** to configure readiness probe and use the same to understand how kubelet helps to update a deployment with only healthy pods. 
+Salve o texto do bloco a seguir como **~/environment/healthchecks/readiness-deployment.yaml**. A definição readinessProbe explica como um comando linux pode ser configurado como healthcheck. Criamos um arquivo vazio ***/tmp/healthy** para configurar o probe de prontidão e usamos o mesmo para entender como o kubelet ajuda a atualizar uma implantação apenas com pods saudáveis.
 
 ```
 apiVersion: apps/v1
@@ -37,19 +37,19 @@ spec:
 
 ```
 
-We will now create a deployment to test readiness probe
+Vamos agora criar uma implantação para testar readiness probe
 
 ```
 kubectl apply -f ~/environment/healthchecks/readiness-deployment.yaml
 ```
 
-The above command creates a deployment with 3 replicas and readiness probe as described in the beginning
+O comando acima cria uma implantação com 3 réplicas e prontidão do probe, conforme descrito no início
 
 ```
 kubectl get pods -l app=readiness-deployment
 ```
 
-The output looks similar to below
+A saída parece semelhante ao abaixo
 
 ```
 
@@ -59,58 +59,58 @@ readiness-deployment-7869b5d679-vd55d   1/1       Running   0          31s
 readiness-deployment-7869b5d679-vxb6g   1/1       Running   0          31s
 ```
 
-Let us also confirm that all the replicas are available to serve traffic when a service is pointed to this deployment.
+Vamos também confirmar que todas as réplicas estão disponíveis para servir o tráfego quando um serviço é apontado para este deployment.
 
 ```
 kubectl describe deployment readiness-deployment | grep Replicas:
 ```
 
-The output looks like below
+A saída parece abaixo
 
 ```
 Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
 ```
 
-#### Introduce a Failure
-Pick one of the pods from above 3 and issue a command as below to delete the **/tmp/healthy** file which makes the readiness probe fail.
+#### Introduzir um falha
+Escolha um dos pods acima de 3 e emita um comando como abaixo para excluir o arquivo **/tmp/healthy**, o que faz com que o probe readiness falhe.
 
 ```
 kubectl exec -it readiness-deployment-<YOUR-POD-NAME> -- rm /tmp/healthy
 ```
 
-**readiness-deployment-7869b5d679-922mx** was picked in our example cluster. The **/tmp/healthy** file was deleted. This file must be present for the readiness check to pass. Below is the status after issuing the command.
+**readiness-deployment-7869b5d679-922mx** foi escolhido em nosso cluster de exemplo. O arquivo **/tmp/healthy** foi excluído. Este arquivo deve estar presente para que a verificação de disponibilidade passe. Abaixo está o status após a emissão do comando.
 
 ```
 kubectl get pods -l app=readiness-deployment
 ```
 
-The output looks similar to below:
+A saída parece semelhante a abaixo:
 ```
 NAME                                    READY     STATUS    RESTARTS   AGE
 readiness-deployment-7869b5d679-922mx   0/1       Running   0          4m
 readiness-deployment-7869b5d679-vd55d   1/1       Running   0          4m
 readiness-deployment-7869b5d679-vxb6g   1/1       Running   0          4m
 ```
-Traffic will not be routed to the first pod in the above deployment. The ready column confirms that the readiness probe for this pod did not pass and hence was marked as not ready. 
+O tráfego não será roteado para o primeiro pod na implantação acima. A coluna pronta confirma que o probe de preparação para este pod não foi aprovado e, portanto, foi marcado como não pronto. 
 
-We will now check for the replicas that are available to serve traffic when a service is pointed to this deployment.
+Agora, verificaremos as réplicas disponíveis para atender ao tráfego quando um serviço for apontado para essa implantação.
 
 ```
 kubectl describe deployment readiness-deployment | grep Replicas:
 ```
 
-The output looks like below
+A saída parece abaixo
 
 ```
 Replicas:               3 desired | 3 updated | 3 total | 2 available | 1 unavailable
 ```
 
-When the readiness probe for a pod fails, the endpoints controller removes the pod from list of endpoints of all services that match the pod.
+Quando o probe de prontidão para um pod falhar, o controlador de pontos de extremidade remove o pod da lista de pontos de extremidade de todos os serviços que correspondem ao pod.
 
-#### Challenge: 
-**How would you restore the pod to Ready status?**
-{{%expand "Expand here to see the solution" %}}
-Run the below command with the name of the pod to recreate the **/tmp/healthy** file. Once the pod passes the probe, it gets marked as ready and will begin to receive traffic again.
+#### Desafio: 
+**Como você restauraria o pod para o status Ready??**
+{{%expand "Expanda aqui para ver a solução" %}}
+Execute o comando abaixo com o nome do pod para recriar o arquivo **/tmp/healthy**. Depois que o pod passa pela sonda, ela é marcada como pronta e começará a receber tráfego novamente.
 
 ```
 kubectl exec -it readiness-deployment-<YOUR-POD-NAME> -- touch /tmp/healthy

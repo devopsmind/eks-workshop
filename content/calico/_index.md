@@ -1,18 +1,18 @@
 ---
-title: "Create Network Policies Using Calico"
+title: "Criar políticas de rede usando o Calico"
 chapter: true
 weight: 50
 ---
 
-# Create Network Policies Using Calico
+# Criar políticas de rede usando o Calico
 
-In this Chapter, we will create some network policies using [Calico](https://www.projectcalico.org/) and see the rules in action.
+Neste capítulo, criaremos algumas políticas de rede usando o [Calico] (https://www.projectcalico.org/) e veremos as regras em ação.
 
-Network policies allow you to define rules that determine what type of traffic is allowed to flow between different services. Using network policies you can also define rules to restrict traffic. They are a means to improve your cluster's security.
+As políticas de rede permitem que você defina regras que determinam que tipo de tráfego pode fluir entre diferentes serviços. Usando políticas de rede, você também pode definir regras para restringir o tráfego. Eles são um meio de melhorar a segurança do seu cluster.
 
-For example, you can only allow traffic from frontend to backend in your application.
+Por exemplo, você só pode permitir o tráfego do frontend para o back-end em seu aplicativo.
 
-Network policies also help in isolating traffic within namespaces. For instance, if you have separate namespaces for development and production, you can prevent traffic flow between them by restrict pod to pod communication within the same namespace.
+As políticas de rede também ajudam a isolar o tráfego nos namespaces. Por exemplo, se você tiver namespaces separados para desenvolvimento e produção, poderá impedir o fluxo de tráfego entre eles, restringindo a comunicação do pod para o pod dentro do mesmo namespace.
 
 
 ![calico](/images/Project-Calico-logo-1000px.png)

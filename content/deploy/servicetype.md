@@ -1,12 +1,11 @@
 ---
-title: "Let's check Service Types"
+title: "Vamos checar tipos de serviço"
 date: 2018-09-18T17:40:09-05:00
 weight: 25
 ---
 
-Before we bring up the frontend service, let's take a look at the service types
-we are using:
-This is `kubernetes/service.yaml` for our frontend service:
+Antes de abrirmos o serviço frontend, vamos dar uma olhada nos tipos de serviço que estamos usando:
+Isto é o `kubernetes/service.yaml` para nosso serviço de frontend:
 ```
 apiVersion: v1
 kind: Service
@@ -21,10 +20,9 @@ spec:
       port: 80
       targetPort: 3000
 ```
-Notice `type: LoadBalancer`: This will configure an ELB to handle incoming traffic
-to this service.
+Observe `type: LoadBalancer` Isso configurará um ELB para manipular o tráfego de entrada para este serviço.
 
-Compare this to `kubernetes/service.yaml` for one of our backend services:
+Compare isso com `kubernetes/service.yaml` para um dos nossos serviços de back-end:
 ```
 apiVersion: v1
 kind: Service
@@ -38,6 +36,6 @@ spec:
       port: 80
       targetPort: 3000
 ```
-Notice there is no specific service type described. When we check [the kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
-we find that the default type is `ClusterIP`. This Exposes the service on a cluster-internal IP.
-Choosing this value makes the service only reachable from within the cluster.
+Observe que não há nenhum tipo de serviço específico descrito. Quando nós verificamos[a documentação do kubernetes](https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types)
+descobrimos que o tipo padrão é `ClusterIP`. Isso expõe o serviço em um IP interno do cluster.
+A escolha desse valor torna o serviço acessível somente dentro do cluster.

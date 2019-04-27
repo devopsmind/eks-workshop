@@ -1,21 +1,21 @@
 ---
-title: "Create a Chart"
+title: "Criar um  Chart"
 date: 2018-08-07T08:30:11-07:00
 weight: 10
 ---
 
-Helm charts have a structure similar to:
+Os Helm charts têm uma estrutura semelhante a:
 
 ```text
 /eksdemo
-  /Chart.yaml  # a description of the chart
-  /values.yaml # defaults, may be overridden during install or upgrade
-  /charts/ # May contain subcharts
-  /templates/ # the template files themselves
+  /Chart.yaml  # uma descrição do chart
+  /values.yaml # padrões, podem ser substituídos durante a instalação ou atualização
+  /charts/ # Pode conter subcharts
+  /templates/ # os próprios arquivos de template(modelo)
   ...
 ```
 
-We'll follow this template, and create a new chart called **eksdemo** with the following commands:
+Seguiremos esse modelo e criaremos um novo chart chamado **eksdemo** com os seguintes comandos:
 
 ```sh
 cd ~/environment

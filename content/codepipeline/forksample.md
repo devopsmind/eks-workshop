@@ -1,22 +1,21 @@
 ---
-title: "Fork Sample Repository"
+title: "Fork Repositório de exemplo"
 date: 2018-10-087T08:30:11-07:00
 weight: 12
 draft: false
 ---
 
-We are now going to [fork](https://help.github.com/articles/fork-a-repo/) the sample Kubernetes service
-so that we will be able modify the repository and trigger builds.
+Nós vamos agora [fork](https://help.github.com/articles/fork-a-repo/) o serviço Kubernetes de exemplo para que possamos modificar o repositório e acionar construções.
 
-Login to GitHub and fork the sample service to your own account:
+Faça login no GitHub e faça um  fork do serviço de exemplo em sua própria conta:
 
 [https://github.com/rnzsgh/eks-workshop-sample-api-service-go](https://github.com/rnzsgh/eks-workshop-sample-api-service-go)
 
 ![GitHub Fork](/images/codepipeline/github_fork.png)
 
-Once the repo is forked, you can view it in your your [GitHub repositories](https://github.com).
+Uma vez feito o fork do repo, você pode visualizá-lo em seu [GitHub repositories](https://github.com).
 
-The forked repo will look like:
+O fork do repositório será parecido com:
 
 ![GitHub Fork](/images/codepipeline/github_fork_example.png)
 

@@ -4,11 +4,11 @@ chapter: false
 weight: 20
 ---
 
-### Login to AWS Workshop Portal
+### Faça o login no AWS Workshop Portal
 
-This workshop creates an AWS acccount and a Cloud9 environment. You will need the **Participant Hash** provided upon entry, and your email address to track your unique session.
+Este workshop cria uma conta da AWS e um ambiente Cloud9. Você precisará do **Participant Hash** fornecido na entrada e do seu endereço de e-mail para acompanhar sua sessão exclusiva.
 
-Connect to the portal by clicking the button or browsing to [https://portal.awsworkshop.io/](https://portal.awsworkshop.io/).
+Conecte-se ao portal clicando no botão ou navegando para [https://portal.awsworkshop.io/](https://portal.awsworkshop.io/).
 
 <a
   href="https://portal.awsworkshop.io/"
@@ -19,14 +19,14 @@ Connect to Portal
 
 ![Portal Login](/images/portal_login.png)
 
-Enter your **Participant Hash** and your email address, and click **Log In**.
+Insira seu **Participant Hash** e seu endereço de e-mail e clique em **Log In**.
 
-Once you have been logged in, please first log into the AWS console by clicking on the <i class="fas fa-terminal"></i> button. Once you have successfully logged into the AWS Console, you can open the Cloud9 IDE by clicking on the <i class="fas fa-desktop"></i> button.
+Depois de ter feito o login, primeiro faça o login no console da AWS clicando no botão <i class="fas fa-terminal"></i>. Depois de ter feito o login com sucesso no AWS Console, você pode abrir o IDE do Cloud9 clicando no botão <i class="fas fa-desktop"></i>.
 
 ![Portal Buttons](/images/portal_buttons.png)
 
 {{% notice note %}}
-The workshop added an IAM role for performing all the steps of the workshop in the Cloud9 Environment. You do not need to add a role to the instance powering the Cloud9 Environment.
+O workshop adicionou uma função do IAM para realizar todas as etapas do workshop no Cloud9 Environment. Você não precisa adicionar uma função à instância que liga o ambiente Cloud9.
 {{% /notice %}}
 
-Once you have completed the step above, you can head straight to [**Create a SSH key section**](/prerequisites/sshkey/)
+Depois de ter concluído o passo acima, você pode ir direto para [**Create a SSH key section**](/prerequisites/sshkey/)

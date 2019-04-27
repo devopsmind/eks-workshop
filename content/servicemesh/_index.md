@@ -1,5 +1,5 @@
 ---
-title: "Service Mesh with Istio"
+title: "Service Mesh com Istio"
 date: 2018-11-13T16:32:30+09:00
 weight: 53
 draft: false
@@ -7,12 +7,12 @@ draft: false
 
 ### Service Mesh
 
-A service mesh is a dedicated infrastructure layer for handling **service-to-service communication**. It’s responsible for the reliable delivery of requests through the complex topology of services that comprise a modern, cloud native application.
+Um service mesh é uma camada de infraestrutura dedicada para manipulação **service-to-service communication**. Ele é responsável pela entrega confiável de solicitações por meio da complexa topologia de serviços que compõem um aplicativo nativo moderno na nuvem.
 
-Service mesh solutions have two distinct components that behave somewhat differently: 1) a data plane, and 2) a control plane. The following diagram illustrates the basic architecture.
+As soluções de malha de serviço têm dois componentes distintos que se comportam de maneira um pouco diferente: 1) um plano de dados e 2) um plano de controle. O diagrama a seguir ilustra a arquitetura básica.
 
 ![Service Mesh Architecture](/images/servicemesh-intro1.png)
 
-* The <span style="color:orange">**data plane**</span> is composed of a set of intelligent proxies (Envoy) deployed as sidecars. These proxies mediate and control all network communication between microservices along with Mixer, a general-purpose policy and telemetry hub.
+* O <span style="color:orange">**plano de dados**</span> é composto por um conjunto de proxies inteligentes (Envoy) implementados como sidecars. Esses proxies servem de mediador e controlam toda a comunicação de rede entre microsserviços junto com o Mixer, uma política de propósito geral e hub de telemetria.
 
-* The <span style="color:orange">**control plane**</span> manages and configures the proxies to route traffic. Additionally, the control plane configures Mixers to enforce policies and collect telemetry.
+* A<span style="color:orange">**control plane**</span>gerencia e configura os proxies para rotear o tráfego. Além disso, o plano de controle configura Mixers para aplicar políticas e coletar telemetria.

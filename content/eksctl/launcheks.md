@@ -1,6 +1,7 @@
 ---
 title: "Launch EKS"
 date: 2018-08-07T13:34:24-07:00
+draft: true
 weight: 20
 ---
 

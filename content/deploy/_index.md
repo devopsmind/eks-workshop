@@ -1,10 +1,10 @@
 ---
-title: "Deploy the Example Microservices"
+title: "Implantar os microserviços de exemplo"
 chapter: true
 weight: 31
 ---
 
-# Deploy the Example Microservices
+# Implantar os microserviços de exemplo
 
 ![microservices](/images/crystal.svg)
 {{% children showhidden="false" %}}

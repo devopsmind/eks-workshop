@@ -1,18 +1,18 @@
 ---
-title: "Search the Chart Repository"
+title: "Pesquisar o repositório de charts"
 date: 2018-08-07T08:30:11-07:00
 weight: 200
 ---
 
-Now that our repository Chart list has been updated, we can [search for Charts](https://docs.helm.sh/helm/#helm-search).
+Agora que a nossa lista de charts do repositório foi atualizada, podemos [procurar por charts](https://docs.helm.sh/helm/#helm-search).
 
-To list all Charts:
+Para listar todos de Charts:
 
 ```
 helm search
 ```
 
-That should output something similiar to:
+Isso deve resultar em algo parecido com:
 
 ```
 NAME                                    CHART VERSION   APP VERSION                     DESCRIPTION                                                 
@@ -21,13 +21,13 @@ stable/aerospike                        0.1.7           v3.14.1.2               
 ...
 ```
 
-You can see from the output that it dumped the list of all Charts it knows about.  In some cases that may be useful, but an even more useful search would involve a keyword argument.  So next, we'll search just for NGINX:
+Você pode ver na saída que ele despejou a lista de todos os charts que ele conhece. Em alguns casos, isso pode ser útil, mas uma pesquisa ainda mais útil envolveria um argumento de palavra-chave. Então, em seguida, vamos procurar apenas por NGINX:
 
 ```
 helm search nginx
 ```
 
-That results in:
+Isso resulta em:
 
 ```
 NAME                            CHART VERSION   APP VERSION     DESCRIPTION                                                 
@@ -38,4 +38,4 @@ stable/gcloud-endpoints         0.1.2           1               DEPRECATED Devel
 ...
 ```
 
-This new list of Charts are specific to nginx, because we passed the **nginx** argument to the search command.
+Esta nova lista de Charts é específica para nginx, porque passamos o argumento **nginx** para o comando de pesquisa.

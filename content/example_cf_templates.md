@@ -3,7 +3,7 @@ title: "Example of using CloudFormation Templates"
 ---
 
 
-#### Click below to add a CloudFormation Stack
+#### Clique abaixo para adicionar uma stack do CloudFormation
 
 | Use these templates: |  |  |
 | ------ |:------:|:--------:| 

@@ -1,18 +1,18 @@
 ---
-title: "Install Calico"
+title: "Instalar Calico"
 date: 2018-11-08T08:30:11-07:00
 weight: 1
 ---
 
-Apply the Calico manifest from the [aws/amazon-vpc-cni-k8s GitHub project](https://github.com/aws/amazon-vpc-cni-k8s). This creates the daemon sets in the kube-system namespace.
+Aplique o manifesto Calico do [projeto GitHub aws/amazon-vpc-cni-k8s ](https://github.com/aws/amazon-vpc-cni-k8s). Isso cria o daemon set  no namespace kube-system .
 
 
 ```
 kubectl apply -f https://raw.githubusercontent.com/aws/amazon-vpc-cni-k8s/master/config/v1.2/calico.yaml
 ```
-Let's go over few key features of the Calico manifest:
+Vamos ver alguns dos principais recursos do manifesto Calico:
 
-1) We see an annotation throughout; [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) are a way to attach **non-identifying** metadata to objects. This metadata is not used internally by Kubernetes, so they cannot be used to identify within k8s. Instead, they are used by external tools and libraries. Examples of annotations include build/release timestamps, client library information for debugging, or fields managed by a network policy like Calico in this case.
+1) Nós vemos uma annotation throughout; [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) são uma maneira de anexar metadados **non-identifying**  para objetos. Estes metadados não são usados ​​internamente pelo Kubernetes, então eles não podem ser usados ​​para serem identificados dentro do K8. Em vez disso, eles são usados ​​por ferramentas e bibliotecas externas. Exemplos de anotações incluem timestamps de compilação/liberação, informações da biblioteca do cliente para depuração ou campos gerenciados por uma política de rede, como o Calico, neste caso.
 
 ```
 kind: DaemonSet
@@ -42,25 +42,25 @@ spec:
         *scheduler**.alpha.kubernetes.io/critical-pod: ''*
         ...
 ```
-In contrast, [Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) in Kubernetes are intended to be used to specify **identifying** attributes for objects. They are used by selector queries or with label selectors. Since they are used internally by Kubernetes the structure of keys and values is constrained, to optimize queries.
+Em contraste, [Labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) no Kubernetes devem ser usados ​​para especificar atributos **identifying** para objetos. Eles são usados ​​por consultas de seletor ou com seletores de labels. Como eles são usados ​​internamente pelo Kubernetes, a estrutura de chaves e valores é restrita para otimizar as consultas.
 
 
-2) We see that the manifest has a tolerations attribute. [Taints and tolerations](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/) work together to ensure pods are not scheduled onto inappropriate nodes. Taints are applied to nodes, and the **only pods that can tolerate the taint are allowed to run on those nodes.** 
+2) Nós vemos que o manifesto tem um atributo de tolerância. [Contornos e tolerâncias](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/) trabalhe em conjunto para garantir que os pods não sejam agendados em nós inapropriados. As impurezas são aplicadas aos nós e **apenas pods que podem tolerar a contaminação podem ser executados nesses nós.** 
 
-A taint consists of a key, a value for it and an effect, which can be:
+Uma contaminação consiste em uma chave, um valor para isso e um efeito, que pode ser:
 
-* PreferNoSchedule: Prefer not to schedule intolerant pods to the tainted node
-* NoSchedule: Do not schedule intolerant pods to the tainted node
-* NoExecute: In addition to not scheduling, also evict intolerant pods that are already running on the node.
+* PreferNoSchedule: Prefiro não agendar pods intolerantes para o nó contaminado
+* NoSchedule: Não agende pods intolerantes para o nó contaminado
+* NoExecute: Além de não agendar, também despeje os pods intolerantes que já estão em execução no nó.
     
-Like taints, tolerations also have a key value pair and an effect, with the addition of operator.
-Here in the Calico manifest, we see tolerations has just one attribute: **Operator = exists**. This means the key value pair is omitted and the toleration will match any taint, ensuring it runs on all nodes.
+Como as contaminações, as tolerâncias também têm um par de valores-chave e um efeito, com a adição do operador.
+Aqui no manifesto Calico, vemos tolerâncias tem apenas um atributo: **Operator = exists**. Isso significa que o par de valores-chave é omitido e a tolerância corresponderá a qualquer contaminação, garantindo que seja executada em todos os nós.
 
 ```
  tolerations:
       - operator: Exists
 ```
-Watch the kube-system daemon sets and wait for the calico-node daemon set to have the DESIRED number of pods in the READY state.
+Observe os conjuntos de daemon do kube-system e aguarde até que o daemon do nó calico esteja configurado para ter o número DESIRED de pods no estado READY.
 
 ```
 kubectl get daemonset calico-node --namespace=kube-system

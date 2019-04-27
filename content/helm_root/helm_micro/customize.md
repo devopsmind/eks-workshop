@@ -1,23 +1,23 @@
 ---
-title: "Customize Defaults"
+title: "Personalizar Padrões"
 date: 2018-08-07T08:30:11-07:00
 weight: 20
 ---
 
-If you look in the newly created **eksdemo** directory, you'll see several files and directories. Specifically, inside the /templates directory, you'll see:
+Se você olhar no diretório **eksdemo** recém-criado, verá vários arquivos e diretórios. Especificamente, dentro do diretório /templates, você verá:
 
-* NOTES.txt: The “help text” for your chart. This will be displayed to your users when they run helm install.
-* deployment.yaml: A basic manifest for creating a Kubernetes deployment
-* service.yaml: A basic manifest for creating a service endpoint for your deployment
-* _helpers.tpl: A place to put template helpers that you can re-use throughout the chart
+* NOTES.txt: O 'texto de ajuda' do seu chart. Isso será exibido para seus usuários quando eles executarem a instalação do helm.
+* deployment.yaml: Um manifesto básico para criar uma implantação do Kubernetes
+* service.yaml: Um manifesto básico para criar um terminal de serviço para seu deploy
+* _helpers.tpl: Um lugar para colocar template helpers que você pode reutilizar em todo o chart
 
-We're actually going to create our own files, so we'll delete these boilerplate files
+Na verdade, vamos criar nossos próprios arquivos, então vamos excluir esses arquivos clichês
 ```
 rm -rf ~/environment/eksdemo/templates/
 rm ~/environment/eksdemo/Chart.yaml
 rm ~/environment/eksdemo/values.yaml
 ```
-Create a new Chart.yaml file which will describe the chart
+Crie um novo arquivo Chart.yaml que irá descrever o Chart
 ```
 cat <<EoF > ~/environment/eksdemo/Chart.yaml
 apiVersion: v1
@@ -28,41 +28,41 @@ version: 0.1.0
 EoF
 ```
 
-Next we'll copy the manifest files for each of our microservices into the templates directory as *servicename*.yaml
+Em seguida, copiaremos os arquivos de manifesto de cada um dos nossos microservices no diretório de templates *servicename*.yaml
 ```
-#create subfolders for each template type
+#criar subpastas para cada tipo de template
 mkdir -p ~/environment/eksdemo/templates/deployment
 mkdir -p ~/environment/eksdemo/templates/service
 
-# Copy and rename frontend manifests
+# Copiar e renomear manifestos do frontend
 cp ~/environment/ecsdemo-frontend/kubernetes/deployment.yaml ~/environment/eksdemo/templates/deployment/frontend.yaml
 cp ~/environment/ecsdemo-frontend/kubernetes/service.yaml ~/environment/eksdemo/templates/service/frontend.yaml
 
-# Copy and rename crystal manifests
+# Copiar e renomear manifestos de cristal
 cp ~/environment/ecsdemo-crystal/kubernetes/deployment.yaml ~/environment/eksdemo/templates/deployment/crystal.yaml
 cp ~/environment/ecsdemo-crystal/kubernetes/service.yaml ~/environment/eksdemo/templates/service/crystal.yaml
 
-# Copy and rename nodejs manifests
+# Copie e renomeie os manifestos de nodejs
 cp ~/environment/ecsdemo-nodejs/kubernetes/deployment.yaml ~/environment/eksdemo/templates/deployment/nodejs.yaml
 cp ~/environment/ecsdemo-nodejs/kubernetes/service.yaml ~/environment/eksdemo/templates/service/nodejs.yaml
 ```
 
-All files in the templates directory are sent through the template engine. These are currently plain YAML files that would be sent to Kubernetes as-is.
+Todos os arquivos no diretório de templates são enviados pelo mecanismo de template. Atualmente, esses arquivos YAML simples são enviados ao Kubernetes no estado em que se encontram.
 
-#### Replace hard-coded values with template directives
-Let's replace some of the values with `template directives` to enable more customization by removing hard-coded values.
+#### Substituir valores codificados por diretivas de template
+Vamos substituir alguns dos valores por 'diretivas de template' para permitir mais personalização removendo os valores codificados.
 
-Open ~/environment/eksdemo/templates/deployment/frontend.yaml in your Cloud9 editor.
+Abra  ~/environment/eksdemo/templates/deployment/frontend.yaml no seu editor Cloud9.
 
 {{% notice info %}}
-The following steps should be completed seperately for **frontend.yaml**, **crystal.yaml**, and **nodejs.yaml**.
+As etapas a seguir devem ser concluídas separadamente **frontend.yaml**, **crystal.yaml**, e **nodejs.yaml**.
 {{% /notice %}}
 
 Under `spec`, find **replicas: 1**  and replace with the following:
 ```
 replicas: {{ .Values.replica }}
 ```
-Under `spec.template.spec.containers.image`, replace the image with the correct template value from the table below:
+Debaixo `spec.template.spec.containers.image`, substitua a imagem pelo valor de template correto da tabela abaixo:
 
 |Filename | Value |
 |---|---|
@@ -70,20 +70,20 @@ Under `spec.template.spec.containers.image`, replace the image with the correct 
 |crystal.yaml|image: {{ .Values.crystal.image }}:{{ .Values.version }}|
 |nodejs.yaml|image: {{ .Values.nodejs.image }}:{{ .Values.version }}|
 
-#### Create a values.yaml file with our template defaults
+#### Crie um arquivo values.yaml com nossos padrões de template
 
-This file will populate our `template directives` with default values.
+Este arquivo irá preencher nossas `diretivas de template` com os valores padrão.
 ```
 cat <<EoF > ~/environment/eksdemo/values.yaml
-# Default values for eksdemo.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
+# Valores padrão para o eksdemo.
+# Este é um arquivo formatado em YAML.
+# Declare variáveis ​​a serem passadas para seus templates.
 
-# Release-wide Values
+# Valores de todo o realease
 replica: 3
 version: 'latest'
 
-# Service Specific Values
+# Valores Específicos de Serviço
 nodejs:
   image: brentley/ecsdemo-nodejs
 crystal:

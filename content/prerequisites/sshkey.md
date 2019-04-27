@@ -1,24 +1,24 @@
 ---
-title: "Create an SSH key"
+title: "Crie uma chave SSH"
 chapter: false
 weight: 21
 ---
 
 {{% notice info %}}
-Starting from here, when you see command to be entered such as below, you will enter these commands into Cloud9 IDE. You can use the **Copy to clipboard** feature (right hand upper corner) to simply copy and paste into Cloud9. In order to paste, you can use Ctrl + V for Windows or Command + V for Mac.
+A partir daqui, quando você ver o comando a ser inserido, como abaixo, você inserirá esses comandos na IDE do Cloud9 . Você pode usar o recurso **Copiar para área de transferência**  (canto superior direito) para simplesmente copiar e colar na Cloud9. Para colar, você pode usar Ctrl V para Windows ou Command V para Mac.
 {{% /notice %}}
 
-Please run this command to generate SSH Key in Cloud9. This key will be used on the worker node instances to allow ssh access if necessary.
+Por favor, execute este comando para gerar a chave SSH na Cloud9. Essa chave será usada nas instâncias dos worker node para permitir o acesso ssh, se necessário.
 
 ```bash
 ssh-keygen
 ```
 
 {{% notice tip %}}
-Press `enter` 3 times to take the default choices
+Pressione `enter` 3 vezes para escolher as opções padrão
 {{% /notice %}}
 
-Upload the public key to your EC2 region:
+Carregue a chave pública na sua região EC2:
 
 ```bash
 aws ec2 import-key-pair --key-name "eksworkshop" --public-key-material file://~/.ssh/id_rsa.pub

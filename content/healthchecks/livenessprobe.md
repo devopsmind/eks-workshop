@@ -4,16 +4,16 @@ chapter: false
 weight: 5
 ---
 
-#### Configure the Probe
+#### Configurar o probe
 
 
-Use the command below to create a directory
+Use o comando abaixo para criar um diretório
 
 ```
 mkdir ~/environment/healthchecks
 ```
 
-Save the manifest as liveness-app.yaml using your favorite editor. You can review the manifest that is described below. In the configuration file, livenessProbe determines how kubelet should check the Container in order to consider whether it is healthy or not. kubelet uses periodSeconds field to do frequent check on the Container. In this case, kubelet checks liveness probe every 5 seconds. initialDelaySeconds field is to tell the kubelet that it should wait for 5 seconds before doing the first probe. To perform a probe, kubelet sends a HTTP GET request to the server hosting this Pod and if the handler for the servers /health returns a success code, then the Container is considered healthy. If the handler returns a failure code, the kubelet kills the Container and restarts it.
+Salve o manifesto como liveness-app.yaml usando seu editor favorito. Você pode revisar o manifesto descrito abaixo. No arquivo de configuração, o livenessProbe determina como o kubelet deve verificar o contêiner para considerar se ele está em boas condições ou não. O kubelet usa o campo periodSeconds para fazer verificações freqüentes no contêiner. Nesse caso, o kubelet verifica a sonda de atividade a cada 5 segundos. O campo initialDelaySeconds é para dizer ao kubelet que ele deve esperar por 5 segundos antes de fazer o primeiro teste. Para realizar uma análise, o kubelet envia uma solicitação HTTP GET para o servidor que hospeda esse pod e, se o manipulador dos servidores / integridade retornar um código de sucesso, o Contêiner será considerado íntegro. Se o manipulador retornar um código de falha, o kubelet mata o contêiner e o reinicia.
 
 ```
 apiVersion: v1
@@ -32,25 +32,25 @@ spec:
       periodSeconds: 5
 ```
 
-Let's create the pod using the manifest
+Vamos criar o pod usando o manifesto
 
 ```
 kubectl apply -f ~/environment/healthchecks/liveness-app.yaml
 ```
 
-The above command creates a pod with liveness probe
+O comando acima cria um pod com healthchecks liveness
 
 ```
 kubectl get pod liveness-app
 ```
-The output looks like below. Notice the ***RESTARTS***
+A saída parece abaixo. Observe o ***RESTARTS***
 
 ```
 NAME           READY     STATUS    RESTARTS   AGE
 liveness-app   1/1       Running   0          11s
 ```
 
-The `kubectl describe` command will show an event history which will show any probe failures or restarts.
+O comando `kubectl describe` mostrará um histórico de eventos que mostrará qualquer falha ou reinicialização da sonda.
 ```bash
 kubectl describe pod liveness-app
 ```
@@ -68,14 +68,14 @@ Events:
 ```
 
 
-#### Introduce a Failure
-We will run the next command to send a SIGUSR1 signal to the nodejs application. By issuing this command we will send a kill signal to the application process in docker runtime.
+#### Introduzir uma falha
+Vamos executar o próximo comando para enviar um sinal SIGUSR1 para o aplicativo nodejs. Ao emitir este comando, enviaremos um sinal de kill ao processo de aplicativo no tempo de execução do docker.
 
 ```
 kubectl exec -it liveness-app -- /bin/kill -s SIGUSR1 1
 ```
 
-Describe the pod after waiting for 15-20 seconds and you will notice kubelet actions of killing the Container and restarting it. 
+Descreva o pod depois de esperar por 15-20 segundos e você notará ações do Kubelet de matar o Contêiner e reiniciá-lo. 
 ```
 Events:
   Type     Reason                 Age                From                                    Message
@@ -90,7 +90,7 @@ Events:
   Normal   Killing                0s                 kubelet, ip-192-168-18-63.ec2.internal  Killing container with id docker://liveness:Container failed liveness probe.. Container will be killed and recreated.
 ```
 
-When the nodejs application entered a debug mode with SIGUSR1 signal, it did not respond to the health check pings and kubelet killed the container. The container was subject to the default restart policy.
+Quando o aplicativo nodejs entrou em um modo de depuração com sinal SIGUSR1, ele não respondeu aos pings de verificação de integridade e o kubelet interrompeu o contêiner. O contêiner estava sujeito à política de reinicialização padrão.
 
 ```
 kubectl get pod liveness-app
@@ -103,20 +103,20 @@ NAME           READY     STATUS    RESTARTS   AGE
 liveness-app   1/1       Running   1          12m
 ```
 
-#### Challenge:
-**How can we check the status of the container health checks?**
+#### Desafio:
+**Como podemos verificar o status das verificações de integridade do contêiner?**
 
-{{%expand "Expand here to see the solution" %}}
+{{%expand "Expanda aqui para ver a solução" %}}
 ```bash
 kubectl logs liveness-app
 ```
-You can also use `kubectl logs` to retrieve logs from a previous instantiation of a container with `--previous flag`, in case the container has crashed
+Você também pode usar o `kubectl logs` para recuperar logs de uma instanciação anterior de um container com`flag --previous `, caso o container tenha caído
 ```bash
 kubectl logs liveness-app --previous
 ```
 ```text
 <Output omitted>
-Example app listening on port 3000!
+Exemplo de aplicativo ouvindo na porta 3000!
 ::ffff:192.168.43.7 - - [20/Nov/2018:22:53:01 +0000] "GET /health HTTP/1.1" 200 16 "-" "kube-probe/1.10"
 ::ffff:192.168.43.7 - - [20/Nov/2018:22:53:06 +0000] "GET /health HTTP/1.1" 200 17 "-" "kube-probe/1.10"
 ::ffff:192.168.43.7 - - [20/Nov/2018:22:53:11 +0000] "GET /health HTTP/1.1" 200 17 "-" "kube-probe/1.10"

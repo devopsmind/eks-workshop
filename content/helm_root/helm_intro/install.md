@@ -1,10 +1,10 @@
 ---
-title: "Install Helm CLI"
+title: "Instalar o CLI do Helm"
 date: 2018-08-07T08:30:11-07:00
 weight: 5
 ---
 
-Before we can get started configuring `helm` we'll need to first install the command line tools that you will interact with. To do this run the following.
+Antes de começarmos a configurar `helm` precisaremos primeiro instalar as ferramentas de linha de comando com as quais você irá interagir. Para fazer isso, execute o seguinte.
 
 ```
 cd ~/environment
@@ -17,17 +17,14 @@ chmod +x get_helm.sh
 ```
 
 {{% notice info %}}
-Once you install helm, the command will prompt you to run 'helm init'. **Do not run 'helm init'.** Follow the instructions to configure helm using **Kubernetes RBAC** and then install tiller as specified below
-If you accidentally run 'helm init', you can safely uninstall tiller by running 'helm reset --force'
+Depois de instalar o helm, o comando solicitará que você execute 'helm init'. **Do not run 'helm init'.** Siga as instruções para configurar o helm usando **Kubernetes RBAC** e, em seguida, instale o helm como especificado abaixo Se você acidentalmente executar 'helm init', você pode desinstalar com segurança o helm executando 'helm reset --force'
 {{% /notice %}}
 
-### Configure Helm access with RBAC
+### Configurar o acesso ao Helm com o RBAC
 
-Helm relies on a service called **tiller** that requires special permission on the
-kubernetes cluster, so we need to build a _**Service Account**_ for **tiller**
-to use. We'll then apply this to the cluster.
+Helm conta com um serviço chamado **tiller** que requer permissão especial no cluster do kubernetes, então precisamos construir um _**Service Account**_ para o **tiller** to use. We'll then apply this to the cluster.
 
-To create a new service account manifest:
+Para criar um novo manifesto de conta de serviço:
 ```
 cat <<EoF > ~/environment/rbac.yaml
 ---
@@ -52,16 +49,15 @@ subjects:
 EoF
 ```
 
-Next apply the config:
+Em seguida, aplique a configuração:
 ```
 kubectl apply -f ~/environment/rbac.yaml
 ```
 
-Then we can install **helm** using the **helm** tooling
+Então podemos instalar **helm** usando a ferramenta **helm** 
 
 ```
 helm init --service-account tiller
 ```
 
-This will install **tiller** into the cluster which gives it access to manage
-resources in your cluster.
+Isso instalará o  **tiller** no cluster, que lhe dá acesso para gerenciar recursos em seu cluster.

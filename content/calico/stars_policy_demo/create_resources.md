@@ -1,27 +1,26 @@
 ---
-title: "Create Resources"
+title: "Criar recursos"
 date: 2018-08-07T08:30:11-07:00
 weight: 1
 ---
 
-Before creating network polices, let's create the required resources.
-
-Create a new folder for the configuration files.
+Antes de criar políticas de rede, vamos criar os recursos necessários.
+Crie uma nova pasta para os arquivos de configuração.
 
 ```
 mkdir ~/environment/calico_resources
 cd ~/environment/calico_resources
 ```
 
-#### Stars Namespace
+####Namespace Stars
 
-Copy/Paste the following commands into your Cloud9 Terminal.
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
 ```
 cd ~/environment/calico_resources
 wget https://eksworkshop.com/calico/stars_policy_demo/create_resources.files/namespace.yaml
 ```
 
-Let's examine our file by running `cat namespace.yaml`.
+Vamos examinar nosso arquivo executando `cat namespace.yaml`.
 
 ```
 kind: Namespace
@@ -30,16 +29,16 @@ metadata:
   name: stars
 ```
 
-Create a namespace called stars:
+Crie um namespace chamado stars:
 
 ```
 kubectl apply -f namespace.yaml
 ```
 
-We will create frontend and backend [replication controllers](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/) and [services](https://kubernetes.io/docs/concepts/services-networking/service/) in this namespace in later steps.
+Vamos criar frontend e backend [controladores de replicação](https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/) e [services](https://kubernetes.io/docs/concepts/services-networking/service/) neste namespace em etapas posteriores.
 
 
-Copy/Paste the following commands into your Cloud9 Terminal.
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
 ```
 cd ~/environment/calico_resources
 wget https://eksworkshop.com/calico/stars_policy_demo/create_resources.files/management-ui.yaml
@@ -91,13 +90,12 @@ spec:
         - containerPort: 9001
 ```
 
-Create a management-ui namespace, with a management-ui service and replication controller within that namespace:
-
+Criar um namespace management-ui , com um serviço do namespace management-ui e um controlador de replicação dentro desse namespace:
 ```
 kubectl apply -f management-ui.yaml
 ```
 
-`cat backend.yaml` to see how the backend service is built:
+`cat backend.yaml` para ver como o serviço de back-end é construído:
 
 ```
 apiVersion: v1
@@ -136,7 +134,7 @@ spec:
         - containerPort: 6379
 ```
 
-Let's examine the frontend service with `cat frontend.yaml`:
+Vamos examinar o serviço de frontend com `cat frontend.yaml`:
 
 ```
 apiVersion: v1
@@ -175,15 +173,15 @@ spec:
         - containerPort: 80
 ```
 
-Create frontend and backend replication controllers and services within the stars namespace:
+Crie controladores e serviços de replicação frontend e backend dentro do namespace stars:
 
 ```
 kubectl apply -f backend.yaml
 kubectl apply -f frontend.yaml
 ```
 
-Lastly, let's examine how the client namespace, and a client service for a replication controller.
-are built. `cat client.yaml`:
+Por fim, vamos examinar como o namespace  client e um serviço de client para um controlador de replicação.
+são construídos. `cat client.yaml`:
 
 ```
 kind: Namespace
@@ -228,17 +226,17 @@ spec:
     role: client
 ```
 
-Apply the client configuraiton.
+Aplique a configuração do cliente.
 
 ```
 kubectl apply -f client.yaml
 ```
-Check their status, and wait for all the pods to reach the Running status:
+Verifique seu status e aguarde até que todos os pods alcancem o status de execução:
 
 ```
 $ kubectl get pods --all-namespaces
 ```
-Your output should look like this:
+Sua saída deve ficar assim:
 
 ```
 NAMESPACE       NAME                                                  READY   STATUS    RESTARTS   AGE
@@ -261,14 +259,14 @@ stars           frontend-q4r84                                        1/1     Ru
 ```
 
 {{% notice note %}}
-It may take several minutes to download all the required Docker images.
+Pode levar vários minutos para baixar todas as imagens necessárias do Docker.
 {{% /notice %}}
 
-To summarize the different resources we created:
+Para resumir os diferentes recursos que criamos:
 
-* A namespace called **stars**
-* **frontend** and **backend** replication controllers and services within **stars** namespace
-* A namespace called **management-ui**
-* Replication controller and service **management-ui** for the user interface seen on the browser, in the **management-ui** namespace
-* A namespace called **client**
-* **client** replication controller and service in **client** namespace
+* Um namespace chamado **stars**
+* **frontend** e **backend** controladores de replicação e serviços dentro do namespace **stars** 
+* Um namespace chamado **management-ui**
+* Controlador e serviço de replicação **management-ui** para a interface do usuário visto no navegador, No namespace **management-ui**
+* Um namespace chamado **client**
+* **client** controlador de replicação e serviço no namespace **client** 

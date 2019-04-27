@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Introdução"
 date: 2018-11-13T16:36:24+09:00
 weight: 10
 draft: false
@@ -9,18 +9,18 @@ draft: false
 
 ![Istio Architecture](/images/servicemesh-intro2.png)
 
-Istio is a completely open source service mesh that layers transparently onto existing distributed applications. It's also a platform, including APIs, that let it integrate into any logging platform, or telemetry or policy system.
+O Istio é um service mesh  completamente aberta que se espalha de forma transparente em aplicativos distribuídos existentes. É também uma plataforma, incluindo APIs, que permite a integração em qualquer plataforma de registro, telemetria ou sistema de políticas..
 
-Let's review in more detail what each of the components that make up this service mesh are.
+Vamos revisar com mais detalhes o que cada um dos componentes que compõem essa service mesh é.
 
 * <span style="color:orange">**Envoy**</span>
-  * Processes the inbound/outbound traffic from inter-service and service-to-external-service transparently.
+  * Processa o tráfego de entrada / saída de serviços intercalados e de serviço para serviço externo de forma transparente.
 
 * <span style="color:orange">**Pilot**</span>
-  * Pilot provides service discovery for the Envoy sidecars, traffic management capabilities for intelligent routing (e.g., A/B tests, canary deployments, etc.), and resiliency (timeouts, retries, circuit breakers, etc.)
+  * Pilot fornece descoberta de serviço para os sidecars Envoy, capacidades de gerenciamento de tráfego para roteamento inteligente (e.g., A/B tests, canary deployments, etc.), e resiliência (timeouts, retries, circuit breakers, etc.)
 
 * <span style="color:orange">**Mixer**</span>
-  * Mixer enforces access control and usage policies across the service mesh, and collects telemetry data from the Envoy proxy and other services.
+  * O Mixer aplica as políticas de controle de acesso e uso no service mesh e coleta dados de telemetria do proxy Envoy e de outros serviços.
 
 * <span style="color:orange">**Citadel**</span>
-  * Citadel provides strong service-to-service and end-user authentication with built-in identity and credential management.
+  * O Citadel fornece uma forte autenticação entre serviço e usuário final, com gerenciamento integrado de identidade e credenciais.

@@ -1,12 +1,12 @@
 ---
-title: "Scale a Cluster with CA"
+title: "Dimensionar um cluster com CA"
 date: 2018-08-07T08:30:11-07:00
 weight: 40
 ---
 
-### Deploy a Sample App
+### Implantar um aplicativo de exemplo
 
-We will deploy an sample nginx application as a `ReplicaSet` of 1 `Pod`
+Vamos implantar um exemplo de aplicativo nginx como `ReplicaSet` of 1 `Pod`
 
 ```
 cat <<EoF> ~/environment/cluster-autoscaler/nginx.yaml
@@ -37,13 +37,13 @@ kubectl apply -f ~/environment/cluster-autoscaler/nginx.yaml
 kubectl get deployment/nginx-to-scaleout
 ```
 
-### Scale our ReplicaSet
+### Escalar nosso ReplicaSet
 
-OK, let's scale out the replicaset to 10
+OK, vamos escalar o replicaset para 10
 ```
 kubectl scale --replicas=10 deployment/nginx-to-scaleout
 ```
-Some pods will be in the `Pending` state, which triggers the cluster-autoscaler to scale out the EC2 fleet.
+Alguns pods estarão no estado `Pending`, que aciona o escalonamento automático do cluster para escalonar a frota do EC2.
 
 ```
 kubectl get pods -o wide --watch
@@ -65,13 +65,13 @@ nginx-to-scaleout-7cb554c7d5-86pr6   0/1       Pending   0          12s
 nginx-to-scaleout-7cb554c7d5-88ttw   0/1       Pending   0          12s
 ```
 
-View the cluster-autoscaler logs
+Visualizar os logs do cluster autoscaler
 ```
 kubectl logs -f deployment/cluster-autoscaler -n kube-system
 ```
-You will notice Cluster Autoscaler events similar to below
+Você observará eventos do Autoescalador de cluster semelhantes ao abaixo
 ![CA Scale Up events](/images/scaling-asg-up2.png)
 
-Check the AWS Management Console to confirm that the Auto Scaling groups are scaling up to meet demand. This may take a few minutes. You can also follow along with the pod deployment from the command line. You should see the pods transition from pending to running as nodes are scaled up.
+Verifique o AWS Management Console para confirmar se os grupos do Auto Scaling estão sendo dimensionados para atender à demanda. Isso pode levar alguns minutos. Você também pode acompanhar a implantação do pod a partir da linha de comando. Você deve ver a transição dos pods de pendente para execução, à medida que os nós são dimensionados.
 
 ![Scale Up](/images/scaling-asg-up.png)

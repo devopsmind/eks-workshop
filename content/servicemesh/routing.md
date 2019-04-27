@@ -1,18 +1,18 @@
 ---
-title: "Intelligent Routing"
+title: "Roteamento Inteligente"
 date: 2018-11-13T21:49:32+09:00
 weight: 50
 draft: false
 ---
 
-### Intelligent Routing
+### Roteamento Inteligente
 
-Deploying a microservice-based application in an Istio service mesh allows one to externally control service monitoring and tracing, request (version) routing, resiliency testing, security and policy enforcement, and more in a consistent manner across the services, and the application.
+A implantação de um aplicativo baseado em microsserviço em uma service mesh do Istio permite controlar externamente o monitoramento e o rastreamento de serviços, o roteamento de solicitação (versão), testes de resiliência, segurança e aplicação de políticas e mais de maneira consistente em todos os serviços e no aplicativo.
 
-Before you can use Istio to control the Bookinfo version routing, you'll need to define the available versions, called <span style="color:orange">**subsets**</span>, in destination rules.
+Antes de usar o Istio para controlar o roteamento da versão Bookinfo, você precisará definir as versões disponíveis, chamadas <span style="color:orange">**subsets**</span>, nas regras de destino.
 
 {{% notice info %}}
-Service versions (a.k.a. subsets) - In a continuous deployment scenario, for a given service, there can be distinct subsets of instances running different variants of the application binary. These variants are not necessarily different API versions. They could be iterative changes to the same service, deployed in different environments (prod, staging, dev, etc.). Common scenarios where this occurs include A/B testing, canary rollouts, etc. The choice of a particular version can be decided based on various criterion (headers, url, etc.) and/or by weights assigned to each version. Each service has a default version consisting of all its instances.
+Versões de serviço (a.k.a. subsets) - Em um cenário de implantação contínua, para um determinado serviço, pode haver subconjuntos distintos de instâncias executando diferentes variantes do binário do aplicativo. Essas variantes não são necessariamente versões diferentes da API. Podem ser alterações iterativas para o mesmo serviço, implantadas em diferentes ambientes (prod, staging, dev, etc.). Cenários comuns onde isso ocorre incluem A/B testing, canary rollouts, etc. A escolha de uma determinada versão pode ser decidida com base em vários critérios (cabeçalhos, url, etc.) e / ou por pesos atribuídos a cada versão. Cada serviço tem uma versão padrão que consiste em todas as suas instâncias.
 {{% /notice %}}
 
 ```
@@ -21,7 +21,7 @@ kubectl apply -f samples/bookinfo/networking/destination-rule-all.yaml
 kubectl get destinationrules -o yaml
 ```
 
-To route to one version only, you apply virtual services that set the default version for the microservices. In this case, the virtual services will route all traffic to <span style="color:orange">**reviews:v1**</span> of microservice.
+Para rotear para apenas uma versão, você aplica serviços virtuais que definem a versão padrão dos microsserviços. Nesse caso, os serviços virtuais rotearão todo o tráfego para<span style="color:orange">**reviews:v1**</span> de microserviço.
 
 ```
 kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
@@ -29,7 +29,7 @@ kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
 kubectl get virtualservices reviews -o yaml
 ```
 
-The subset is set to v1 for all reviews request.
+O subconjunto é definido como v1 para todas as solicitações de comentários.
 
 ```
 spec:
@@ -42,9 +42,9 @@ spec:
         subset: v1
 ```
 
-Try now to reload the page multiple times, and note how only version 1 of reviews is displayed each time.
+Tente agora recarregar a página várias vezes e observe como somente a versão 1 das resenhas é exibida a cada vez.
 
-Next, we'll change the route configuration so that all traffic from a specific user is routed to a specific service version. In this case, all traffic from a user named <span style="color:orange">*Jason*</span> will be routed to the service <span style="color:orange">**reviews:v2**</span>.
+Em seguida, alteraremos a configuração da rota para que todo o tráfego de um usuário específico seja roteado para uma versão de serviço específica. Nesse caso, todo o tráfego de um usuário chamado <span style="color:orange">*Jason*</span> será encaminhado para o serviço <span style="color:orange">**reviews:v2**</span>.
 
 ```
 kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml
@@ -52,7 +52,7 @@ kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-test-v2.yam
 kubectl get virtualservices reviews -o yaml
 ```
 
-The subset is set to v1 in default and route v2 if the logged user is match with 'jason' for reviews request.
+O subconjunto é definido como v1 no padrão e rota v2 se o usuário logado for compatível com 'jason' para solicitação de comentários.
 
 ```
 spec:
@@ -73,9 +73,9 @@ spec:
         subset: v1
 ```
 
-To test, click **Sign in** from the top right corner of the page, and login using **jason** as user name with a blank password. You will only see reviews:v2 all the time. Others will see reviews:v1.
+Para testar, clique **Sign in** no canto superior direito da página e faça o login usando **jason** como nome de usuário com uma senha em branco. Você só verá resenhas: v2 o tempo todo. Outros verão revisões: v1.
 
-To test for resiliency, inject a 7s delay between the reviews:v2 and ratings microservices for user jason. This test will uncover a bug that was intentionally introduced into the Bookinfo app.
+Para testar a resiliência, injete um atraso de 7 s entre os comentários: v2 e microsserviços de classificação para o usuário jason. Este teste irá descobrir um bug que foi intencionalmente introduzido no aplicativo Bookinfo.
 
 ```
 kubectl apply -f samples/bookinfo/networking/virtual-service-ratings-test-delay.yaml
@@ -83,7 +83,7 @@ kubectl apply -f samples/bookinfo/networking/virtual-service-ratings-test-delay.
 kubectl get virtualservice ratings -o yaml
 ```
 
-The subset is set to v1 in default and added 7s delay for all the request if the logged user is match with 'jason' for ratings.
+O subset é definido como v1 no padrão e adicionado 7s de atraso para toda a solicitação, se o usuário logado for compatível com 'jason' para classificações.
 
 ```
 spec:
@@ -108,11 +108,11 @@ spec:
         subset: v1
 ```
 
-Logout, then click **Sign in** from the top right corner of the page, using **jason** as the user name with a blank password. You will see the delays and it ends up display error for reviews. Others will see reviews without error.
+Logout e clique em **Sign in** no canto superior direito da página, usando **jason** como o nome de usuário com uma senha em branco. Você verá os atrasos e o erro de exibição será exibido nos comentários. Outros verão comentários sem erros.
 
-The timeout between the productpage and the reviews service is 6 seconds - coded as 3s + 1 retry for 6s total.
+O tempo limite entre a página de produto e o serviço de comentários é de 6 segundos - codificado como 3s 1 para 6s no total.
 
-To test for another resiliency, introduce an HTTP abort to the ratings microservices for the test user jason. The page will immediately display the “<span style="color:orange">*Ratings service is currently unavailable*</span>”
+Para testar outra resiliência, introduza um abort de HTTP nos microsserviços de classificações para o usuário de teste jason. A página exibirá imediatamente “<span style="color:orange">*Ratings service is currently unavailable*</span>”
 
 ```
 kubectl apply -f samples/bookinfo/networking/virtual-service-ratings-test-abort.yaml
@@ -120,7 +120,7 @@ kubectl apply -f samples/bookinfo/networking/virtual-service-ratings-test-abort.
 kubectl get virtualservice ratings -o yaml
 ```
 
-The subset is set to v1 and by default returns an error message of "Ratings service is currently unavailable" below the reviewer name if the logged username matches 'jason'.
+O subset é definido como v1 e, por padrão, retorna uma mensagem de erro de"Ratings service is currently unavailable" abaixo do nome do revisor se o nome de usuário registrado corresponder 'jason'.
 
 ```
 spec:
@@ -145,9 +145,9 @@ spec:
         subset: v1
 ```
 
-To test, click **Sign in** from the top right corner of the page and login using **jason** for the user name with a blank password. As **jason** you will see the error message. Others (not logged in as **jason**) will see no error message.
+Para testar, clique **Sign in** no canto superior direito da página e faça o login usando **jason** para o nome de usuário com uma senha em branco. Como **jason** você verá a mensagem de erro. Outros (não logados como **jason**) não verão mensagem de erro.
 
-Next, we'll demonstrate how to gradually migrate traffic from one version of a microservice to another. In our example, we'll send <span style="color:orange">50% of traffic to reviews:v1</span> and <span style="color:blue">50% to reviews:v3</span>.
+Em seguida, demonstraremos como migrar gradualmente o tráfego de uma versão de um microsserviço para outro. Em nosso exemplo, vamos enviar <span style="color:orange">50% de tráfego para reviews:v1</span>e <span style="color:blue">50% para reviews:v3</span>.
 
 ```
 kubectl apply -f samples/bookinfo/networking/virtual-service-all-v1.yaml
@@ -157,7 +157,7 @@ kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-50-v3.yaml
 kubectl get virtualservice reviews -o yaml
 ```
 
-The subset is set to 50% of traffic to v1 and 50% of traffic to v3 for all reviews request.
+O subset está definido para 50% do tráfego para v1 e 50% do tráfego para v3 para todos os pedidos de comentários.
 ```
 spec:
   hosts:
@@ -174,4 +174,4 @@ spec:
       weight: 50
 ```
 
-To test it, refresh your browser over and over, and you'll see only reviews:v1 and reviews:v3.
+Para testá-lo, atualize seu navegador várias vezes, e você verá apenas reviews:v1 e reviews:v3.

@@ -4,8 +4,8 @@ date: 2018-08-07T08:30:11-07:00
 weight: 10
 ---
 
-### Deploy the Metrics Server
-Metrics Server is a cluster-wide aggregator of resource usage data. These metrics will drive the scaling behavior of the [deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/). We will deploy the metrics server using `Helm` configured in a previous [module](/helm_root/helm_intro/install/index.html)
+### Implantar o Metrics Server
+O Metrics Server é um agregador de dados de uso de recursos em todo o cluster. Essas métricas conduzirão o comportamento de dimensionamento do [deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/). Vamos implantar o servidor de métricas usando o `Helm` configurado anteoriormente [module](/helm_root/helm_intro/install/index.html)
 
 ```
 helm install stable/metrics-server \
@@ -13,13 +13,13 @@ helm install stable/metrics-server \
     --version 2.0.4 \
     --namespace metrics
 ```
-### Confirm the Metrics API is available.
+### Confirme se a API de métricas está disponível.
 
-Return to the terminal in the Cloud9 Environment
+Retornar ao terminal no ambiente Cloud9
 ```
 kubectl get apiservice v1beta1.metrics.k8s.io -o yaml
 ```
-If all is well, you should see a status message similar to the one below in the response
+Se tudo estiver bem, você deve ver uma mensagem de status semelhante à abaixo na resposta
 ```
 status:
   conditions:
@@ -30,4 +30,4 @@ status:
     type: Available
 ```
 
-#### We are now ready to scale a deployed application
+#### Agora estamos prontos para escalar um aplicativo implantado

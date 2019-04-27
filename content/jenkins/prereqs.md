@@ -1,18 +1,16 @@
 ---
-title: "Configure Storage Class"
+title: "Configurar Storage Class"
 date: 2018-08-07T08:30:11-07:00
 weight: 10
 draft: true
 ---
 
-Before we can deploy our `Jenkins` instance we need to go and configure a
-default storage class for our cluster. Storage Classes tell Kubernetes how they
-should configure the Persistent Volumes that will be used with the cluster.
+Antes de podermos implantar nossa instância `Jenkins`, precisamos configurar um Storage Class padrão para nosso cluster. O Storage Class informam ao Kubernetes como elas devem configurar os Volumes Persistentes que serão usados ​​com o cluster.
 
-In our example we're going to setup `gp2` or general purpose EBS as our backing
+Em nosso exemplo, vamos configurar o `gp2` ou EBS de uso geral como nosso suporte a
 `pvc`'s
 
-First we need to create a new storage manifest:
+Primeiro, precisamos criar um novo manifesto de armazenamento:
 ```
 cat <<EoF > ~/environment/storage-class.yaml
 ---
@@ -31,7 +29,7 @@ mountOptions:
 EoF
 ```
 
-Lastly apply the config.
+Por fim, aplique a configuração.
 
 ```
 kubectl apply -f ~/environment/storage-class.yaml
