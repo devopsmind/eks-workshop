@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Provisionar  usando o Terraform on Amazon EKS Workshop</title>
+    <link>/terraform/</link>
+    <description>Recent content in Provisionar  usando o Terraform on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Aug 2018 12:50:08 -0700</lastBuildDate>
+    
+	<atom:link href="/terraform/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pré-requisitos</title>
+      <link>/terraform/prerequisites/</link>
+      <pubDate>Tue, 07 Aug 2018 12:50:08 -0700</pubDate>
+      
+      <guid>/terraform/prerequisites/</guid>
+      <description>Para este capítulo, precisamos baixar o binário do Terraform :
+curl -kLo /tmp/terraform.zip &amp;quot;https://releases.hashicorp.com/terraform/0.11.8/terraform_0.11.8_linux_amd64.zip&amp;quot; sudo unzip -d /usr/local/bin/ /tmp/terraform.zip sudo chmod +x /usr/local/bin/terraform  Vamos nos certificar de que temos um binário de Terraform:
+terraform version  </description>
+    </item>
+    
+    <item>
+      <title>Obter o módulo Terraform</title>
+      <link>/terraform/module/</link>
+      <pubDate>Tue, 07 Aug 2018 13:01:23 -0700</pubDate>
+      
+      <guid>/terraform/module/</guid>
+      <description>Agora vamos clonar o módulo terraform da comunidade para o EKS:
+cd ${HOME}/environment/ git clone https://github.com/WesleyCharlesBlake/terraform-aws-eks.git cd terraform-aws-eks  </description>
+    </item>
+    
+    <item>
+      <title>Launch EKS Cluster</title>
+      <link>/terraform/launcheks/</link>
+      <pubDate>Tue, 07 Aug 2018 13:03:16 -0700</pubDate>
+      
+      <guid>/terraform/launcheks/</guid>
+      <description>Começamos inicializando o estado do Terraform:
+terraform init  Agora podemos executar o plan do nosso deployment:
+terraform plan -var &#39;cluster-name=eksworkshop-tf&#39; -var &#39;desired-capacity=3&#39; -out eksworkshop-tf  E se quisermos aplicar esse plan:
+terraform apply &amp;quot;eksworkshop-tf&amp;quot;  A aplicação do novo plan do terraform levará aproximadamente 15 minutos
+ </description>
+    </item>
+    
+    <item>
+      <title>Create Kubeconfig File</title>
+      <link>/terraform/kubeconfig/</link>
+      <pubDate>Tue, 07 Aug 2018 13:07:50 -0700</pubDate>
+      
+      <guid>/terraform/kubeconfig/</guid>
+      <description>Agora que temos o cluster em execução, precisamos criar o arquivo KubeConfig que será usado para gerenciar o cluster.
+O módulo terraform armazena as informações do kubeconfig em seu armazenamento de estado. Podemos visualizá-lo com este comando:
+terraform output kubeconfig  E podemos salvá-lo para uso com este comando:
+terraform output kubeconfig &amp;gt; ${HOME}/.kube/config-eksworkshop-tf  Agora precisamos adicionar essa nova configuração à lista de configuração do KubeCtl:
+export KUBECONFIG=${HOME}/.kube/config-eksworkshop-tf:${HOME}/.kube/config echo &amp;quot;export KUBECONFIG=${KUBECONFIG}&amp;quot; &amp;gt;&amp;gt; ${HOME}/.</description>
+    </item>
+    
+    <item>
+      <title>Crie o Worker ConfigMap</title>
+      <link>/terraform/configmap/</link>
+      <pubDate>Tue, 07 Aug 2018 12:00:40 -0700</pubDate>
+      
+      <guid>/terraform/configmap/</guid>
+      <description>O estado terraform também contém um configmap que podemos usar para o nosso EKS workers.
+Veja o configmap:
+terraform output config-map  Salve o config-map:
+terraform output config-map &amp;gt; /tmp/config-map-aws-auth.yml  Aplique o config-map:
+kubectl apply -f /tmp/config-map-aws-auth.yml  Confirme seu Nodes:
+kubectl get nodes  Parabéns! Agora você tem um cluster do Amazon EKS totalmente funcional pronto para uso!</description>
+    </item>
+    
+    <item>
+      <title>Limpar</title>
+      <link>/terraform/cleanup/</link>
+      <pubDate>Tue, 07 Aug 2018 13:15:13 -0700</pubDate>
+      
+      <guid>/terraform/cleanup/</guid>
+      <description>Para excluir os recursos criados para esse cluster EKS, execute os seguintes comandos:
+Veja o plan:
+terraform plan -destroy -out eksworkshop-destroy-tf  Execute o plan:
+terraform apply &amp;quot;eksworkshop-destroy-tf&amp;quot;  Destruir todos os recursos levará aproximadamente 15 minutos
+ </description>
+    </item>
+    
+  </channel>
+</rss>

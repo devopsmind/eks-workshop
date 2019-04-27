@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deploy Nginx With Helm on Amazon EKS Workshop</title>
+    <link>/helm_root/helm_nginx/</link>
+    <description>Recent content in Deploy Nginx With Helm on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Aug 2018 08:30:11 -0700</lastBuildDate>
+    
+	<atom:link href="/helm_root/helm_nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Atualize o Repositório do Chart</title>
+      <link>/helm_root/helm_nginx/updatecharts/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/helm_root/helm_nginx/updatecharts/</guid>
+      <description>Helm usa um formato de embalagem chamado Charts. Um Chart é uma coleção de arquivos que descrevem recursos do k8s.
+Os Charts podem ser simples, descrevendo algo como um servidor da Web independente (que é o que vamos criar), mas eles também podem ser mais complexos, por exemplo, um charts que representa uma stack completa de aplicativos da Web, incluindo servidores da Web, bancos de dados, proxys etc.
+Em vez de instalar os recursos do k8s manualmente por meio do kubectl, podemos usar o Helm para instalar charts pré-definidos mais rapidamente, com menos chances de erros de digitação ou outros erros do operador.</description>
+    </item>
+    
+    <item>
+      <title>Pesquisar o repositório de charts</title>
+      <link>/helm_root/helm_nginx/searchchart/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/helm_root/helm_nginx/searchchart/</guid>
+      <description>Agora que a nossa lista de charts do repositório foi atualizada, podemos procurar por charts.
+Para listar todos de Charts:
+helm search  Isso deve resultar em algo parecido com:
+NAME CHART VERSION APP VERSION DESCRIPTION stable/acs-engine-autoscaler 2.2.0 2.1.1 Scales worker... stable/aerospike 0.1.7 v3.14.1.2 A Helm chart... ...  Você pode ver na saída que ele despejou a lista de todos os charts que ele conhece. Em alguns casos, isso pode ser útil, mas uma pesquisa ainda mais útil envolveria um argumento de palavra-chave.</description>
+    </item>
+    
+    <item>
+      <title>Adicione o repositório Bitnami</title>
+      <link>/helm_root/helm_nginx/addbitnamirepo/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/helm_root/helm_nginx/addbitnamirepo/</guid>
+      <description>No último slide, vimos que o NGINX oferece muitos produtos diferentes através do repositório Helm Chart padrão, mas o servidor web autônomo NGINX não é um deles.
+Depois de uma rápida pesquisa na web, descobrimos que existe um gráfico para o servidor da Web autônomo NGINX disponível por meio do repositório Chart Bitnami.
+Para adicionar o repositório do Bitnami Chart à nossa lista local de gráficos pesquisáveis:
+adicionar repositório helm bitnami https://charts.</description>
+    </item>
+    
+    <item>
+      <title>Instalar o bitnami/nginx</title>
+      <link>/helm_root/helm_nginx/installnginx/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/helm_root/helm_nginx/installnginx/</guid>
+      <description>Instalando o chart do servidor Web NGINX autônomo Bitnami nos envolve usando o comando helm install command.
+Quando instalamos usando o Helm, precisamos fornecer um nome de implantação ou um nome aleatório será atribuído à implantação automaticamente.
+Desafio: Como você pode usar o Helm para implantar o chart bitnami/nginx?
+SUGESTÃO: Use o utilitário helm para instalar o chart bitnami/nginx e especifique o nome mywebserver para a implantação do Kubernetes. Consulte a documentação do helm install ou executar o comando helm install --help para descobrir a sintaxe</description>
+    </item>
+    
+    <item>
+      <title>Limpar</title>
+      <link>/helm_root/helm_nginx/cleaningup/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/helm_root/helm_nginx/cleaningup/</guid>
+      <description>Para remover todos os objetos que o Helm Chart criou, podemos usar Helm delete.
+Antes de excluí-lo, podemos verificar o que temos em execução por meio do Helm list command:
+helm list  Você deve ver uma saída semelhante à abaixo, que mostra que o mywebserver está instalado:
+NAME REVISION UPDATED STATUS CHART APP VERSION mywebserver 1 Tue Nov 13 19:55:25 2018 DEPLOYED nginx-1.1.2 1.14.1  Foi muito divertido; Tivemos ótimos momentos enviando HTTP para frente e para trás, mas agora é hora de excluir essa implantação.</description>
+    </item>
+    
+  </channel>
+</rss>

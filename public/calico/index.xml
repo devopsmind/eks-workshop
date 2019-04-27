@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Criar políticas de rede usando o Calico on Amazon EKS Workshop</title>
+    <link>/calico/</link>
+    <description>Recent content in Criar políticas de rede usando o Calico on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 08 Nov 2018 08:30:11 -0700</lastBuildDate>
+    
+	<atom:link href="/calico/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Instalar Calico</title>
+      <link>/calico/install_calico/</link>
+      <pubDate>Thu, 08 Nov 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/calico/install_calico/</guid>
+      <description>Aplique o manifesto Calico do projeto GitHub aws/amazon-vpc-cni-k8s . Isso cria o daemon set no namespace kube-system .
+kubectl apply -f https://raw.githubusercontent.com/aws/amazon-vpc-cni-k8s/master/config/v1.2/calico.yaml  Vamos ver alguns dos principais recursos do manifesto Calico:
+1) Nós vemos uma annotation throughout; annotations são uma maneira de anexar metadados non-identifying para objetos. Estes metadados não são usados ​​internamente pelo Kubernetes, então eles não podem ser usados ​​para serem identificados dentro do K8. Em vez disso, eles são usados ​​por ferramentas e bibliotecas externas.</description>
+    </item>
+    
+  </channel>
+</rss>

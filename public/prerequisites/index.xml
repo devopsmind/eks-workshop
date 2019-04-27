@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Comece o workshop... on Amazon EKS Workshop</title>
+    <link>/prerequisites/</link>
+    <description>Recent content in Comece o workshop... on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/prerequisites/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Crie uma chave SSH</title>
+      <link>/prerequisites/sshkey/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/sshkey/</guid>
+      <description>A partir daqui, quando você ver o comando a ser inserido, como abaixo, você inserirá esses comandos na IDE do Cloud9 . Você pode usar o recurso Copiar para área de transferência (canto superior direito) para simplesmente copiar e colar na Cloud9. Para colar, você pode usar Ctrl V para Windows ou Command V para Mac.
+ Por favor, execute este comando para gerar a chave SSH na Cloud9. Essa chave será usada nas instâncias dos worker node para permitir o acesso ssh, se necessário.</description>
+    </item>
+    
+    <item>
+      <title>Instalar ferramentas do Kubernetes</title>
+      <link>/prerequisites/k8stools/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/k8stools/</guid>
+      <description>Os clusters do Amazon EKS requerem binários kubectl e kubelet e o binário aws-iam-authenticator para permitir a autenticação do IAM para seu cluster do Kubernetes.
+Neste workshop nós lhe daremos os comandos para baixar os binários do Linux. Se você estiver executando o Mac OSX / Windows, por favor consulte os documentos oficiais do EKS para os links de download.
+ Crie o diretório ~/.kube padrão para armazenar a configuração do kubectl mkdir -p ~/.</description>
+    </item>
+    
+    <item>
+      <title>Clone os Repos de Serviço</title>
+      <link>/prerequisites/clone/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/clone/</guid>
+      <description>cd ~/environment git clone https://github.com/brentley/ecsdemo-frontend.git git clone https://github.com/brentley/ecsdemo-nodejs.git git clone https://github.com/brentley/ecsdemo-crystal.git  </description>
+    </item>
+    
+    <item>
+      <title>Atualizar as configurações do IAM para sua área de trabalho</title>
+      <link>/prerequisites/workspaceiam/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/workspaceiam/</guid>
+      <description>O Cloud9 normalmente gerencia as credenciais do IAM dinamicamente. No momento, isso não é compatível com o plug-in aws-iam-authenticator, por isso, vamos desativá-lo e confiar na role do IAM.
+  Retorne ao seu espaço de trabalho e clique na roda dentada ou inicie uma nova guia para abrir a guia Preferências. Selecione AWS SETTINGS Desligar A AWS gerencia credenciais temporárias Feche a aba Preferências  Para garantir que as credenciais temporárias ainda não estejam em vigor, também removeremos qualquer arquivo de credenciais existente:</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>...workshop sozinho on Amazon EKS Workshop</title>
+    <link>/prerequisites/self_paced/</link>
+    <description>Recent content in ...workshop sozinho on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/prerequisites/self_paced/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Crie uma conta da AWS</title>
+      <link>/prerequisites/self_paced/account/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/self_paced/account/</guid>
+      <description>Sua conta deve ter a capacidade de criar novas roles do IAM e escopo de outras permissões do IAM.
+  Se você ainda não tem uma conta da AWS com acesso de administrador: crie uma agora clicando aqui
+ Depois de ter uma conta da AWS, verifique se você está seguindo as etapas restantes da oficina como um usuário do IAM com acesso de administrador à conta da AWS: Criar um novo usuário do IAM para usar no workshop</description>
+    </item>
+    
+    <item>
+      <title>Criar uma role do IAM para sua área de trabalho</title>
+      <link>/prerequisites/self_paced/iamrole/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/self_paced/iamrole/</guid>
+      <description> Siga este link direto para criar uma role do IAM com acesso de administrador. Confirme que AWS service e EC2 estão selecionados e, em seguida, clique em Next para visualizar as permissões. Confirme se AdministratorAccess está marcado e clique em Next para revisar. Digite eksworkshop-admin para o nome e selecione Create Role   </description>
+    </item>
+    
+    <item>
+      <title>Anexe a role do IAM ao seu Workspace</title>
+      <link>/prerequisites/self_paced/ec2instance/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/self_paced/ec2instance/</guid>
+      <description> Siga este link direto para encontrar sua instância do Cloud9 EC2 Selecione a instância e escolha Actions / Instance Settings / Attach/Replace IAM Role  Choose eksworkshop-admin from the IAM Role drop down, and select Apply   </description>
+    </item>
+    
+    <item>
+      <title>Ireland</title>
+      <link>/prerequisites/self_paced/eu-west-1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/self_paced/eu-west-1/</guid>
+      <description>Crie um ambiente Cloud9: https://eu-west-1.console.aws.amazon.com/cloud9/home?region=eu-west-1</description>
+    </item>
+    
+    <item>
+      <title>Ohio</title>
+      <link>/prerequisites/self_paced/us-east-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/self_paced/us-east-2/</guid>
+      <description>Crie um ambiente Cloud9: https://us-east-2.console.aws.amazon.com/cloud9/home?region=us-east-2</description>
+    </item>
+    
+    <item>
+      <title>Oregon</title>
+      <link>/prerequisites/self_paced/us-west-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/self_paced/us-west-2/</guid>
+      <description>Crie um ambiente Cloud9: https://us-west-2.console.aws.amazon.com/cloud9/home?region=us-west-2</description>
+    </item>
+    
+  </channel>
+</rss>

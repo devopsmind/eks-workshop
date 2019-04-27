@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Instale o Helm em EKS on Amazon EKS Workshop</title>
+    <link>/helm_root/helm_intro/</link>
+    <description>Recent content in Instale o Helm em EKS on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Aug 2018 08:30:11 -0700</lastBuildDate>
+    
+	<atom:link href="/helm_root/helm_intro/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Instalar o CLI do Helm</title>
+      <link>/helm_root/helm_intro/install/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/helm_root/helm_intro/install/</guid>
+      <description>Antes de começarmos a configurar helm precisaremos primeiro instalar as ferramentas de linha de comando com as quais você irá interagir. Para fazer isso, execute o seguinte.
+cd ~/environment curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get &amp;gt; get_helm.sh chmod +x get_helm.sh ./get_helm.sh  Depois de instalar o helm, o comando solicitará que você execute &amp;lsquo;helm init&amp;rsquo;. Do not run &amp;lsquo;helm init&amp;rsquo;. Siga as instruções para configurar o helm usando Kubernetes RBAC e, em seguida, instale o helm como especificado abaixo Se você acidentalmente executar &amp;lsquo;helm init&amp;rsquo;, você pode desinstalar com segurança o helm executando &amp;lsquo;helm reset &amp;ndash;force&amp;rsquo;</description>
+    </item>
+    
+  </channel>
+</rss>

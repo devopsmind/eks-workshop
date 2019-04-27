@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Implantar o Dashboard do Kubernetes on Amazon EKS Workshop</title>
+    <link>/dashboard/</link>
+    <description>Recent content in Implantar o Dashboard do Kubernetes on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Aug 2018 08:30:11 -0700</lastBuildDate>
+    
+	<atom:link href="/dashboard/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Implantar o Dashboard oficial do Kubernetes</title>
+      <link>/dashboard/dashboard/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/dashboard/dashboard/</guid>
+      <description>O Dashboard oficial do Kubernetes não é implantado por padrão, mas há instruções em a documentação oficial
+Podemos implantar o Dashboard com o seguinte comando:
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml  Como isso é implantado em nosso cluster privado, precisamos acessá-lo por meio de um proxy. O Kube-proxy está disponível para fazer proxy de nossos pedidos para o serviço do dashboard. No seu workspace, execute o seguinte comando:
+kubectl proxy --port=8080 --address=&#39;0.</description>
+    </item>
+    
+    <item>
+      <title>Acesse o Dashboard</title>
+      <link>/dashboard/connect/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/dashboard/connect/</guid>
+      <description>Agora podemos acessar o Dashboard do Kubernetes
+ Em seu ambiente Cloud9, clique Preview / Preview Running Application Vá até the end of the URL e acrescente:  /api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/  Abra uma nova guia Terminal e digite
+aws-iam-authenticator token -i eksworkshop-eksctl --token-only  Copie a saída deste comando e, em seguida, click o botão em formato radio ao lado Token em seguida, no campo de texto abaixo, cole a saída do último comando.</description>
+    </item>
+    
+  </channel>
+</rss>

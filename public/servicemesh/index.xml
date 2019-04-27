@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Service Mesh com Istio on Amazon EKS Workshop</title>
+    <link>/servicemesh/</link>
+    <description>Recent content in Service Mesh com Istio on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 13 Nov 2018 16:32:30 +0900</lastBuildDate>
+    
+	<atom:link href="/servicemesh/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Introdução</title>
+      <link>/servicemesh/introduction/</link>
+      <pubDate>Tue, 13 Nov 2018 16:36:24 +0900</pubDate>
+      
+      <guid>/servicemesh/introduction/</guid>
+      <description>Istio O Istio é um service mesh completamente aberta que se espalha de forma transparente em aplicativos distribuídos existentes. É também uma plataforma, incluindo APIs, que permite a integração em qualquer plataforma de registro, telemetria ou sistema de políticas..
+Vamos revisar com mais detalhes o que cada um dos componentes que compõem essa service mesh é.
+ Envoy
+ Processa o tráfego de entrada / saída de serviços intercalados e de serviço para serviço externo de forma transparente.</description>
+    </item>
+    
+    <item>
+      <title>Baixe e instale o Istio CLI</title>
+      <link>/servicemesh/download/</link>
+      <pubDate>Tue, 13 Nov 2018 16:36:43 +0900</pubDate>
+      
+      <guid>/servicemesh/download/</guid>
+      <description>Antes de podermos começar a configurar o Istio, precisamos primeiro instalar as ferramentas de linha de comando com as quais você irá interagir. Para fazer isso, execute o seguinte.
+cd ~/environment curl -L https://git.io/getLatestIstio | sh - // versão pode ser diferente como istio é atualizado cd istio-1.0.3 sudo mv -v bin/istioctl /usr/local/bin/  </description>
+    </item>
+    
+    <item>
+      <title>Instale o Istio</title>
+      <link>/servicemesh/install/</link>
+      <pubDate>Tue, 13 Nov 2018 16:36:55 +0900</pubDate>
+      
+      <guid>/servicemesh/install/</guid>
+      <description>Instalar o CRD do Istio O Custom Resource Definition, também conhecido como CRD, é um recurso da API que permite definir recursos personalizados.
+kubectl apply -f install/kubernetes/helm/istio/templates/crds.yaml  Instale o Istio Helm é necessário para os exemplos a seguir. Se você ainda não instalou o Helm, por favor, primeiro referenciar o capítulo Helm Antes de prosseguir.
+kubectl create -f install/kubernetes/helm/helm-service-account.yaml helm template install/kubernetes/helm/istio --name istio --namespace istio-system --set global.configValidation=false --set sidecarInjectorWebhook.</description>
+    </item>
+    
+    <item>
+      <title>Implantar aplicativos de exemplo</title>
+      <link>/servicemesh/deploy/</link>
+      <pubDate>Tue, 13 Nov 2018 16:37:17 +0900</pubDate>
+      
+      <guid>/servicemesh/deploy/</guid>
+      <description>Agora que temos todos os recursos instalados para o Istio, usaremos um aplicativo de exemplo chamado BookInfo para analisar os principais recursos da service mesh, como o roteamento inteligente, e analisar os dados de telemetria usando o Prometheus.
+Sample Apps O aplicativo Bookinfo é dividido em quatro microsserviços separados:
+ productpage
+ O microsserviço da página do produto chama os detalhes e revisa microsserviços para preencher a página.  details</description>
+    </item>
+    
+    <item>
+      <title>Roteamento Inteligente</title>
+      <link>/servicemesh/routing/</link>
+      <pubDate>Tue, 13 Nov 2018 21:49:32 +0900</pubDate>
+      
+      <guid>/servicemesh/routing/</guid>
+      <description>Roteamento Inteligente A implantação de um aplicativo baseado em microsserviço em uma service mesh do Istio permite controlar externamente o monitoramento e o rastreamento de serviços, o roteamento de solicitação (versão), testes de resiliência, segurança e aplicação de políticas e mais de maneira consistente em todos os serviços e no aplicativo.
+Antes de usar o Istio para controlar o roteamento da versão Bookinfo, você precisará definir as versões disponíveis, chamadas subsets, nas regras de destino.</description>
+    </item>
+    
+    <item>
+      <title>Monitorar &amp; Visualizar</title>
+      <link>/servicemesh/visualize/</link>
+      <pubDate>Tue, 13 Nov 2018 22:42:01 +0900</pubDate>
+      
+      <guid>/servicemesh/visualize/</guid>
+      <description>Coletando novos dados de telemetria Em seguida, faça o download de um arquivo YAML para manter a configuração da nova métrica e do fluxo de logs que o Istio irá gerar e coletar automaticamente.
+curl -LO https://eksworkshop.com/servicemesh/deploy.files/istio-telemetry.yaml kubectl apply -f istio-telemetry.yaml  Certifique-se de que Prometheus e Grafana estejam funcionando
+kubectl -n istio-system get svc prometheus kubectl -n istio-system get svc grafana  Configurar o encaminhamento de porta para o Grafana executando o seguinte comando:</description>
+    </item>
+    
+    <item>
+      <title>Limpeza</title>
+      <link>/servicemesh/cleanup/</link>
+      <pubDate>Tue, 13 Nov 2018 23:59:44 +0900</pubDate>
+      
+      <guid>/servicemesh/cleanup/</guid>
+      <description>Para limpar, siga os passos abaixo.
+Para remover o processo de configuração de telemetria / port-forward de porta
+kubectl delete -f istio-telemetry.yaml  Para remover os serviços virtuais / regras de destino do aplicativo
+kubectl delete -f samples/bookinfo/networking/virtual-service-all-v1.yaml kubectl delete -f samples/bookinfo/networking/destination-rule-all.yaml  Para remover o gateway / aplicativo
+kubectl delete -f samples/bookinfo/networking/bookinfo-gateway.yaml kubectl delete -f samples/bookinfo/platform/kube/bookinfo.yaml  Para remover o Istio
+kubectl delete -f istio.yaml kubectl delete -f install/kubernetes/helm/istio/templates/crds.yaml kubectl delete namespace istio-system  </description>
+    </item>
+    
+  </channel>
+</rss>

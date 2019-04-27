@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Autoscaling our Applications and Clusters on Amazon EKS Workshop</title>
+    <link>/scaling/</link>
+    <description>Recent content in Autoscaling our Applications and Clusters on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Aug 2018 08:30:11 -0700</lastBuildDate>
+    
+	<atom:link href="/scaling/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configure Horizontal Pod AutoScaler (HPA)</title>
+      <link>/scaling/deploy_hpa/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/scaling/deploy_hpa/</guid>
+      <description>Implantar o Metrics Server O Metrics Server é um agregador de dados de uso de recursos em todo o cluster. Essas métricas conduzirão o comportamento de dimensionamento do deployments. Vamos implantar o servidor de métricas usando o Helm configurado anteoriormente module
+helm install stable/metrics-server \ --name metrics-server \ --version 2.0.4 \ --namespace metrics  Confirme se a API de métricas está disponível. Retornar ao terminal no ambiente Cloud9
+kubectl get apiservice v1beta1.</description>
+    </item>
+    
+    <item>
+      <title>Scale an Application with HPA</title>
+      <link>/scaling/test_hpa/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/scaling/test_hpa/</guid>
+      <description>Implantar um aplicativo de exemplo Vamos implantar um aplicativo e expor como um serviço na porta TCP 80. O aplicativo é uma imagem customizada baseada na imagem php-apache. A página index.php realiza cálculos para gerar carga da CPU. Mais informações podem ser encontradas Aqui
+kubectl run php-apache --image=k8s.gcr.io/hpa-example --requests=cpu=200m --expose --port=80  Crie um recurso HPA Este HPA aumenta quando a CPU excede 50% do recurso de contêiner alocado.</description>
+    </item>
+    
+    <item>
+      <title>Configure Cluster Autoscaler (CA)</title>
+      <link>/scaling/deploy_ca/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/scaling/deploy_ca/</guid>
+      <description>Autoscaler do Cluster, A AWS fornece integração com grupos do Auto Scaling. Ele permite que os usuários escolham entre quatro opções diferentes de deployment:
+ One Auto Scaling group - This is what we will use Multiple Auto Scaling groups Auto-Discovery Master Node setup  Configure the Cluster Autoscaler (CA) We have provided a manifest file to deploy the CA. Copy the commands below into your Cloud9 Terminal.
+mkdir ~/environment/cluster-autoscaler cd ~/environment/cluster-autoscaler wget https://eksworkshop.</description>
+    </item>
+    
+    <item>
+      <title>Dimensionar um cluster com CA</title>
+      <link>/scaling/test_ca/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/scaling/test_ca/</guid>
+      <description>Implantar um aplicativo de exemplo Vamos implantar um exemplo de aplicativo nginx como ReplicaSet of 1 Pod
+cat &amp;lt;&amp;lt;EoF&amp;gt; ~/environment/cluster-autoscaler/nginx.yaml apiVersion: extensions/v1beta1 kind: Deployment metadata: name: nginx-to-scaleout spec: replicas: 1 template: metadata: labels: service: nginx app: nginx spec: containers: - image: nginx name: nginx-to-scaleout resources: limits: cpu: 500m memory: 512Mi requests: cpu: 500m memory: 512Mi EoF kubectl apply -f ~/environment/cluster-autoscaler/nginx.yaml kubectl get deployment/nginx-to-scaleout  Escalar nosso ReplicaSet OK, vamos escalar o replicaset para 10</description>
+    </item>
+    
+    <item>
+      <title>Limpar Scaling</title>
+      <link>/scaling/cleanup/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/scaling/cleanup/</guid>
+      <description>INSTANCE_PROFILE_PREFIX=$(aws cloudformation describe-stacks | jq -r .Stacks[].StackName | grep eksctl-eksworkshop-eksctl-nodegroup) INSTANCE_PROFILE_NAME=$(aws iam list-instance-profiles | jq -r &#39;.InstanceProfiles[].InstanceProfileName&#39; | grep $INSTANCE_PROFILE_PREFIX) ROLE_NAME=$(aws iam get-instance-profile --instance-profile-name $INSTANCE_PROFILE_NAME | jq -r &#39;.InstanceProfile.Roles[] | .RoleName&#39;) kubectl delete -f ~/environment/cluster-autoscaler/cluster_autoscaler.yml kubectl delete -f ~/environment/cluster-autoscaler/nginx.yaml rm -rf ~/environment/cluster-autoscaler aws iam delete-role-policy --role-name $ROLE_NAME --policy-name ASG-Policy-For-Worker kubectl delete hpa,svc php-apache kubectl delete deployment php-apache load-generator  </description>
+    </item>
+    
+  </channel>
+</rss>

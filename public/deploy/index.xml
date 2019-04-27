@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Implantar os microserviços de exemplo on Amazon EKS Workshop</title>
+    <link>/deploy/</link>
+    <description>Recent content in Implantar os microserviços de exemplo on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 18 Sep 2018 16:01:14 -0500</lastBuildDate>
+    
+	<atom:link href="/deploy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Faça deploy de nossos aplicativos de exemplo</title>
+      <link>/deploy/applications/</link>
+      <pubDate>Tue, 18 Sep 2018 16:01:14 -0500</pubDate>
+      
+      <guid>/deploy/applications/</guid>
+      <description>apiVersion: apps/v1 kind: Deployment metadata: name: ecsdemo-nodejs labels: app: ecsdemo-nodejs namespace: default spec: replicas: 1 selector: matchLabels: app: ecsdemo-nodejs strategy: rollingUpdate: maxSurge: 25% maxUnavailable: 25% type: RollingUpdate template: metadata: labels: app: ecsdemo-nodejs spec: containers: - image: brentley/ecsdemo-nodejs:latest imagePullPolicy: Always name: ecsdemo-nodejs ports: - containerPort: 3000 protocol: TCP  No arquivo de exemplo acima, descrevemos o serviço e como deve ser implantado. Vamos escrever esta descrição para a API do kubernetes usando o kubectl, e o kubernetes irá garantir que nossas preferências sejam atendidas à medida que o aplicativo for implementado.</description>
+    </item>
+    
+    <item>
+      <title>Implantar a API de back-end do NodeJS</title>
+      <link>/deploy/deploynodejs/</link>
+      <pubDate>Tue, 18 Sep 2018 17:39:30 -0500</pubDate>
+      
+      <guid>/deploy/deploynodejs/</guid>
+      <description>Vamos implantar a API do Backend do NodeJS!
+Copie/cole os seguintes comandos no seu workspace Cloud9 :
+cd ~/environment/ecsdemo-nodejs kubectl apply -f kubernetes/deployment.yaml kubectl apply -f kubernetes/service.yaml  Podemos acompanhar o progresso observando o status de deployment:
+kubectl get deployment ecsdemo-nodejs  </description>
+    </item>
+    
+    <item>
+      <title>Implantar a API do Crystal Backend</title>
+      <link>/deploy/deploycrystal/</link>
+      <pubDate>Tue, 18 Sep 2018 17:40:03 -0500</pubDate>
+      
+      <guid>/deploy/deploycrystal/</guid>
+      <description>Vamos trazer a API do Crystal Backend!
+Copie/cole os seguintes comandos no seu workspace Cloud9 :
+cd ~/environment/ecsdemo-crystal kubectl apply -f kubernetes/deployment.yaml kubectl apply -f kubernetes/service.yaml  Podemos acompanhar o progresso observando o status do deployment:
+kubectl get deployment ecsdemo-crystal  </description>
+    </item>
+    
+    <item>
+      <title>Vamos checar tipos de serviço</title>
+      <link>/deploy/servicetype/</link>
+      <pubDate>Tue, 18 Sep 2018 17:40:09 -0500</pubDate>
+      
+      <guid>/deploy/servicetype/</guid>
+      <description>Antes de abrirmos o serviço frontend, vamos dar uma olhada nos tipos de serviço que estamos usando: Isto é o kubernetes/service.yaml para nosso serviço de frontend:
+apiVersion: v1 kind: Service metadata: name: ecsdemo-frontend spec: selector: app: ecsdemo-frontend type: LoadBalancer ports: - protocol: TCP port: 80 targetPort: 3000  Observe type: LoadBalancer Isso configurará um ELB para manipular o tráfego de entrada para este serviço.
+Compare isso com kubernetes/service.yaml para um dos nossos serviços de back-end:</description>
+    </item>
+    
+    <item>
+      <title>Assegure-se de que a função de serviço do ELB exista</title>
+      <link>/deploy/servicerole/</link>
+      <pubDate>Tue, 18 Sep 2018 17:40:09 -0500</pubDate>
+      
+      <guid>/deploy/servicerole/</guid>
+      <description>Nas contas da AWS que nunca criaram um balanceador de carga antes, é possível que a função de serviço para o ELB ainda não exista.
+Podemos verificar o papel e criá-lo se estiver faltando.
+Copie/cole os seguintes comandos no seu workspace Cloud9 :
+aws iam get-role --role-name &amp;quot;AWSServiceRoleForElasticLoadBalancing&amp;quot; || aws iam create-service-linked-role --aws-service-name &amp;quot;elasticloadbalancing.amazonaws.com&amp;quot;  </description>
+    </item>
+    
+    <item>
+      <title>Implantar o serviço de front-end</title>
+      <link>/deploy/deployfrontend/</link>
+      <pubDate>Tue, 18 Sep 2018 17:40:09 -0500</pubDate>
+      
+      <guid>/deploy/deployfrontend/</guid>
+      <description>Vamos implantar o Frontend Ruby !
+Copie/cole os seguintes comandos no seu workspace Cloud9 :
+cd ~/environment/ecsdemo-frontend kubectl apply -f kubernetes/deployment.yaml kubectl apply -f kubernetes/service.yaml  Podemos acompanhar o progresso observando o status da implantação:
+kubectl get deployment ecsdemo-frontend  </description>
+    </item>
+    
+    <item>
+      <title>Encontre o endereço do serviço</title>
+      <link>/deploy/viewservices/</link>
+      <pubDate>Tue, 18 Sep 2018 17:40:09 -0500</pubDate>
+      
+      <guid>/deploy/viewservices/</guid>
+      <description>Agora que temos um serviço em execução que é type: LoadBalancer, precisamos encontrar o endereço do ELB. Podemos fazer isso usando a operação get services do kubectl:
+kubectl get service ecsdemo-frontend  Observe que o campo não é largo o suficiente para mostrar o FQDN do ELB. Podemos ajustar o formato de saída com este comando:
+kubectl get service ecsdemo-frontend -o wide  Se quiséssemos usar os dados pragmaticamente, também poderíamos produzir via json.</description>
+    </item>
+    
+    <item>
+      <title>Escale os serviços de back-end</title>
+      <link>/deploy/scalebackend/</link>
+      <pubDate>Tue, 18 Sep 2018 17:40:09 -0500</pubDate>
+      
+      <guid>/deploy/scalebackend/</guid>
+      <description>Quando lançamos nossos serviços, lançamos apenas um contêiner de cada um. Podemos confirmar isso visualizando os pods em execução:
+kubectl get deployments  Agora vamos escalar os serviços de back-end:
+kubectl scale deployment ecsdemo-nodejs --replicas=3 kubectl scale deployment ecsdemo-crystal --replicas=3  Confirme acompanhando o deployment novamente:
+kubectl get deployments  Além disso, verifique a guia do navegador onde podemos ver nosso aplicativo em execução. Agora você deve ver o tráfego fluindo para vários serviços de back-end.</description>
+    </item>
+    
+    <item>
+      <title>Escale o frontend</title>
+      <link>/deploy/scalefrontend/</link>
+      <pubDate>Tue, 18 Sep 2018 17:40:09 -0500</pubDate>
+      
+      <guid>/deploy/scalefrontend/</guid>
+      <description>Vamos também dimensionar nosso serviço frontend da mesma forma:
+kubectl get deployments kubectl scale deployment ecsdemo-frontend --replicas=3 kubectl get deployments  Verifique a guia do navegador, onde podemos ver nosso aplicativo em execução. Agora você deve ver o tráfego fluindo para vários serviços frontend.</description>
+    </item>
+    
+    <item>
+      <title>Limpar os aplicativos</title>
+      <link>/deploy/cleanup/</link>
+      <pubDate>Tue, 07 Aug 2018 13:37:53 -0700</pubDate>
+      
+      <guid>/deploy/cleanup/</guid>
+      <description>Para excluir os recursos criados pelos aplicativos, devemos excluir os deployments de aplicativos:
+Remover implantação dos aplicativos:
+cd ~/environment/ecsdemo-frontend kubectl delete -f kubernetes/service.yaml kubectl delete -f kubernetes/deployment.yaml cd ~/environment/ecsdemo-crystal kubectl delete -f kubernetes/service.yaml kubectl delete -f kubernetes/deployment.yaml cd ~/environment/ecsdemo-nodejs kubectl delete -f kubernetes/service.yaml kubectl delete -f kubernetes/deployment.yaml  </description>
+    </item>
+    
+  </channel>
+</rss>

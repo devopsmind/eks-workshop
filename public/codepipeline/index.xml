@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CI/CD com CodePipeline on Amazon EKS Workshop</title>
+    <link>/codepipeline/</link>
+    <description>Recent content in CI/CD com CodePipeline on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/codepipeline/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Criar Role IAM </title>
+      <link>/codepipeline/role/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/codepipeline/role/</guid>
+      <description>Em um CodePipeline da AWS, vamos usar o AWS CodeBuild para implantar um serviço de exemplo do Kubernetes. Isso requer uma Role Gerenciamento de identidade e acesso da AWS (IAM) capaz de interagir com o cluster EKS.
+Nesta etapa, criaremos uma role do IAM e adicionaremos uma política in-line que usaremos no estágio CodeBuild para interagir com o cluster EKS por meio do kubectl.
+Crie o Role:
+cd ~/environment ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text) TRUST=&amp;quot;{ \&amp;quot;Version\&amp;quot;: \&amp;quot;2012-10-17\&amp;quot;, \&amp;quot;Statement\&amp;quot;: [ { \&amp;quot;Effect\&amp;quot;: \&amp;quot;Allow\&amp;quot;, \&amp;quot;Principal\&amp;quot;: { \&amp;quot;AWS\&amp;quot;: \&amp;quot;arn:aws:iam::$ACCOUNT_ID:root\&amp;quot; }, \&amp;quot;Action\&amp;quot;: \&amp;quot;sts:AssumeRole\&amp;quot; } ] }&amp;quot; echo &#39;{ &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;, &amp;quot;Statement&amp;quot;: [ { &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;, &amp;quot;Action&amp;quot;: &amp;quot;eks:Describe*&amp;quot;, &amp;quot;Resource&amp;quot;: &amp;quot;*&amp;quot; } ] }&#39; &amp;gt; /tmp/iam-role-policy aws iam create-role --role-name EksWorkshopCodeBuildKubectlRole --assume-role-policy-document &amp;quot;$TRUST&amp;quot; --output text --query &#39;Role.</description>
+    </item>
+    
+    <item>
+      <title>Modificar aws-auth ConfigMap</title>
+      <link>/codepipeline/configmap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/codepipeline/configmap/</guid>
+      <description>Agora que temos o papel do IAM criado, vamos adicionar o role ao aws-auth ConfigMap para o cluster EKS.
+Depois que o ConfigMap incluir essa nova role, o kubectl no estágio CodeBuild do pipeline poderá interagir com o cluster EKS por meio da role IAM.
+ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text) ROLE=&amp;quot; - rolearn: arn:aws:iam::$ACCOUNT_ID:role/EksWorkshopCodeBuildKubectlRole\n username: build\n groups:\n - system:masters&amp;quot; kubectl get -n kube-system configmap/aws-auth -o yaml | awk &amp;quot;/mapRoles: \|/{print;print \&amp;quot;$ROLE\&amp;quot;;next}1&amp;quot; &amp;gt; /tmp/aws-auth-patch.</description>
+    </item>
+    
+    <item>
+      <title>Fork Repositório de exemplo</title>
+      <link>/codepipeline/forksample/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/codepipeline/forksample/</guid>
+      <description>Nós vamos agora fork o serviço Kubernetes de exemplo para que possamos modificar o repositório e acionar construções.
+Faça login no GitHub e faça um fork do serviço de exemplo em sua própria conta:
+https://github.com/rnzsgh/eks-workshop-sample-api-service-go
+Uma vez feito o fork do repo, você pode visualizá-lo em seu GitHub repositories.
+O fork do repositório será parecido com:</description>
+    </item>
+    
+    <item>
+      <title>Token de Acesso do GitHub</title>
+      <link>/codepipeline/githubcredentials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/codepipeline/githubcredentials/</guid>
+      <description>Para que o CodePipeline receba retornos de chamada do GitHub, precisamos gerar um token de acesso pessoal.
+Uma vez criado, um token de acesso pode ser armazenado em um código seguro e reutilizado, portanto, essa etapa só é necessária durante a primeira execução ou quando você precisar gerar novas chaves.
+Abra uma nova página de acesso pessoal no GitHub.
+Você pode ser solicitado a digitar sua senha do GitHub
+ Insira um valor para Token description, verifique o escopo de permissão repo e role para baixo e clique no botão ** Gerar token **</description>
+    </item>
+    
+    <item>
+      <title>CodePipeline Setup</title>
+      <link>/codepipeline/codepipeline/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/codepipeline/codepipeline/</guid>
+      <description>Now we are going to create the AWS CodePipeline using AWS CloudFormation.
+CloudFormation is an infrastructure as code (IaC) tool which provides a common language for you to describe and provision all the infrastructure resources in your cloud environment. CloudFormation allows you to use a simple text file to model and provision, in an automated and secure manner, all the resources needed for your applications across all regions and accounts.</description>
+    </item>
+    
+    <item>
+      <title>Trigger New Release</title>
+      <link>/codepipeline/change/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/codepipeline/change/</guid>
+      <description>Update Our Application So far we have walked through setting up CI/CD for EKS using AWS CodePipeline and now we are going to make a change to the GitHub repository so that we can see a new release built and delivered.
+Open GitHub and select the forked repository with the name eks-workshop-sample-api-service-go.
+Click on main.go file and then click on the edit button, which looks like a pencil.
+Change the text where it says &amp;ldquo;Hello World&amp;rdquo;, add a commit message and then click the &amp;ldquo;Commit changes&amp;rdquo; button.</description>
+    </item>
+    
+    <item>
+      <title>Cleanup</title>
+      <link>/codepipeline/cleanup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/codepipeline/cleanup/</guid>
+      <description>Parabéns pela conclusão do CI/CD com o módulo CodePipeline.
+This module is not used in subsequent steps, so you can remove the resources now, or at the end of the workshop.
+First we need to delete the Kubernetes deployment and service:
+kubectl delete deployments hello-k8s kubectl delete services hello-k8s  Next, we are going to delete the CloudFormation stack created. Open CloudFormation the AWS Management Console.
+Check the box next to the eksws-codepipeline stack, select the Actions dropdown menu and then click Delete stack:</description>
+    </item>
+    
+  </channel>
+</rss>

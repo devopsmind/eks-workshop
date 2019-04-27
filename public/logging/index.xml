@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Registrando logs com Elasticsearch, Fluentd, and Kibana (EFK) on Amazon EKS Workshop</title>
+    <link>/logging/</link>
+    <description>Recent content in Registrando logs com Elasticsearch, Fluentd, and Kibana (EFK) on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Aug 2018 08:30:11 -0700</lastBuildDate>
+    
+	<atom:link href="/logging/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Configurar política do IAM para Worker Nodes</title>
+      <link>/logging/prereqs/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/logging/prereqs/</guid>
+      <description>Nós estaremos implantando o Fluentd como um DaemonSet, ou um pod node por worker node. O Daemon de Log Fluentd irá coletar logs e encaminhar para o CloudWatch Logs.. Isso exigirá que os nodes tenham permissões para enviar logs e criar grupos de log e stream de logs. Isso pode ser feito com um usuário do IAM, uma Role do IAM ou usando uma ferramenta como Kube2IAM.
+Em nosso exemplo, criaremos uma política do IAM e anexaremos a role do Worker.</description>
+    </item>
+    
+    <item>
+      <title>Provisionar um cluster do Elasticsearch</title>
+      <link>/logging/setup_es/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/logging/setup_es/</guid>
+      <description>Este exemplo cria um cluster de duas instâncias do Amazon Elasticsearch chamado kubernetes-logs. Esse cluster é criado na mesma região que o cluster do Kubernetes e o grupo de log do CloudWatch.
+Observe que esse cluster tem uma política de acesso aberto que precisa ser bloqueada em ambientes de produção.
+ aws es create-elasticsearch-domain \ --domain-name kubernetes-logs \ --elasticsearch-version 6.3 \ --elasticsearch-cluster-config \ InstanceType=m4.large.elasticsearch,InstanceCount=2 \ --ebs-options EBSEnabled=true,VolumeType=standard,VolumeSize=100 \ --access-policies &#39;{&amp;quot;Version&amp;quot;:&amp;quot;2012-10-17&amp;quot;,&amp;quot;Statement&amp;quot;:[{&amp;quot;Effect&amp;quot;:&amp;quot;Allow&amp;quot;,&amp;quot;Principal&amp;quot;:{&amp;quot;AWS&amp;quot;:[&amp;quot;*&amp;quot;]},&amp;quot;Action&amp;quot;:[&amp;quot;es:*&amp;quot;],&amp;quot;Resource&amp;quot;:&amp;quot;*&amp;quot;}]}&#39;  Demora um pouco para o cluster ser criado e chegar a um estado ativo.</description>
+    </item>
+    
+    <item>
+      <title>Implantar Fluentd</title>
+      <link>/logging/deploy/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/logging/deploy/</guid>
+      <description>mkdir ~/environment/fluentd cd ~/environment/fluentd wget https://eksworkshop.com/logging/deploy.files/fluentd.yml  Explore o fluentd.yml para ver o que está sendo implantado. Existe um link na parte inferior desta página. A configuração do agente de log do Fluentd está localizada no Kubernetes ConfigMap. O Fluentd será implantado como um DaemonSet, ou seja, um pod por work node. No nosso caso, um cluster de 3 node é usado e, portanto, serão exibidos 3 pods na saída quando implantarmos.</description>
+    </item>
+    
+    <item>
+      <title>Configurar logs do CloudWatch e Kibana</title>
+      <link>/logging/configurecwl/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/logging/configurecwl/</guid>
+      <description>Configurar Subscrição de Logs do CloudWatch Os logs do CloudWatch podem ser entregues a outros serviços, como o Amazon Elasticsearch, para processamento personalizado. Isso pode ser obtido assinando um feed em tempo real de eventos de log. Um filtro de assinatura define o padrão de filtro a ser usado para filtrar quais eventos de log são entregues ao Elasticsearch, bem como informações sobre para onde enviar eventos de log correspondentes.</description>
+    </item>
+    
+    <item>
+      <title>limpeza Centralizador de Logs</title>
+      <link>/logging/cleanup/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/logging/cleanup/</guid>
+      <description>cd ~/environment INSTANCE_PROFILE_PREFIX=$(aws cloudformation describe-stacks | jq -r .Stacks[].StackName | grep eksctl-eksworkshop-eksctl-nodegroup) INSTANCE_PROFILE_NAME=$(aws iam list-instance-profiles | jq -r &#39;.InstanceProfiles[].InstanceProfileName&#39; | grep $INSTANCE_PROFILE_PREFIX) ROLE_NAME=$(aws iam get-instance-profile --instance-profile-name $INSTANCE_PROFILE_NAME | jq -r &#39;.InstanceProfile.Roles[] | .RoleName&#39;) kubectl delete -f ~/environment/fluentd/fluentd.yml rm -rf ~/environment/fluentd/ aws es delete-elasticsearch-domain --domain-name kubernetes-logs aws logs delete-log-group --log-group-name /eks/eksworkshop-eksctl/containers aws iam delete-role-policy --role-name $ROLE_NAME --policy-name Logs-Policy-For-Worker aws iam detach-role-policy --role-name lambda_basic_execution --policy-arn arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole aws iam delete-role --role-name lambda_basic_execution rm -rf ~/environment/iam_policy/  </description>
+    </item>
+    
+  </channel>
+</rss>

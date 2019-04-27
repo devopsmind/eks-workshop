@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Limpar on Amazon EKS Workshop</title>
+    <link>/cleanup/</link>
+    <description>Recent content in Limpar on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Aug 2018 13:37:53 -0700</lastBuildDate>
+    
+	<atom:link href="/cleanup/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Undeploy the applications</title>
+      <link>/cleanup/undeploy/</link>
+      <pubDate>Tue, 07 Aug 2018 13:37:53 -0700</pubDate>
+      
+      <guid>/cleanup/undeploy/</guid>
+      <description>Para excluir os recursos criados pelos aplicativos, devemos excluir as implantações do aplicativo e o dashboard do kubernetes:
+remover Implantação das aplicações:
+cd ~/environment/ecsdemo-frontend kubectl delete -f kubernetes/service.yaml kubectl delete -f kubernetes/deployment.yaml cd ~/environment/ecsdemo-crystal kubectl delete -f kubernetes/service.yaml kubectl delete -f kubernetes/deployment.yaml cd ~/environment/ecsdemo-nodejs kubectl delete -f kubernetes/service.yaml kubectl delete -f kubernetes/deployment.yaml kubectl delete -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml  </description>
+    </item>
+    
+    <item>
+      <title>Delete the EKSCTL Cluster</title>
+      <link>/cleanup/eksctl/</link>
+      <pubDate>Tue, 07 Aug 2018 13:37:53 -0700</pubDate>
+      
+      <guid>/cleanup/eksctl/</guid>
+      <description>Para excluir os recursos criados para esse cluster EKS, execute os seguintes comandos:
+Exclua o cluster:
+eksctl delete cluster --name=eksworkshop-eksctl  O grupo de nós terá que concluir o processo de exclusão antes que o cluster EKS possa ser excluído. O processo total levará aproximadamente 15 minutos e pode ser monitorado pelo Console do CloudFormation 
+ </description>
+    </item>
+    
+    <item>
+      <title>Limpar o Workspace</title>
+      <link>/cleanup/workspace/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/cleanup/workspace/</guid>
+      <description>Vamos deletar nossa chave SSH:
+aws ec2 delete-key-pair --key-name &amp;quot;eksworkshop&amp;quot;  Como não precisamos mais da instância Cloud9 para ter acesso de administrador à nossa conta, podemos excluir a role que criamos:
+ Vamos para Console do IAM  Clique Delete a role no canto superior direito  Por fim, vamos excluir nossa instância do Cloud9 EC2:
+- Vá para suaCloud9 Environment - Selecione o ambiente chamado eksworkshop e escolha delete</description>
+    </item>
+    
+  </channel>
+</rss>

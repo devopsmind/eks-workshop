@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Demonstração de política do star on Amazon EKS Workshop</title>
+    <link>/calico/stars_policy_demo/</link>
+    <description>Recent content in Demonstração de política do star on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Aug 2018 08:30:11 -0700</lastBuildDate>
+    
+	<atom:link href="/calico/stars_policy_demo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Criar recursos</title>
+      <link>/calico/stars_policy_demo/create_resources/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/calico/stars_policy_demo/create_resources/</guid>
+      <description>Antes de criar políticas de rede, vamos criar os recursos necessários. Crie uma nova pasta para os arquivos de configuração.
+mkdir ~/environment/calico_resources cd ~/environment/calico_resources  ####Namespace Stars
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
+cd ~/environment/calico_resources wget https://eksworkshop.com/calico/stars_policy_demo/create_resources.files/namespace.yaml  Vamos examinar nosso arquivo executando cat namespace.yaml.
+kind: Namespace apiVersion: v1 metadata: name: stars  Crie um namespace chamado stars:
+kubectl apply -f namespace.yaml  Vamos criar frontend e backend controladores de replicação e services neste namespace em etapas posteriores.</description>
+    </item>
+    
+    <item>
+      <title>Comunicação padrão Pod-to-Pod</title>
+      <link>/calico/stars_policy_demo/default_policy/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/calico/stars_policy_demo/default_policy/</guid>
+      <description>No Kubernetes, os pods por padrão pode se comunicar com outros pods, independentemente de qual host eles se comunicam. Cada pod recebe seu próprio endereço IP para que você não precise criar explicitamente links entre os pods. Isso é demonstrado pelo management-ui.
+kind: Service metadata: name: management-ui namespace: management-ui spec: type: LoadBalancer ports: - port: 80 targetPort: 9001  Para abrir a interface do usuário de gerenciamento usando, recupere o nome DNS da interface do usuário de gerenciamento usando:</description>
+    </item>
+    
+    <item>
+      <title>Aplicar políticas de rede</title>
+      <link>/calico/stars_policy_demo/apply_network_policies/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/calico/stars_policy_demo/apply_network_policies/</guid>
+      <description>Em um cluster de nível de produção, não é seguro ter uma comunicação aberta de pod para pod. Vamos ver como podemos isolar os serviços uns dos outros.
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
+cd ~/environment/calico_resources wget https://eksworkshop.com/calico/stars_policy_demo/apply_network_policies.files/default-deny.yaml  Vamos examinar nosso arquivo executando cat default-deny.yaml.
+kind: NetworkPolicy apiVersion: networking.k8s.io/v1 metadata: name: default-deny spec: podSelector: matchLabels: {}  Vamos repassar a política de rede. Aqui vemos que o podSelector não tem nenhum matchLabels, essencialmente bloqueando todos os pods de acessá-lo.</description>
+    </item>
+    
+    <item>
+      <title>Permitir tráfego direcional</title>
+      <link>/calico/stars_policy_demo/directional_traffic/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/calico/stars_policy_demo/directional_traffic/</guid>
+      <description>Vamos ver como podemos permitir o tráfego direcional do cliente para frontend e backend.
+Copie/Cole os seguintes comandos no seu terminal Cloud9.
+cd ~/environment/calico_resources wget https://eksworkshop.com/calico/stars_policy_demo/directional_traffic.files/backend-policy.yaml wget https://eksworkshop.com/calico/stars_policy_demo/directional_traffic.files/frontend-policy.yaml  Vamos examinar essa política de back-end com cat backend-policy.yaml:
+kind: NetworkPolicy apiVersion: networking.k8s.io/v1 metadata: namespace: stars name: backend-policy spec: podSelector: matchLabels: role: backend ingress: - from: - &amp;lt;EDIT: UPDATE WITH THE CONFIGURATION NEEDED TO WHITELEST FRONTEND USING PODSELECTOR&amp;gt; &amp;lt;EDIT: UPDATE WITH THE CONFIGURATION NEEDED TO WHITELEST FRONTEND USING PODSELECTOR&amp;gt; &amp;lt;EDIT: UPDATE WITH THE CONFIGURATION NEEDED TO WHITELEST FRONTEND USING PODSELECTOR&amp;gt; ports: - protocol: TCP port: 6379  Challenge: Depois de analisar o manifesto, você verá que deixamos intencionalmente alguns dos campos de configuração para você EDITAR.</description>
+    </item>
+    
+    <item>
+      <title>Limpar</title>
+      <link>/calico/stars_policy_demo/cleanup/</link>
+      <pubDate>Tue, 07 Aug 2018 08:30:11 -0700</pubDate>
+      
+      <guid>/calico/stars_policy_demo/cleanup/</guid>
+      <description>Limpe a demonstração excluindo os namespaces:
+kubectl delete ns client stars management-ui  </description>
+    </item>
+    
+  </channel>
+</rss>

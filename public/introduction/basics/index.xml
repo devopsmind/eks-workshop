@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes (k8s) Noções básicas on Amazon EKS Workshop</title>
+    <link>/introduction/basics/</link>
+    <description>Recent content in Kubernetes (k8s) Noções básicas on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Oct 2018 10:14:32 -0700</lastBuildDate>
+    
+	<atom:link href="/introduction/basics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>O que é o Kubernetes??</title>
+      <link>/introduction/basics/what_is_k8s/</link>
+      <pubDate>Wed, 03 Oct 2018 10:14:46 -0700</pubDate>
+      
+      <guid>/introduction/basics/what_is_k8s/</guid>
+      <description>Com base em mais de uma década de experiência e melhores práticas Utiliza configuração declarativa e automação Desenha um grande ecossistema de ferramentas, serviços, suporte  Mais informações sobre o que é o Kubernetes podem ser encontradas no site oficial do Kubernetes.</description>
+    </item>
+    
+    <item>
+      <title>Nodes do Kubernetes</title>
+      <link>/introduction/basics/concepts_nodes/</link>
+      <pubDate>Wed, 03 Oct 2018 10:15:55 -0700</pubDate>
+      
+      <guid>/introduction/basics/concepts_nodes/</guid>
+      <description>As máquinas que formam um cluster Kubernetes são chamadas nodes.
+Os nós em um cluster do Kubernetes podem ser físicos ou virtuais.
+Existem dois tipos de nós:
+ Um tipo Master-node, que compõe o Plano de controle, age como o &amp;lsquo;cérebro&amp;rsquo; do cluster.
+ um tipo Worker-node , que compõe o Plano de dados, executa as imagens reais do contêiner (via pods.)
+  Vamos mergulhar mais fundo na forma como os nós interagem uns com os outros mais tarde na apresentação.</description>
+    </item>
+    
+    <item>
+      <title>Visão Geral dos Objetos K8s</title>
+      <link>/introduction/basics/concepts_objects/</link>
+      <pubDate>Wed, 03 Oct 2018 10:15:55 -0700</pubDate>
+      
+      <guid>/introduction/basics/concepts_objects/</guid>
+      <description>Objetos do Kubernetes são entidades usadas para representar o estado do cluster.
+Um objeto é um “registro de intenção” - uma vez criado, o cluster faz o possível para garantir que ele exista conforme definido. Isso é conhecido como o cluster “desired state.”
+O Kubernetes está sempre trabalhando para tornar o “Estado atual” de um objeto igual ao objeto “Estado desejado.” Um estado desejado pode descrever:
+ Quais pods (contêineres) estão sendo executados e em quais nodes IP de endpoints que mapeiam para um grupo lógico de contêineres Quantas réplicas de um contêiner estão sendo executadas E muito mais&amp;hellip;  Vamos explicar esses objetos k8s com mais detalhes.</description>
+    </item>
+    
+    <item>
+      <title>Detalhe de objetos do K8s(1/2)</title>
+      <link>/introduction/basics/concepts_objects_details_1/</link>
+      <pubDate>Wed, 03 Oct 2018 10:15:55 -0700</pubDate>
+      
+      <guid>/introduction/basics/concepts_objects_details_1/</guid>
+      <description> Pod  Uma unidade lógica de agrupamento em torno de um ou mais contêineres  DaemonSet  Implementa uma única instância de um pod em um worker node  Deployment  Detalhes sobre como distribuir (ou reverter) as versões do seu aplicativo  </description>
+    </item>
+    
+    <item>
+      <title>Detalhe de objetos do K8s (2/2)</title>
+      <link>/introduction/basics/concepts_objects_details_2/</link>
+      <pubDate>Wed, 03 Oct 2018 10:15:55 -0700</pubDate>
+      
+      <guid>/introduction/basics/concepts_objects_details_2/</guid>
+      <description> ReplicaSet  Garante que um número definido de pods esteja sempre em execução  Job  Garante que um pod seja executado corretamente até a conclusão  Service  Mapeia um endereço IP fixo para um grupo lógico de pods  Label  Pares de chave/valor usados ​​para associação e filtragem  </description>
+    </item>
+    
+  </channel>
+</rss>

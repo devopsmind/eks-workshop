@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>...em um evento da AWS on Amazon EKS Workshop</title>
+    <link>/prerequisites/aws_event/</link>
+    <description>Recent content in ...em um evento da AWS on Amazon EKS Workshop</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="/prerequisites/aws_event/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AWS Workshop Portal</title>
+      <link>/prerequisites/aws_event/portal/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/prerequisites/aws_event/portal/</guid>
+      <description>Faça o login no AWS Workshop Portal Este workshop cria uma conta da AWS e um ambiente Cloud9. Você precisará do Participant Hash fornecido na entrada e do seu endereço de e-mail para acompanhar sua sessão exclusiva.
+Conecte-se ao portal clicando no botão ou navegando para https://portal.awsworkshop.io/.
+Connect to Portal  
+Insira seu Participant Hash e seu endereço de e-mail e clique em Log In.
+Depois de ter feito o login, primeiro faça o login no console da AWS clicando no botão .</description>
+    </item>
+    
+  </channel>
+</rss>
