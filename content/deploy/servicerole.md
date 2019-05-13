@@ -1,5 +1,5 @@
 ---
-title: "Assegure-se de que a função de serviço do ELB exista"
+title: "Assegure-se de que a role de serviço do ELB exista"
 date: 2018-09-18T17:40:09-05:00
 weight: 29
 ---
